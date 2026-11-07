@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>MediTrack Case Study</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+<script src="./cursor.js"></script>
+<link rel="stylesheet" href="./case-study.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&amp;display=swap">
+<style>
+:root{--cs-accent:#2F6F5E;--cs-accent-soft:#EAF4F1;--cs-bg:#F5F5F5;--cs-nav-bg:rgba(245,245,245,.72)}
+@supports (background: color-mix(in srgb, red 50%, transparent)){:root{--cs-nav-bg:color-mix(in srgb, #F5F5F5 72%, transparent)}}
+
+
+/* Layout: slim fixed index at far left, one 660px reading column; each section = mono tag, headline, text, then white cards, tabbed screen viewers and key/value lists. Light theme only. */
+:root {
+  --bg: var(--cs-bg); --ink: var(--cs-ink); --muted: var(--cs-muted); --faint: #7B858E; --line: var(--cs-line);
+  --teal: var(--cs-accent); --teal-dark: #1E4438; --tint: var(--cs-accent-soft); --tint-line: var(--cs-line);
+  --sage: #6E8F86; --grey: #A9B0AD; --beige: #EFE7DA; --panel: var(--cs-panel); --dark: #2A2E2D;
+  --head: "Libre Baskerville", Georgia, serif;
+  --font: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "Inter", "Helvetica Neue", sans-serif;
+  --serif: "Libre Baskerville", Georgia, serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; }
+
+
+button { font: inherit; color: inherit; }
+button:focus-visible, a:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; border-radius: 6px; }
+img { display: block; }
+
+
+.cover { position: relative; width: 100%; aspect-ratio: 800 / 516; border-radius: var(--cs-radius-lg); overflow: hidden; background: linear-gradient(180deg, #E6F4EE 0%, #D5EDE2 100%); margin: 0 0 32px; }
+.dev { position: absolute; width: 24.5%; aspect-ratio: 9 / 19.5; background: #fff; border: clamp(3px, .6vw, 4px) solid #121816; border-radius: clamp(18px, 5vw, 34px); overflow: hidden; box-shadow: var(--cs-shadow); }
+.dev img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.dev::after { content: ""; position: absolute; top: 2.4%; left: 50%; width: 34%; height: 4.4%; transform: translateX(-50%); border-radius: 12px; background: #121816; }
+.dev.a { left: 6%; top: 25%; } .dev.b { left: 37.75%; top: 9%; z-index: 2; } .dev.c { right: 6%; top: 25%; }
+
+/* hero */
+
+
+.project { display: flex; align-items: center; gap: 8px; margin: 48px 0 16px; font-weight: 500; font-size: 15px; }
+.project svg { width: 20px; height: 20px; stroke: var(--ink); fill: none; stroke-width: 1.5; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 32px; }
+.cs-chip i { width: 7px; height: 7px; border-radius: 50%; background: var(--sage); display: inline-block; }
+
+
+.tag-label { display: block; }
+.muted { color: var(--cs-text); }
+.meta { display: grid; grid-template-columns: 1fr 1fr; margin-top: 24px; background: var(--panel); border-radius: var(--cs-radius); padding: 8px 24px; }
+.meta div { padding: 16px 0; border-top: 1px solid var(--cs-line); }
+.meta div:nth-child(-n+2) { border-top: 0; }
+.meta dt { font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--faint); }
+.meta dd { margin: 4px 0 0; font-size: 15px; }
+
+/* sections */
+
+.strip { background: var(--dark); border-radius: var(--cs-radius); padding: 16px 16px 0; display: flex; gap: 16px; overflow: hidden; height: 250px; margin-top: 32px; }
+.strip img { flex: 1 1 0; min-width: 0; height: 330px; object-fit: cover; object-position: top; border-radius: var(--cs-radius) var(--cs-radius) 0 0; background: #fff; }
+
+/* problem */
+.pboard { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; margin-top: 24px; background: #fff; border: 1px solid var(--line); border-radius: var(--cs-radius); overflow: hidden; background-image: linear-gradient(var(--line), var(--line)), linear-gradient(var(--line), var(--line)); background-size: 1px 100%, 100% 1px; background-position: 50% 0, 0 50%; background-repeat: no-repeat; }
+.pq { padding: 32px 32px 32px; display: flex; flex-direction: column; min-width: 0; }
+.pn { width: 28px; height: 28px; border-radius: 50%; background: var(--teal); color: #fff; font: 600 13px/28px Poppins, sans-serif; text-align: center; margin-bottom: 16px; }
+.pq h3 { margin: 0 0 8px; }
+.pq p { margin: 0 0 16px; font-size: 13.5px; line-height: 1.55; color: var(--muted); }
+.pv { margin-top: auto; padding: 0; font-size: 12.5px; color: var(--ink, #1c2b27); }
+.pv small { display: block; font-size: 11px; color: var(--muted); }
+.ic { display: inline-block; width: 22px; height: 22px; border-radius: 6px; vertical-align: middle; margin-right: 8px; flex: none; }
+.ic.ph { background: #D7E8F7; } .ic.wa { background: #D5F0DE; } .ic.fi { background: #FBE6C8; } .ic.rx { background: #E6E1F3; }
+.scat { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 4px 8px; }
+.scat .rcd { box-shadow: 0 6px 16px rgba(30,68,56,.10); }
+.scat .rcd:nth-child(1) { transform: rotate(-3deg); } .scat .rcd:nth-child(2) { transform: rotate(2.5deg) translateY(6px); } .scat .rcd:nth-child(3) { transform: rotate(2deg); } .scat .rcd:nth-child(4) { transform: rotate(-2.5deg) translateY(-4px); }
+.files { box-shadow: none; }
+.srch .bar { box-shadow: 0 6px 16px rgba(30,68,56,.10); border-color: transparent; }
+.srch .none { background: var(--tint); display: block; width: max-content; margin: 16px auto 0; padding: 8px 16px; border-radius: 10px; }
+.rcd { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 8px 8px; font-size: 12px; white-space: nowrap; font-weight: 600; line-height: 1.3; }
+.rcd small { font-weight: 400; margin: 2px 0 0 32px; }
+.rcd .ic { margin-right: 8px; }
+.files { display: grid; gap: 8px; }
+.files div { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 8px 8px; display: grid; grid-template-columns: 30px 1fr auto; align-items: center; font-weight: 500; }
+.files small { display: inline; }
+.files .ic { margin: 0; }
+.srch .bar { background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 8px 16px; display: flex; align-items: center; gap: 8px; font-size: 13px; }
+.srch .bar svg { width: 16px; height: 16px; stroke: var(--sage); fill: none; stroke-width: 1.8; stroke-linecap: round; }
+.srch .none { text-align: center; margin-top: 16px; color: var(--muted); font-size: 12.5px; }
+.pq.warn .pv { background: #FCEDE8; padding: 16px; border-radius: 12px; }
+.pq.warn .pn { background: #C2563A; }
+.alarm b { display: flex; align-items: center; gap: 8px; color: #A8422A; font: 600 13px Poppins, sans-serif; margin-bottom: 8px; }
+.alarm b svg { width: 18px; height: 18px; stroke: #C2563A; fill: none; stroke-width: 1.8; stroke-linejoin: round; stroke-linecap: round; }
+.alarm em { display: block; font-style: normal; font-size: 11.5px; color: var(--muted); margin-top: 8px; }
+@media (max-width: 640px) { .pboard { grid-template-columns: 1fr; grid-template-rows: none; background-image: linear-gradient(var(--line), var(--line)); background-size: 100% 1px; background-position: 0 0; } .pq { border-top: 1px solid var(--line); padding: 24px 24px; } .pq:first-child { border-top: 0; } }
+.board { margin: 24px 0 0; border-radius: var(--cs-radius); overflow: hidden; border: 1px solid var(--line); }
+.board img { width: 100%; height: auto; display: block; }
+.pick { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); text-align: right; margin: 24px 0 8px; }
+.flow { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 40px; margin-top: 16px; padding: 8px 0 0; position: relative; }
+.flow::before { content: ""; position: absolute; left: 16%; right: 16%; top: 17px; border-top: 1.5px dashed #C9D6D2; }
+.fnode { position: relative; min-width: 0; text-align: center; }
+.fnum { position: relative; z-index: 1; width: 36px; height: 36px; margin: 0 auto 24px; border-radius: 50%; background: var(--teal); color: #fff; font: 600 14px/36px Poppins, sans-serif; box-shadow: 0 0 0 6px var(--bg); }
+.fshot { margin: 0 auto 24px; width: 100%; max-width: 270px; border-radius: var(--cs-radius); overflow: hidden; background: #fff; border: 1px solid var(--line); box-shadow: var(--cs-shadow); }
+.fshot img { width: 100%; height: auto; display: block; }
+.fshot.narrow { width: 84%; }
+.fnode h3 { margin: 0 0 8px; }
+.fnode p { margin: 0 auto; max-width: 240px; font-size: 13px; line-height: 1.55; color: var(--muted); }
+.pill { display: inline-block; margin-bottom: 8px; }
+.fnode h3 { margin-bottom: 8px; }
+.fnode p { margin: 0; font-size: 13px; line-height: 1.55; color: var(--muted); }
+.farrow { display: flex; justify-content: center; padding-top: 80px; }
+.farrow svg { width: 24px; height: 12px; stroke: var(--teal); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.pill { font-family: var(--mono); font-weight: 400; font-size: 9.5px; letter-spacing: .12em; text-transform: uppercase; padding: 4px 8px; border-radius: 6px; }
+.pill.g { background: #DDF1E6; color: #2C6A47; } .pill.y { background: #FBEBCB; color: #7C5A12; } .pill.t { background: var(--tint); color: var(--teal-dark); }
+
+/* process */
+.step { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 0 4px; margin-top: 32px; }
+.step > .n { font-family: var(--head); font-weight: 500; font-size: 20px; color: #7B858E; line-height: 1.3; }
+.step h3 { margin-bottom: 16px; }
+.step p { color: var(--muted); }
+.kv { background: #fff; border: 1px solid var(--line); border-radius: var(--cs-radius); padding: 8px 24px; margin: 16px 0 0; }
+.kv > div { display: grid; grid-template-columns: 128px minmax(0, 1fr); gap: 16px; padding: 16px 0; border-top: 1px solid var(--line); font-size: 14.5px; align-items: start; }
+.kv > div:first-child { border-top: 0; }
+.kv dt { font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); padding-top: 4px; }
+.kv dd { margin: 0; }
+.gaplist { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.gaplist li { display: grid; grid-template-columns: 74px minmax(0, 1fr); gap: 16px; font-size: 14.5px; }
+.gaplist b { font-weight: 600; }
+.gaplist span { color: var(--muted); }
+.gaplist .gap { margin-top: 4px; padding: 16px 16px; background: var(--tint); border: 1px solid var(--tint-line); border-radius: 10px; }
+.gaplist .gap b { color: var(--teal-dark); }
+.gaplist .gap span { color: var(--ink); }
+.rc { display: inline-block; font-family: var(--mono); font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase; padding: 4px 8px; border-radius: 999px; border: 1px solid transparent; margin-right: 8px; vertical-align: 1px; }
+.chip.confirmed { background: var(--teal); color: #fff; }
+.chip.assumed { background: var(--tint); color: var(--teal-dark); border-color: var(--tint-line); }
+.chip.open { color: var(--muted); border: 1px dashed var(--grey); }
+.order { background: #fff; border: 1px solid var(--line); border-radius: var(--cs-radius); padding: 24px; margin-top: 16px; display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 24px; }
+.stack { background: var(--panel); border: 1px solid var(--line); border-radius: var(--cs-radius); padding: 16px 16px; display: flex; flex-direction: column; gap: 8px; }
+.stack i { display: block; border-radius: 6px; background: #D5DCD9; }
+.stack i.a { height: 40px; background: var(--teal); } .stack i.b { height: 38px; background: #A8CBBF; } .stack i.c { height: 26px; } .stack i.d { height: 38px; } .stack i.e { height: 24px; background: transparent; border: 1.5px dashed var(--sage); }
+.order dl { margin: 0; display: flex; flex-direction: column; gap: 16px; font-size: 14.5px; }
+.order dt { font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.order dd { margin: 1px 0 0; }
+.order .first { border-left: 2px solid var(--teal); padding-left: 16px; }
+.order .first dt { color: var(--teal); }
+.order .last { border-left: 2px solid var(--teal); padding-left: 16px; }
+.order .last dt { color: var(--teal); }
+.two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; margin-top: 16px; align-items: start; }
+.conf { display: flex; flex-direction: column; gap: 8px; background: var(--panel); border-radius: var(--cs-radius); padding: 24px; }
+.conf .row { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 16px 16px; display: flex; flex-direction: column; gap: 8px; font-size: 12.5px; color: var(--muted); line-height: 1.4; }
+.conf .p { align-self: flex-start; font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; padding: 4px 8px; border-radius: 999px; }
+.p.l { background: var(--teal); color: #fff; } .p.p { background: #DDE8E4; color: var(--teal-dark); } .p.u { background: #ECEEED; color: #494949; }
+.prin { background: #fff; border: 1px solid var(--line); border-radius: var(--cs-radius); padding: 8px 24px; }
+.prin > div { padding: 16px 0; border-top: 1px solid var(--line); }
+.prin > div:first-child { border-top: 0; }
+.prin h4 { margin: 0 0 4px; font-family: var(--head); font-weight: 500; font-size: 14.5px; }
+.prin p { margin: 0; font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+/* final design */
+.sub { margin-top: 48px; }
+.sub h3 { }
+.sub > p { color: var(--muted); }
+.compare { margin-top: 24px; }
+.switch-label { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); text-align: right; margin-bottom: 8px; }
+.tabs { display: flex; background: #EDEFF3; border-radius: var(--cs-radius) 16px 0 0; }
+.tabs button { flex: 1 1 0; background: transparent; border: 0; border-bottom: 2px solid transparent; padding: 16px 8px; font-family: var(--mono); font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); cursor: pointer; }
+.tabs button[aria-selected="true"] { background: #fff; color: var(--ink); border-bottom-color: var(--teal); }
+.tabs button:first-child[aria-selected="true"] { border-top-left-radius: 16px; }
+.pane { background: #fff; border: 1px solid var(--line); border-top: 0; border-radius: 0 0 16px 16px; padding: 32px 24px; display: flex; justify-content: center; gap: 16px; }
+.phone { margin: 0; width: 190px; flex: none; }
+.phone img { width: 100%; aspect-ratio: 9 / 17; object-fit: cover; object-position: top; border-radius: var(--cs-radius); background: #fff; box-shadow: var(--cs-shadow); border: 1px solid var(--line); }
+.phone figcaption { font-family: var(--mono); font-size: 10.5px; letter-spacing: .06em; color: var(--muted); text-align: center; margin-top: 8px; }
+.swatches { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
+.sw { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: #fff; }
+.sw i { display: block; height: 52px; }
+.sw span { display: block; padding: 8px 8px; font-size: 12.5px; line-height: 1.35; }
+.sw b { display: block; font-weight: 600; } .sw code { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+.table-wrap { overflow-x: auto; background: #fff; border: 1px solid var(--line); border-radius: var(--cs-radius); margin-top: 16px; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; min-width: 520px; }
+th { text-align: left; font-family: var(--mono); font-weight: 400; font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); padding: 16px 16px 8px; }
+td { padding: 16px 16px; border-top: 1px solid var(--line); vertical-align: top; }
+td:first-child { font-weight: 600; width: 130px; }
+.rounds { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 16px; }
+.rounds .prin { padding: 16px; } .rounds ul { margin: 8px 0 0; padding-left: 16px; font-size: 13px; color: var(--muted); } .rounds li { margin-bottom: 8px; }
+
+/* impact + reflections */
+.answer { background: #fff; border: 1px solid var(--line); border-radius: var(--cs-radius); padding: 8px 24px; margin-top: 16px; }
+.answer > div { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 24px; padding: 16px 0; border-top: 1px solid var(--line); font-size: 14.5px; }
+.answer > div:first-child { border-top: 0; }
+.answer b { font-family: var(--head); font-weight: 500; font-size: 14.5px; }
+.answer span { color: var(--muted); }
+.refl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 40px; margin-top: 32px; }
+.refl h3 { margin: 0 0 8px; font-size: 16px; }
+.refl p { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.7; }
+.contact span.ph { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: #B8BEBB; }
+
+@media (max-width: 640px) {
+  .meta { grid-template-columns: 1fr; padding: 8px 24px; } .meta div:nth-child(2) { border-top: 1px solid var(--cs-line); }
+  .pcards, .two, .rounds { grid-template-columns: 1fr; }
+  .flow { grid-template-columns: 1fr; } .flow::before { display: none; } .flow { gap: 40px 0; } .fshot { max-width: 250px; } .fshot.narrow { width: 84%; }
+  .step { grid-template-columns: 1fr; } .step > .n { margin-bottom: 4px; }
+  .kv > div { grid-template-columns: 1fr; gap: 4px; }
+  .gaplist li { grid-template-columns: 1fr; gap: 2px; }
+  .order { grid-template-columns: 1fr; } .stack { max-width: 140px; }
+  .pane { gap: 8px; padding-inline: 8px; } .phone { width: 46%; }
+  .swatches { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .answer > div { grid-template-columns: 1fr; gap: 8px; } .refl { grid-template-columns: 1fr; gap: 32px; }
+  .strip { height: 190px; padding: 8px 8px 0; gap: 8px; } .strip img { height: 260px; }
+  section { padding-top: 48px; }
+  .scatter { height: 300px; } .note { width: 46%; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+
+</style>
+</helmet>
+<div id="top" class="cs-page">
+
+<nav class="cs-nav" aria-label="Case study sections" data-open="{{openStr}}">
+<div class="cs-crumb"><a class="cs-back" href="Main.dc.html"><span class="cs-arrow"><svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 8H3"></path><path d="M7.5 3.5 3 8l4.5 4.5"></path></svg></span>Work</a><span class="cs-sep" aria-hidden="true">/</span><span class="cs-project" aria-current="page">MediTrack</span></div>
+<div class="cs-bar"><a class="cs-bar-back" href="Main.dc.html" aria-label="Back to Work"><svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 8H3"></path><path d="M7.5 3.5 3 8l4.5 4.5"></path></svg></a><button class="cs-trigger" type="button" aria-expanded="{{openStr}}" aria-controls="cs-list" onClick="{{toggle}}"><span class="cs-current">{{cur}}</span><span class="cs-chev" aria-hidden="true"></span></button></div>
+<ol class="cs-list" id="cs-list"><li><a class="cs-link" href="#tldr" aria-current="{{c0}}" onClick="{{close}}">TL;DR</a></li><li><a class="cs-link" href="#context" aria-current="{{c1}}" onClick="{{close}}">Context</a></li><li><a class="cs-link" href="#problem" aria-current="{{c2}}" onClick="{{close}}">Problem</a></li><li><a class="cs-link" href="#process" aria-current="{{c3}}" onClick="{{close}}">Process</a></li><li><a class="cs-link" href="#screens" aria-current="{{c4}}" onClick="{{close}}">Final design</a></li><li><a class="cs-link" href="#impact" aria-current="{{c5}}" onClick="{{close}}">Impact</a></li><li><a class="cs-link" href="#reflections" aria-current="{{c6}}" onClick="{{close}}">Reflections</a></li></ol>
+<div class="cs-progress" aria-hidden="true"><i style="{{progStyle}}"></i></div>
+</nav>
+
+<main class="cs-main">
+  <div class="cover cs-cover" role="img" aria-label="Three MediTrack screens side by side: Home, Symptom entry and Match found">
+    <div class="dev a"><img src="./assets/1f8b640786a6405733fecc0f708a72b8.jpg" alt=""></div>
+    <div class="dev b"><img src="./assets/d00f91935bfafd28604c22264b2a54a4.jpg" alt=""></div>
+    <div class="dev c"><img src="./assets/27b60d6de2905c9999d1d975bcf40d62.jpg" alt=""></div>
+  </div>
+
+  <h1>Search your medicine history by symptom</h1>
+  <div class="cs-chips"><span class="cs-chip"><i></i>Prototyped in Figma</span><span class="cs-chip">Mobile app</span><span class="cs-chip">Symptom search</span><span class="cs-chip">Design system</span></div>
+
+  <div id="tldr" style="scroll-margin-top:8px">
+    <span class="cs-label tag-label" style="display:block">TL;DR</span>
+    <p class="muted">MediTrack lets people with a recurring condition search their own medical history by symptom. Type what you are feeling and the app finds the past illness and prescription that looked like it, so "what did I take last time?" is one search away.</p>
+    <p class="muted">I designed and prototyped it end to end in Figma over about six weeks: research, information architecture, UX and UI, the design system and the linked prototype.</p>
+  <dl class="meta cs-meta">
+    <div><dt>My role</dt><dd>Solo designer</dd></div>
+    <div><dt>Timeline</dt><dd>~6 weeks, May to Jul 2026</dd></div>
+    <div><dt>Scope</dt><dd>Research, IA, UX/UI, design system, prototype</dd></div>
+    <div><dt>Tools</dt><dd>Figma</dd></div>
+  </dl>
+  </div>
+
+  <section id="context">
+    <span class="cs-label tag-label" style="display:block">Context</span>
+    <h2>Last time you felt this, what did you take?</h2>
+    <p class="muted">Migraines, PCOS, seasonal allergies, mild diabetes: people with a recurring condition have usually solved today's symptom once already. The prescription, the doctor's note and the dose are somewhere on the phone. But history is stored by file and date, and a flare-up arrives as a symptom, so searching a gallery for "fever and sore throat" finds nothing.</p>
+    <p class="muted">I designed around Riya, 26, a marketing executive in Bengaluru with recurring migraines. She keeps prescriptions as photos in her gallery, asks her doctor on WhatsApp and falls back on Google.</p>
+    <div class="strip" role="img" aria-label="Four MediTrack screens: Home, Symptom entry, Searching history and Match found">
+      <img src="./assets/1f8b640786a6405733fecc0f708a72b8.jpg" alt=""><img src="./assets/d00f91935bfafd28604c22264b2a54a4.jpg" alt=""><img src="./assets/29944ed0fef037beb1539bd9137bdc9c.jpg" alt=""><img src="./assets/27b60d6de2905c9999d1d975bcf40d62.jpg" alt="">
+    </div>
+    <span class="cs-caption">the core loop, in four screens</span>
+  </section>
+
+  <section id="problem">
+    <span class="cs-label tag-label" style="display:block">Problem</span>
+    <h2>History is stored by file, but needed by symptom</h2>
+    <p class="muted">Four things stand between a new symptom and the medicine that worked last time.</p>
+
+    <figure class="board"><img src="./assets/86e8f6ee094450314c77cca7c7cbf602.jpg" alt="From scattered files to answers: records live in four unconnected places, are hard to retrieve, search ignores your history, and generic answers can alarm"></figure>
+
+    <p class="pick" style="text-align: left; margin-top: 48px">What the search does, step by step</p>
+    <div class="flow">
+      <div class="fnode"><div class="fnum">1</div><figure class="fshot"><img src="./assets/d00f91935bfafd28604c22264b2a54a4.jpg" alt="Symptom entry screen"></figure><h3>Say the symptom</h3><p>One field, in your own words.</p></div>
+      <div class="fnode"><div class="fnum">2</div><figure class="fshot"><img src="./assets/29944ed0fef037beb1539bd9137bdc9c.jpg" alt="Searching history screen"></figure><h3>Search the history</h3><p>Past illnesses and prescriptions are checked.</p></div>
+      <div class="fnode"><div class="fnum">3</div><figure class="fshot narrow"><img src="./assets/27b60d6de2905c9999d1d975bcf40d62.jpg" alt="Match found screen"></figure><h3>See what worked</h3><p>Last time's medicine, dose and doctor.</p></div>
+    </div>
+  </section>
+
+  <section id="process">
+    <span class="cs-label tag-label" style="display:block">Process</span>
+    <h2>Making a memory that never overclaims</h2>
+
+    <div class="step"><span class="n">01</span><div>
+      <h3>Looking at how people search today</h3>
+      <p>I worked from reviews of the apps people already use, and from the workarounds they fall back on.</p>
+      <dl class="kv">
+        <div><dt>Competitors</dt><dd>
+          <ul class="gaplist">
+            <li><b>Practo</b><span>Books consultations and stores records.</span></li>
+            <li><b>1mg</b><span>Sells and delivers medicines.</span></li>
+            <li><b>Healthify</b><span>Tracks food and fitness.</span></li>
+            <li class="gap"><b>The gap</b><span>None of them starts from a symptom and reads it against your own medicine history.</span></li>
+          </ul></dd></div>
+        <div><dt>Symptom apps</dt><dd>A migraine patient reviewing a tracker wrote that their notes were "scattered or lost", and that logging mid-attack is "essentially impossible".</dd></div>
+        <div><dt>Workarounds</dt><dd>Gallery photos, WhatsApp chats with a doctor, Notes and Google. The bar is convenience.</dd></div>
+      </dl>
+    </div></div>
+
+    <div class="step"><span class="n">02</span><div>
+      <h3>Putting the symptom search at the top</h3>
+      <p>The idea started with one question: when a symptom appears, what does someone need first? Last time's answer. Search is how people look for it today, but a gallery or a web search can't give it, because history is stored by file and date, not by symptom.</p>
+      <p>So the symptom search took the top of Home, where a thumb reaches first. Everything beneath it exists to support that moment.</p>
+      <div class="order">
+        <div class="stack" aria-hidden="true"><i class="a"></i><i class="b"></i><i class="c"></i><i class="d"></i><i class="e"></i></div>
+        <dl>
+          <div class="first"><dt>Symptom search</dt><dd>First and largest. The question someone arrives with.</dd></div>
+          <div><dt>Doses today</dt><dd>What is due, so Home is useful even on days with no symptom.</dd></div>
+          <div><dt>Active condition</dt><dd>Frames the search with what is already being managed.</dd></div>
+          <div><dt>Recent records</dt><dd>The last few, ready to open.</dd></div>
+          <div class="last"><dt>Suggestion</dt><dd>Waits at the bottom. Nothing here starts a conversation.</dd></div>
+        </dl>
+      </div>
+    </div></div>
+
+    <div class="step"><span class="n">03</span><div>
+      <h3>Deciding how a match speaks</h3>
+      <p>A percentage reads as more clinically certain than a pattern match deserves. So every match is a word, paired with the record it comes from, and the design never relies on colour alone.</p>
+      <div class="two">
+        <div class="conf" role="img" aria-label="Three labels: Likely, Possible and Unlikely">
+          <div class="row"><span class="p l">Likely</span>From a record of a past episode</div>
+          <div class="row"><span class="p p">Possible</span>From a similar record, treated with 2 medicines</div>
+          <div class="row"><span class="p u">Unlikely</span>A weak match, so the doctor option moves up</div>
+        </div>
+        <div class="prin">
+          <div><h4>Word over number</h4><p>Likely, Possible or Unlikely. Never a bare percentage.</p></div>
+          <div><h4>Source beside the claim</h4><p>The record it came from sits right next to it.</p></div>
+          <div><h4>Colour never alone</h4><p>Confidence always has a word as well.</p></div>
+          <div><h4>No red for health</h4><p>Red is reserved for destructive actions.</p></div>
+        </div>
+      </div>
+    </div></div>
+
+    <div class="step"><span class="n">04</span><div>
+      <h3>Checking my own work, three times</h3>
+      <p>Working solo meant being my own second opinion. After each batch of screens I checked the work against the design system before starting the next.</p>
+      <div class="rounds">
+        <div class="prin"><h4>Entry and match states</h4><ul><li>A bare 92% score broke the no-scores rule.</li><li>Possible was amber and Unlikely blue, a traffic light again.</li><li>The disclaimer was missing from all four outcome cards.</li><li>Unlikely did not promote the doctor option.</li></ul></div>
+        <div class="prin"><h4>Zero states, checkout, reminders</h4><ul><li>Empty-state copy read as gatekeeping.</li><li>The empty Home dropped symptom search.</li><li>"Book a consultation" brought back a cut feature.</li><li>Checkout dead-ended after the address step.</li></ul></div>
+        <div class="prin"><h4>System states and settings</h4><ul><li>Confetti played when a record saved.</li><li>Error red had drifted toward alarm red.</li><li>Some headings were heavier than the type rule.</li><li>Copy said "our AI assistant".</li></ul></div>
+      </div>
+    </div></div>
+  </section>
+
+  <section id="screens">
+    <span class="cs-label tag-label" style="display:block">Final design</span>
+    <h2>From an empty phone to a useful one</h2>
+    <p class="muted">Each part of the app is shown in two states, because a happy path hides where the design actually has to work. Switch the tabs to compare.</p>
+
+    <div class="sub">
+      <h3>Home</h3>
+      <p>Filled, it answers first: doses, condition, records. Empty, it still offers the three actions a new person needs, and symptom search never goes missing.</p>
+      <div class="compare">
+        <div class="switch-label">Switch view</div>
+        <div class="tabs" role="tablist"><button role="tab" aria-selected="{{s0_0}}" onClick="{{t0_0}}">Filled</button><button role="tab" aria-selected="{{s0_1}}" onClick="{{t0_1}}">Empty</button></div>
+        <sc-if value="{{p0_0}}" hint-placeholder-val="{{true}}"><div class="pane"><figure class="phone"><img src="./assets/1f8b640786a6405733fecc0f708a72b8.jpg" alt="Home with medicines and recent records"><figcaption>Home</figcaption></figure></div></sc-if>
+        <sc-if value="{{p0_1}}" hint-placeholder-val="{{false}}"><div class="pane"><figure class="phone"><img src="./assets/76c6eba2d1c839293e3117f3020158e7.jpg" alt="Home before any data"><figcaption>Home, first open</figcaption></figure></div></sc-if>
+      </div>
+    </div>
+
+    <div class="sub">
+      <h3>Records</h3>
+      <p>Reorder, Track and Share sit on every record card, so a stored prescription stays useful long after the day it was saved. An empty tab explains the payoff and offers one low-friction action.</p>
+      <div class="compare">
+        <div class="switch-label">Switch view</div>
+        <div class="tabs" role="tablist"><button role="tab" aria-selected="{{s1_0}}" onClick="{{t1_0}}">Filled</button><button role="tab" aria-selected="{{s1_1}}" onClick="{{t1_1}}">Empty</button></div>
+        <sc-if value="{{p1_0}}" hint-placeholder-val="{{true}}"><div class="pane"><figure class="phone"><img src="./assets/fa38d18c6d0f43cf1d93b8108496e655.jpg" alt="Records with reorder, track and share"><figcaption>Records</figcaption></figure></div></sc-if>
+        <sc-if value="{{p1_1}}" hint-placeholder-val="{{false}}"><div class="pane"><figure class="phone"><img src="./assets/93e5c1bfe3ea58ff4fbdba6070b2c237.jpg" alt="Records before any upload"><figcaption>Records, no uploads yet</figcaption></figure><figure class="phone"><img src="./assets/d4c04c754e8de6c0ccd91048d5257a67.jpg" alt="Tracker before any reminder"><figcaption>Tracker, no reminders</figcaption></figure></div></sc-if>
+      </div>
+    </div>
+
+    <div class="sub">
+      <h3>Logging a symptom</h3>
+      <p>One field is required. Notes, photos and severity are optional, so an entry never gets abandoned halfway through a flare-up. While history is searched, a short progress list shows what the app is doing.</p>
+      <div class="compare">
+        <div class="switch-label">Switch view</div>
+        <div class="tabs" role="tablist"><button role="tab" aria-selected="{{s2_0}}" onClick="{{t2_0}}">Entry</button><button role="tab" aria-selected="{{s2_1}}" onClick="{{t2_1}}">Searching</button></div>
+        <sc-if value="{{p2_0}}" hint-placeholder-val="{{true}}"><div class="pane"><figure class="phone"><img src="./assets/d00f91935bfafd28604c22264b2a54a4.jpg" alt="Symptom entry with one field"><figcaption>Symptom entry</figcaption></figure></div></sc-if>
+        <sc-if value="{{p2_1}}" hint-placeholder-val="{{false}}"><div class="pane"><figure class="phone"><img src="./assets/29944ed0fef037beb1539bd9137bdc9c.jpg" alt="Searching past records"><figcaption>Searching history</figcaption></figure></div></sc-if>
+      </div>
+    </div>
+
+    <div class="sub">
+      <h3>When something goes wrong</h3>
+      <p>Recovery screens replace generic errors. A search with no match still saves the entry and offers a next step, a failed payment keeps the cart, and offline lists what still works.</p>
+      <div class="compare">
+        <div class="switch-label">Switch view</div>
+        <div class="tabs" role="tablist"><button role="tab" aria-selected="{{s3_0}}" onClick="{{t3_0}}">No match</button><button role="tab" aria-selected="{{s3_1}}" onClick="{{t3_1}}">Payment</button><button role="tab" aria-selected="{{s3_2}}" onClick="{{t3_2}}">Offline</button></div>
+        <sc-if value="{{p3_0}}" hint-placeholder-val="{{true}}"><div class="pane"><figure class="phone"><img src="./assets/f3c6492c7fd1160eed65cfbef8f0fdaf.jpg" alt="No match found"><figcaption>No match found</figcaption></figure></div></sc-if>
+        <sc-if value="{{p3_1}}" hint-placeholder-val="{{false}}"><div class="pane"><figure class="phone"><img src="./assets/e4e902dd0c519c9d512b2abcd3ae765f.jpg" alt="Payment failed"><figcaption>Payment failed</figcaption></figure></div></sc-if>
+        <sc-if value="{{p3_2}}" hint-placeholder-val="{{false}}"><div class="pane"><figure class="phone"><img src="./assets/2793194e1d4d0629d78efaf2da3a0dc8.jpg" alt="No internet connection"><figcaption>No connection</figcaption></figure></div></sc-if>
+      </div>
+    </div>
+
+    <div class="sub">
+      <h3>The design system underneath</h3>
+      <p>Built so it could be checked against, which is what made the critique rounds possible.</p>
+      <div class="swatches" style="margin-top:16px">
+        <div class="sw"><i style="background:#2F6F5E"></i><span><b>Primary</b><code>#2F6F5E</code></span></div>
+        <div class="sw"><i style="background:#EAF4F1"></i><span><b>Tint</b><code>#EAF4F1</code></span></div>
+        <div class="sw"><i style="background:#6E8F86"></i><span><b>Possible</b><code>#6E8F86</code></span></div>
+        <div class="sw"><i style="background:#A9B0AD"></i><span><b>Unlikely</b><code>#A9B0AD</code></span></div>
+        <div class="sw"><i style="background:#C75C4A"></i><span><b>Destructive</b><code>#C75C4A</code></span></div>
+      </div>
+      <dl class="kv">
+        <div><dt>Type</dt><dd>Humanist sans, seven levels from Display to Caption.</dd></div>
+        <div><dt>Spacing</dt><dd>4px grid. Minimum 44px tap targets.</dd></div>
+        <div><dt>Contrast</dt><dd>4.5:1 minimum for text.</dd></div>
+      </dl>
+    </div>
+
+    <div class="sub">
+      <h3>Edge cases in the flow</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Case</th><th>Trigger</th><th>Response</th></tr></thead>
+        <tbody>
+          <tr><td>Zero records</td><td>First open, nothing logged</td><td>A tailored empty state with the payoff and one easy action.</td></tr>
+          <tr><td>No match</td><td>Nothing stored fits</td><td>The entry still saves. Create-a-record and consult options appear.</td></tr>
+          <tr><td>Unlikely</td><td>A match exists, confidence low</td><td>Insight is de-emphasised and "Talk to a Doctor" moves up.</td></tr>
+          <tr><td>No connection</td><td>Network drops</td><td>An offline state listing what still works.</td></tr>
+          <tr><td>Payment failed</td><td>Card or UPI declined</td><td>A recovery screen. The cart survives and retry is immediate.</td></tr>
+          <tr><td>Permission declined</td><td>"Not now" on onboarding</td><td>The app stays usable and offers the feature again in context.</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </section>
+
+  <section id="impact">
+    <span class="cs-label tag-label" style="display:block">Impact</span>
+    <h2>One loop, from symptom to record</h2>
+    <p class="muted">I designed and prototyped the symptom search, the records it draws from and the screens around them as one linked flow.</p>
+    <p class="pick" style="text-align: left; margin-top: 32px">Each problem, and the answer in the design</p>
+    <div class="answer">
+      <div><b>1. Records in four places</b><span>One Records tab, with Reorder, Track and Share on every card.</span></div>
+      <div><b>2. Hard to retrieve</b><span>Symptom search at the top of Home, and history searched for you.</span></div>
+      <div><b>3. Search ignores your history</b><span>Every match names the past record it comes from, in a word.</span></div>
+      <div><b>4. Answers that alarm</b><span>Calm labels, no red for health, limits stated, and the doctor option promoted when a match is weak.</span></div>
+    </div>
+    <p class="pick" style="text-align: left; margin-top: 40px">What I delivered</p>
+    <dl class="kv" style="margin-top:0">
+      <div><dt>Checked</dt><dd>12 issues caught across three critique rounds against my own design system.</dd></div>
+      <div><dt>Delivered</dt><dd>A linked Figma prototype of the core loop, with the design system behind it.</dd></div>
+    </dl>
+  </section>
+
+  <section id="reflections">
+    <span class="cs-label tag-label" style="display:block">Reflections</span>
+    <h2>What I took from it</h2>
+    <div class="refl">
+      <div><h3>Design for the state someone is in</h3><p>The real user is mid flare-up, one-handed and a little frightened. One field, a word instead of a number and a calm colour all came from picturing that person.</p></div>
+      <div><h3>Restraint is harder than expression</h3><p>A confident answer or a precise score would have improved the demo and hurt the product. Leaving the impressive version out was the real skill.</p></div>
+    </div>
+
+    <p class="cs-thanks">thanks for reading</p>
+<!-- UP NEXT -->
+<div class="cs-rule"></div>
+<section class="cs-upnext" aria-labelledby="upnext-title" style="display: flex; flex-direction: column; gap: 24px">
+<div class="cs-upnext-head"><div id="upnext-title" class="cs-label">Up next</div><a class="cs-top" href="#top">Back to top<svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 13V3"></path><path d="M3.5 7.5 8 3l4.5 4.5"></path></svg></a></div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px">
+<a class="upnext-card" href="ExamDuo.dc.html" style="display: flex; flex-direction: column; gap: 16px; box-sizing: border-box; padding: 8px 8px 24px; background: #FFFFFF; border: 1px solid var(--cs-line); border-radius: 16px; box-shadow: 0 1px 2px rgba(20, 20, 40, 0.04); text-decoration: none; color: inherit">
+<img src="./assets/5aa087f70fedd0f40d47159599cfa06a.jpg" alt="" style="display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 10px; background: var(--cs-bg)">
+<div style="display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 8px 16px; padding: 0 16px">
+<span style="flex: 1 1 160px; min-width: 0; font-family: 'Libre Baskerville', Georgia, serif; font-style: italic; font-weight: 400; font-size: 19px; line-height: 1.35; color: var(--cs-ink)">Mock Analysis Redesign @ ExamDuo</span>
+<span style="flex: none; font-family: 'Inter', 'Helvetica Neue', sans-serif; font-size: 11px; line-height: 1; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cs-muted); border: 1px solid var(--cs-line); border-radius: 999px; padding: 8px 16px; white-space: nowrap">UI/UX Intern</span>
+</div>
+</a>
+<a class="upnext-card" href="ColorEase.dc.html" style="display: flex; flex-direction: column; gap: 16px; box-sizing: border-box; padding: 8px 8px 24px; background: #FFFFFF; border: 1px solid var(--cs-line); border-radius: 16px; box-shadow: 0 1px 2px rgba(20, 20, 40, 0.04); text-decoration: none; color: inherit">
+<div style="width: 100%; aspect-ratio: 16 / 10; overflow: hidden; border-radius: 10px; background: #F69788"><svg viewBox="0 0 620 390" preserveAspectRatio="xMidYMid slice" aria-hidden="true" style="display: block; width: 100%; height: 100%">
+<defs>
+<linearGradient id="ce-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F69788"></stop><stop offset="1" stop-color="#F7B38E"></stop></linearGradient>
+<linearGradient id="ce-bowl" x1="0.25" y1="0" x2="0.75" y2="1"><stop offset="0" stop-color="#9BB3E3"></stop><stop offset="1" stop-color="#C5AFE5"></stop></linearGradient>
+<clipPath id="ce-cut"><rect x="0" y="60" width="620" height="330"></rect></clipPath>
+<filter id="ce-shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="3" dy="5" stdDeviation="3" flood-color="#4A2F33" flood-opacity="0.55"></feDropShadow></filter>
+</defs>
+<rect width="620" height="390" fill="url(#ce-bg)"></rect>
+<g class="ce" style="--amp: -10px; animation-delay: 0s"><g filter="url(#ce-shadow)"><circle cx="298.5" cy="174.5" r="173.5" fill="url(#ce-bowl)" clip-path="url(#ce-cut)"></circle></g></g>
+<circle class="ce" style="--amp: -14px; animation-delay: -1.2s" cx="506" cy="152" r="29" fill="#FADC89"></circle>
+<path class="ce" style="--amp: -12px; animation-delay: -3.6s" d="M176 132 L220 126 L206 175 Z" fill="#EA8589" stroke="#EA8589" stroke-width="4" stroke-linejoin="round"></path>
+<circle class="ce" style="--amp: -18px; animation-delay: -2.4s" cx="206" cy="267" r="81" fill="#FFFFFF" fill-opacity="0.5"></circle>
+<path class="ce" style="--amp: -16px; animation-delay: -4.8s" d="M379 282 C355 266 350 252 350 245 C350 236 357 230 365 230 C371 230 376 233 379 238 C382 233 387 230 393 230 C401 230 408 236 408 245 C408 252 403 266 379 282 Z" fill="#FFFFFF"></path>
+</svg></div>
+<div style="display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 8px 16px; padding: 0 16px">
+<span style="flex: 1 1 160px; min-width: 0; font-family: 'Libre Baskerville', Georgia, serif; font-style: italic; font-weight: 400; font-size: 19px; line-height: 1.35; color: var(--cs-ink)">ColorEase: 3rd Place @ InnoVeX</span>
+<span style="flex: none; font-family: 'Inter', 'Helvetica Neue', sans-serif; font-size: 11px; line-height: 1; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cs-muted); border: 1px solid var(--cs-line); border-radius: 999px; padding: 8px 16px; white-space: nowrap">Accessibility</span>
+</div>
+</a>
+<a class="upnext-card" href="ECI.dc.html" style="display: flex; flex-direction: column; gap: 16px; box-sizing: border-box; padding: 8px 8px 24px; background: #FFFFFF; border: 1px solid var(--cs-line); border-radius: var(--cs-radius); box-shadow: 0 1px 2px rgba(20, 20, 40, 0.04); text-decoration: none; color: inherit">
+<img src="./assets/cf0e37a9959eecbc48698d8f947e1857.png" alt="" style="display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 10px; background: #E5F0FA">
+<div style="display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 8px 16px; padding: 0 16px">
+<span style="flex: 1 1 160px; min-width: 0; font-family: 'Libre Baskerville', Georgia, serif; font-style: italic; font-weight: 400; font-size: 19px; line-height: 1.35; color: var(--cs-ink)">ECI Citizen Services Rebuild</span>
+<span style="flex: none; font-family: 'Inter', 'Helvetica Neue', sans-serif; font-size: 11px; line-height: 1; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cs-muted); border: 1px solid var(--cs-line); border-radius: 999px; padding: 8px 16px; white-space: nowrap">Product Design</span>
+</div>
+</a>
+</div>
+</section>
+
+    <div class="cs-contact"><span class="cs-contact-title">Contact</span><div class="cs-contact-links"><a href="#">LinkedIn</a><a href="mailto:bhuvana.n.reddy04@gmail.com">Email</a></div></div>
+  </section>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":11146}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = {g0:0,g1:0,g2:0,g3:0,act:0, open:false, prog:0}; }
+  componentDidMount() {
+this._sc = () => { const d = document.documentElement; const m = d.scrollHeight - window.innerHeight; const v = m > 0 ? Math.min(1, Math.max(0, window.scrollY / m)) : 0; if (Math.abs(v - (this.state.prog || 0)) > 0.005) this.setState({ prog: v }); };
+document.addEventListener("scroll", this._sc, true);
+    try {
+      const ids = ["tldr", "context", "problem", "process", "screens", "impact", "reflections"];
+      const io = new IntersectionObserver((es) => { es.forEach((e) => { if (e.isIntersecting) this.setState({ act: ids.indexOf(e.target.id) }); }); }, { rootMargin: '-15% 0px -75% 0px' });
+      ids.forEach((id) => { const el = document.getElementById(id); if (el) io.observe(el); });
+      this._io = io;
+    } catch (e) {}
+  }
+  componentWillUnmount() {
+if (this._sc) document.removeEventListener("scroll", this._sc, true); if (this._io) this._io.disconnect(); }
+  renderVals() {
+    const a = this.state.act;
+    return {
+      cur: ["TL;DR", "Context", "Problem", "Process", "Final design", "Impact", "Reflections"][this.state.act] || "", openStr: String(!!this.state.open), toggle: () => this.setState({ open: !this.state.open }), close: () => this.setState({ open: false }), progStyle: "transform:scaleX(" + (this.state.prog || 0) + ")",
+      c0: String(a===0), c1: String(a===1), c2: String(a===2), c3: String(a===3), c4: String(a===4), c5: String(a===5), c6: String(a===6),
+      s0_0: String(this.state.g0===0), p0_0: this.state.g0===0, t0_0: () => this.setState({g0: 0}),
+      s0_1: String(this.state.g0===1), p0_1: this.state.g0===1, t0_1: () => this.setState({g0: 1}),
+      s1_0: String(this.state.g1===0), p1_0: this.state.g1===0, t1_0: () => this.setState({g1: 0}),
+      s1_1: String(this.state.g1===1), p1_1: this.state.g1===1, t1_1: () => this.setState({g1: 1}),
+      s2_0: String(this.state.g2===0), p2_0: this.state.g2===0, t2_0: () => this.setState({g2: 0}),
+      s2_1: String(this.state.g2===1), p2_1: this.state.g2===1, t2_1: () => this.setState({g2: 1}),
+      s3_0: String(this.state.g3===0), p3_0: this.state.g3===0, t3_0: () => this.setState({g3: 0}),
+      s3_1: String(this.state.g3===1), p3_1: this.state.g3===1, t3_1: () => this.setState({g3: 1}),
+      s3_2: String(this.state.g3===2), p3_2: this.state.g3===2, t3_2: () => this.setState({g3: 2}),
+    };
+  }
+}
+</script>
+</body>
+</html>

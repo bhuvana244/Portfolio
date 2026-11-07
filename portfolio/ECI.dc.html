@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ECI Citizen Services Rebuild</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+<script src="./cursor.js"></script>
+<link rel="stylesheet" href="./case-study.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&amp;display=swap">
+<style>
+:root{--cs-accent:#0C3158;--cs-accent-soft:#E4ECF5;--cs-bg:#F5F5F5;--cs-nav-bg:rgba(245,245,245,.72)}
+@supports (background: color-mix(in srgb, red 50%, transparent)){:root{--cs-nav-bg:color-mix(in srgb, #F5F5F5 72%, transparent)}}
+
+.cs-main .eci-card{background:var(--cs-panel);border-radius:var(--cs-radius);padding:24px}
+.cs-main .panel{background:var(--cs-accent-soft);border-radius:var(--cs-radius);padding:32px 24px;display:flex;align-items:center;justify-content:center}
+.cs-main .shot{display:block;width:100%;height:auto;border-radius:var(--cs-radius);box-shadow:var(--cs-shadow)}
+.cs-main .hl{background:#CFE1F7;color:var(--cs-accent);font-weight:600;padding:2px 8px;border-radius:4px}
+.cs-main .btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 24px;border-radius:999px;background:var(--cs-ink);color:var(--cs-bg);font:500 13px Inter,sans-serif;text-decoration:none}
+.cs-main .btn:hover{background:var(--cs-accent) !important;color:#fff !important}
+.cs-main .mval{font:400 16px/1.5 Inter,sans-serif;color:var(--cs-ink)}
+.cs-main .cs-meta-grid{margin-top:8px}
+@media (max-width:640px){.cs-main .cs-meta-grid{grid-template-columns:minmax(0,1fr) !important}}
+</style>
+</helmet>
+<div id="top" class="cs-page">
+
+<nav class="cs-nav" aria-label="Case study sections" data-open="{{openStr}}">
+<div class="cs-crumb"><a class="cs-back" href="Main.dc.html"><span class="cs-arrow"><svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 8H3"></path><path d="M7.5 3.5 3 8l4.5 4.5"></path></svg></span>Work</a><span class="cs-sep" aria-hidden="true">/</span><span class="cs-project" aria-current="page">ECI Citizen Services</span></div>
+<div class="cs-bar"><a class="cs-bar-back" href="Main.dc.html" aria-label="Back to Work"><svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 8H3"></path><path d="M7.5 3.5 3 8l4.5 4.5"></path></svg></a><button class="cs-trigger" type="button" aria-expanded="{{openStr}}" aria-controls="cs-list" onClick="{{toggle}}"><span class="cs-current">{{cur}}</span><span class="cs-chev" aria-hidden="true"></span></button></div>
+<ol class="cs-list" id="cs-list"><li><a class="cs-link" href="#tldr" aria-current="{{c0}}" onClick="{{close}}">TL;DR</a></li><li><a class="cs-link" href="#problem" aria-current="{{c1}}" onClick="{{close}}">The Problem</a></li><li><a class="cs-link" href="#solution" aria-current="{{c2}}" onClick="{{close}}">The Solution</a></li><li><a class="cs-link" href="#screens" aria-current="{{c3}}" onClick="{{close}}">Final Screens</a></li><li><a class="cs-link" href="#outcome" aria-current="{{c4}}" onClick="{{close}}">Outcome</a></li><li><a class="cs-link" href="#lessons" aria-current="{{c5}}" onClick="{{close}}">Lessons Learnt</a></li></ol>
+<div class="cs-progress" aria-hidden="true"><i style="{{progStyle}}"></i></div>
+</nav>
+<main class="cs-main">
+
+<!-- HERO + TITLE -->
+<div style="display:flex;flex-direction:column;gap:32px">
+<div class="cs-cover" style="background:linear-gradient(180deg,#BDE8FD 0%,#E3EBFB 100%);padding:32px 32px 40px;box-sizing:border-box">
+<div style="width:100%;border-radius:var(--cs-radius);overflow:hidden;background:#fff;box-shadow:var(--cs-shadow)">
+<div aria-hidden="true" style="background:#1E1E22;padding:8px 8px 0;display:flex;flex-direction:column;gap:8px">
+<div style="display:flex;align-items:flex-end;gap:16px">
+<div style="display:flex;gap:4px;padding-bottom:8px"><span style="width:8px;height:8px;border-radius:50%;background:#FF5F57;display:block"></span><span style="width:8px;height:8px;border-radius:50%;background:#FEBC2E;display:block"></span><span style="width:8px;height:8px;border-radius:50%;background:#28C840;display:block"></span></div>
+<div style="display:flex;align-items:center;gap:8px;background:#2D2D32;border-radius:8px 8px 0 0;padding:8px 8px;min-width:150px"><span style="width:10px;height:10px;border-radius:2px;background:#4C8FD6;display:block"></span><span style="font:500 9px Inter,sans-serif;color:#E6E6EA">ECI Citizen Services</span><span style="font:400 9px Inter,sans-serif;color:#7B858E;margin-left:auto">✕</span></div>
+<span style="font:400 13px Inter,sans-serif;color:#7B858E;padding-bottom:4px">+</span>
+</div>
+<div style="background:#2D2D32;margin:0 -10px;padding:8px 8px;display:flex;align-items:center;gap:8px">
+<span style="font:400 11px Inter,sans-serif;color:#7B858E;letter-spacing:.3em">←→↻⌂</span>
+<span style="flex:1;min-width:0;height:18px;border-radius:999px;background:#19191C;display:flex;align-items:center;padding:0 8px;font:400 9px Inter,sans-serif;color:#7B858E;overflow:hidden;white-space:nowrap">eci-citizen-services-pi.vercel.app</span>
+<span style="font:400 11px Inter,sans-serif;color:#7B858E">⋮</span>
+</div>
+</div>
+<div style="position:relative;width:100%;aspect-ratio:1124/440;overflow:hidden">
+<img src="./assets/2e630a1ec783641f9f3ef0c10e951b55.jpg" alt="Journey: dialog with a QR code to continue the saved journey on another device" style="position:absolute;top:0;left:0;display:block;width:100%;height:auto">
+<a class="btn" href="https://eci-citizen-services-pi.vercel.app/" target="_blank" style="position:absolute;right:16px;bottom:16px;background:#fff;color:#0C3158;box-shadow:0 4px 16px rgba(12,49,88,.3)">View prototype <span aria-hidden="true">↗</span></a>
+</div>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;align-items:center;gap:8px"><span style="width:14px;height:14px;border-radius:50%;background:#0C3158;display:inline-block"></span><span style="font:500 14px Inter,sans-serif;color:var(--cs-text)">Citizen Services</span></div>
+<h1>ECI Citizen Services Rebuild</h1>
+<div class="cs-chips">
+<span class="cs-chip">Product Design</span><span class="cs-chip">User Research</span><span class="cs-chip">Prototyping</span>
+</div>
+</div>
+</div>
+
+<!-- TL;DR -->
+<section id="tldr" class="cs-flow">
+<div class="cs-label">TL;DR</div>
+<p>Forms failed silently, and grievances vanished into nowhere. We rebuilt the experience around one Journey ID, a visible grievance timeline with a named officer, and an SLA clock that escalates itself.</p>
+<p>This was designed as part of the <b style="font-weight:600;color:var(--cs-ink)">Build What Moves India</b> contest, where our team <span class="hl">qualified to the top 250</span>.</p>
+<div class="cs-meta-grid" style="background:var(--cs-panel);border-radius:var(--cs-radius);padding:24px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:32px;margin-top:8px">
+<div style="display:flex;flex-direction:column;gap:8px;padding-bottom:24px;border-bottom:1px solid var(--cs-line)"><div class="cs-label">My role</div><div class="mval">Researcher and Vibe Coder</div></div>
+<div style="display:flex;flex-direction:column;gap:8px;padding-bottom:24px;border-bottom:1px solid var(--cs-line)"><div class="cs-label">Timeline</div><div class="mval">~1 week, concept to working prototype</div></div>
+<div style="display:flex;flex-direction:column;gap:8px;padding-top:24px"><div class="cs-label">Team</div><div class="mval">Bhuvana Shree N · Chithra R</div></div>
+<div style="display:flex;flex-direction:column;gap:8px;padding-top:24px"><div class="cs-label">Skills</div><div class="mval">Product Design · User Research · Prototyping</div></div>
+</div>
+</section>
+
+<!-- 01 PROBLEM -->
+<section id="problem" class="cs-flow">
+<div class="cs-label">The Problem</div>
+<h2>Forms fail silently, and grievances vanish into nowhere.</h2>
+<p>Submitting a completed form could error out with no explanation, wiping everything and forcing a restart. Filed grievances could go weeks without an update, with one citizen learning after a month that they had never even been assigned an officer. Repeated OTP failures also logged citizens out mid-login. ECI's site draws tens of millions of visits a month - whatever is broken here is not small.</p>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px">
+<div class="eci-card" style="display:flex;flex-direction:column;gap:4px"><div style="font:400 30px/1 var(--cs-display);letter-spacing:-.01em">84M</div><div style="font:400 11.5px/1.4 Inter,sans-serif;color:var(--cs-muted)">Monthly Visits</div></div>
+<div class="eci-card" style="display:flex;flex-direction:column;gap:4px"><div style="font:400 30px/1 var(--cs-display);letter-spacing:-.01em">64.6%</div><div style="font:400 11.5px/1.4 Inter,sans-serif;color:var(--cs-muted)">Mobile Traffic</div></div>
+<div class="eci-card" style="display:flex;flex-direction:column;gap:4px"><div style="font:400 30px/1 var(--cs-display);letter-spacing:-.01em">4.2 stars</div><div style="font:400 11.5px/1.4 Inter,sans-serif;color:var(--cs-muted)">Overall Rating</div></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:4px;margin-top:8px">
+<h3>What people actually wrote</h3>
+<div class="cs-caption" style="color:var(--cs-muted)">From real ECINET Play Store reviews.</div>
+</div>
+<img src="./assets/fcabee776202e896aa3d1c93f0e056d8.png" alt="Five real ECINET Play Store reviews describing the registration form wiping entries, a Form 8 request with no update, and OTP logins that keep logging users out" style="display:block;width:100%;height:auto;border-radius:var(--cs-radius);box-shadow:var(--cs-shadow)">
+</section>
+
+<!-- 02 SOLUTION -->
+<section id="solution" class="cs-flow">
+<div style="display:flex;flex-direction:column;gap:16px">
+<div class="cs-label">The Solution</div>
+<h2>Two fixes, one idea: nothing disappears.</h2>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:16px">
+<h3>Journey</h3>
+<p style="color:var(--cs-ink);font-weight:500">One Journey ID replaces the blind resubmission cycle.</p>
+<p>A visible progress bar and persistent reference number mean nothing gets wiped by a failed submit. A QR handoff lets citizens pick up the same saved journey on another device.</p>
+<div class="panel"><img class="shot" src="./assets/2e630a1ec783641f9f3ef0c10e951b55.jpg" alt="Journey: dialog with a QR code to continue the saved journey on another device"></div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:16px">
+<h3>Grievances</h3>
+<p style="color:var(--cs-ink);font-weight:500">Every grievance gets a named officer and an SLA clock that escalates itself.</p>
+<p>Citizens see who has their case and what stage it is at. If it runs past the SLA, it escalates automatically and says so - no re-filing, no guessing.</p>
+<div class="panel"><img class="shot" src="./assets/39024957062a9e4e833fde2ed74ca183.jpg" alt="Grievance escalated: timeline with an attention notice that the SLA was exceeded and the case moved to the district level"></div>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px">
+<div class="eci-card" style="display:flex;flex-direction:column;gap:8px"><div style="font:400 30px/1 var(--cs-display)">1</div><div style="font:400 11.5px/1.45 Inter,sans-serif;color:var(--cs-muted)">Journey ID, replacing scattered form references</div></div>
+<div class="eci-card" style="display:flex;flex-direction:column;gap:8px"><div style="font:400 30px/1 var(--cs-display)">1</div><div style="font:400 11.5px/1.45 Inter,sans-serif;color:var(--cs-muted)">QR scan to resume on another device</div></div>
+<div class="eci-card" style="display:flex;flex-direction:column;gap:8px"><div style="font:400 30px/1 var(--cs-display)">5</div><div style="font:400 11.5px/1.45 Inter,sans-serif;color:var(--cs-muted)">grievance stages made visible, officer included</div></div>
+</div>
+</section>
+
+<!-- 03 FINAL SCREENS -->
+<section id="screens" class="cs-flow">
+<div style="display:flex;flex-direction:column;gap:16px">
+<div class="cs-label">Final Screens</div>
+<h2>Five screens that carry the whole flow.</h2>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:16px">
+<div class="panel"><img class="shot" src="./assets/05b2f80880df65a77838aec383090110.png" alt="Journey: step-by-step Form 8 with sections listed on the left and a Saved just now indicator"></div>
+<div class="cs-caption"><b>Journey</b> - step-by-step form with saved progress</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:16px">
+<div class="panel"><img class="shot" src="./assets/2e630a1ec783641f9f3ef0c10e951b55.jpg" alt="Journey: dialog with a QR code to continue the saved journey on another device"></div>
+<div class="cs-caption"><b>Journey</b> - QR handoff to another device</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:16px">
+<div class="panel"><img class="shot" src="./assets/e3071f837f61aa96ded1ef0b8a33bf19.jpg" alt="Grievance under review: timeline progress and the assigned Booth Level Officer"></div>
+<div class="cs-caption"><b>Grievance</b> - live timeline with assigned officer</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:16px">
+<div class="panel"><img class="shot" src="./assets/39024957062a9e4e833fde2ed74ca183.jpg" alt="Grievance escalated: timeline with an attention notice that the SLA was exceeded and the case moved to the district level"></div>
+<div class="cs-caption"><b>Grievance</b> - automatic SLA escalation</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:16px">
+<div class="panel"><img class="shot" src="./assets/8ddc0c073b78f4d7afe8edd8c0cc73bb.png" alt="ECI Citizen Helper chat offering to lodge a grievance, track an application, get FAQs or talk to a live agent" style="max-width:300px;border-radius: var(--cs-radius)"></div>
+<div class="cs-caption"><b>Assistant</b> that routes citizens to the right flow</div>
+</div>
+</section>
+
+<!-- 04 OUTCOME -->
+<section id="outcome" class="cs-flow">
+<div class="cs-label">Outcome</div>
+<h2>Status, ownership, and continuity are now visible by default - not something citizens have to chase.</h2>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px">
+<div class="eci-card" style="display:flex;flex-direction:column;gap:8px"><div style="font:400 30px/1 var(--cs-display)">1</div><div style="font:400 11.5px/1.45 Inter,sans-serif;color:var(--cs-muted)">Journey ID instead of scattered references.</div></div>
+<div class="eci-card" style="display:flex;flex-direction:column;gap:8px"><div style="font:400 30px/1 var(--cs-display)">Auto</div><div style="font:400 11.5px/1.45 Inter,sans-serif;color:var(--cs-muted)">SLA escalation with no resubmission needed.</div></div>
+<div class="eci-card" style="display:flex;flex-direction:column;gap:8px"><div style="font:400 30px/1 var(--cs-display)">5</div><div style="font:400 11.5px/1.45 Inter,sans-serif;color:var(--cs-muted)">Accessibility controls built in by default.</div></div>
+</div>
+</section>
+
+<!-- 05 LESSONS -->
+<section id="lessons" class="cs-flow">
+<div style="display:flex;flex-direction:column;gap:24px">
+<div class="cs-label">Lessons Learnt</div>
+<h2>What I'd carry into the next project</h2>
+</div>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 40px;margin-top:8px">
+<div style="display:flex;flex-direction:column;gap:16px"><h3>Visibility over speed</h3><p>Visibility builds more trust than speed - showing status beats optimizing it.</p></div>
+<div style="display:flex;flex-direction:column;gap:16px"><h3>Show the escalation</h3><p>Silent automation reassures no one - escalation has to be shown, not just run.</p></div>
+</div>
+</section>
+
+<div class="cs-thanks">thanks for reading</div>
+<div class="cs-rule"></div>
+<section class="cs-upnext" aria-labelledby="upnext-title" style="display: flex; flex-direction: column; gap: 24px">
+<div class="cs-upnext-head"><div id="upnext-title" class="cs-label">Up next</div><a class="cs-top" href="#top">Back to top<svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 13V3"></path><path d="M3.5 7.5 8 3l4.5 4.5"></path></svg></a></div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px">
+<a class="upnext-card" href="ExamDuo.dc.html" style="display: flex; flex-direction: column; gap: 16px; box-sizing: border-box; padding: 8px 8px 24px; background: #FFFFFF; border: 1px solid var(--cs-line); border-radius: 16px; box-shadow: 0 1px 2px rgba(20, 20, 40, 0.04); text-decoration: none; color: inherit">
+<img src="./assets/5aa087f70fedd0f40d47159599cfa06a.jpg" alt="" style="display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 10px; background: var(--cs-bg)">
+<div style="display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 8px 16px; padding: 0 16px">
+<span style="flex: 1 1 160px; min-width: 0; font-family: 'Libre Baskerville', Georgia, serif; font-style: italic; font-weight: 400; font-size: 19px; line-height: 1.35; color: var(--cs-ink)">Mock Analysis Redesign @ ExamDuo</span>
+<span style="flex: none; font-family: 'Inter', 'Helvetica Neue', sans-serif; font-size: 11px; line-height: 1; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cs-muted); border: 1px solid var(--cs-line); border-radius: 999px; padding: 8px 16px; white-space: nowrap">UI/UX Intern</span>
+</div>
+</a>
+<a class="upnext-card" href="MediTrack.dc.html" style="display: flex; flex-direction: column; gap: 16px; box-sizing: border-box; padding: 8px 8px 24px; background: #FFFFFF; border: 1px solid var(--cs-line); border-radius: var(--cs-radius); box-shadow: 0 1px 2px rgba(20, 20, 40, 0.04); text-decoration: none; color: inherit">
+<img src="./assets/46c67baecc7ccba928b8eed3a0449a62.jpg" alt="" style="display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 10px; background: #E5F0FA">
+<div style="display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 8px 16px; padding: 0 16px">
+<span style="flex: 1 1 160px; min-width: 0; font-family: 'Libre Baskerville', Georgia, serif; font-style: italic; font-weight: 400; font-size: 19px; line-height: 1.35; color: var(--cs-ink)">MediTrack: Symptom-First Search</span>
+<span style="flex: none; font-family: 'Inter', 'Helvetica Neue', sans-serif; font-size: 11px; line-height: 1; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cs-muted); border: 1px solid var(--cs-line); border-radius: 999px; padding: 8px 16px; white-space: nowrap">Concept Project</span>
+</div>
+</a>
+<a class="upnext-card" href="ColorEase.dc.html" style="display: flex; flex-direction: column; gap: 16px; box-sizing: border-box; padding: 8px 8px 24px; background: #FFFFFF; border: 1px solid var(--cs-line); border-radius: 16px; box-shadow: 0 1px 2px rgba(20, 20, 40, 0.04); text-decoration: none; color: inherit">
+<div style="width: 100%; aspect-ratio: 16 / 10; overflow: hidden; border-radius: 10px; background: #F69788"><svg viewBox="0 0 620 390" preserveAspectRatio="xMidYMid slice" aria-hidden="true" style="display: block; width: 100%; height: 100%">
+<defs>
+<linearGradient id="ce-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F69788"></stop><stop offset="1" stop-color="#F7B38E"></stop></linearGradient>
+<linearGradient id="ce-bowl" x1="0.25" y1="0" x2="0.75" y2="1"><stop offset="0" stop-color="#9BB3E3"></stop><stop offset="1" stop-color="#C5AFE5"></stop></linearGradient>
+<clipPath id="ce-cut"><rect x="0" y="60" width="620" height="330"></rect></clipPath>
+<filter id="ce-shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="3" dy="5" stdDeviation="3" flood-color="#4A2F33" flood-opacity="0.55"></feDropShadow></filter>
+</defs>
+<rect width="620" height="390" fill="url(#ce-bg)"></rect>
+<g class="ce" style="--amp: -10px; animation-delay: 0s"><g filter="url(#ce-shadow)"><circle cx="298.5" cy="174.5" r="173.5" fill="url(#ce-bowl)" clip-path="url(#ce-cut)"></circle></g></g>
+<circle class="ce" style="--amp: -14px; animation-delay: -1.2s" cx="506" cy="152" r="29" fill="#FADC89"></circle>
+<path class="ce" style="--amp: -12px; animation-delay: -3.6s" d="M176 132 L220 126 L206 175 Z" fill="#EA8589" stroke="#EA8589" stroke-width="4" stroke-linejoin="round"></path>
+<circle class="ce" style="--amp: -18px; animation-delay: -2.4s" cx="206" cy="267" r="81" fill="#FFFFFF" fill-opacity="0.5"></circle>
+<path class="ce" style="--amp: -16px; animation-delay: -4.8s" d="M379 282 C355 266 350 252 350 245 C350 236 357 230 365 230 C371 230 376 233 379 238 C382 233 387 230 393 230 C401 230 408 236 408 245 C408 252 403 266 379 282 Z" fill="#FFFFFF"></path>
+</svg></div>
+<div style="display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 8px 16px; padding: 0 16px">
+<span style="flex: 1 1 160px; min-width: 0; font-family: 'Libre Baskerville', Georgia, serif; font-style: italic; font-weight: 400; font-size: 19px; line-height: 1.35; color: var(--cs-ink)">ColorEase: 3rd Place @ InnoVeX</span>
+<span style="flex: none; font-family: 'Inter', 'Helvetica Neue', sans-serif; font-size: 11px; line-height: 1; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cs-muted); border: 1px solid var(--cs-line); border-radius: 999px; padding: 8px 16px; white-space: nowrap">Accessibility</span>
+</div>
+</a>
+</div>
+</section>
+
+<div class="cs-contact">
+<div class="cs-contact-title">Contact</div>
+<div class="cs-contact-links"><a href="#">LinkedIn</a><a href="mailto:bhuvana.n.reddy04@gmail.com">Email</a></div>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":7000}}'>
+class Component extends DCLogic {
+constructor(props) { super(props); this.state = { act: 0, open: false, prog: 0 }; }
+componentDidMount() {
+this._sc = () => { const d = document.documentElement; const m = d.scrollHeight - window.innerHeight; const v = m > 0 ? Math.min(1, Math.max(0, window.scrollY / m)) : 0; if (Math.abs(v - (this.state.prog || 0)) > 0.005) this.setState({ prog: v }); };
+document.addEventListener("scroll", this._sc, true);
+try {
+const ids = ["tldr", "problem", "solution", "screens", "outcome", "lessons"];
+const io = new IntersectionObserver((es) => { es.forEach((e) => { if (e.isIntersecting) this.setState({ act: ids.indexOf(e.target.id) }); }); }, { rootMargin: '-15% 0px -75% 0px' });
+ids.forEach((id) => { const el = document.getElementById(id); if (el) io.observe(el); });
+this._io = io;
+} catch (e) {}
+}
+componentWillUnmount() {
+if (this._sc) document.removeEventListener("scroll", this._sc, true);
+if (this._io) this._io.disconnect();
+}
+renderVals() {
+const a = this.state.act;
+return {
+cur: ["TL;DR", "The Problem", "The Solution", "Final Screens", "Outcome", "Lessons Learnt"][a] || "", openStr: String(!!this.state.open), toggle: () => this.setState({ open: !this.state.open }), close: () => this.setState({ open: false }), progStyle: "transform:scaleX(" + (this.state.prog || 0) + ")",
+c0: String(a===0), c1: String(a===1), c2: String(a===2), c3: String(a===3), c4: String(a===4), c5: String(a===5)
+};
+}
+}
+</script>
+</body>
+</html>

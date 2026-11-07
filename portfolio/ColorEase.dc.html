@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Color Ease case study</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+<script src="./cursor.js"></script>
+<link rel="stylesheet" href="./case-study.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet">
+<style>
+:root{--cs-accent:#5B50A0;--cs-accent-soft:#E6E1F6;--cs-bg:#F5F5F5;--cs-nav-bg:rgba(245,245,245,.72)}
+@supports (background: color-mix(in srgb, red 50%, transparent)){:root{--cs-nav-bg:color-mix(in srgb, #F5F5F5 72%, transparent)}}
+</style>
+</helmet>
+<div id="top" class="cs-page">
+
+<nav class="cs-nav" aria-label="Case study sections" data-open="{{openStr}}">
+<div class="cs-crumb"><a class="cs-back" href="Main.dc.html"><span class="cs-arrow"><svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 8H3"></path><path d="M7.5 3.5 3 8l4.5 4.5"></path></svg></span>Work</a><span class="cs-sep" aria-hidden="true">/</span><span class="cs-project" aria-current="page">ColorEase</span></div>
+<div class="cs-bar"><a class="cs-bar-back" href="Main.dc.html" aria-label="Back to Work"><svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 8H3"></path><path d="M7.5 3.5 3 8l4.5 4.5"></path></svg></a><button class="cs-trigger" type="button" aria-expanded="{{openStr}}" aria-controls="cs-list" onClick="{{toggle}}"><span class="cs-current">{{cur}}</span><span class="cs-chev" aria-hidden="true"></span></button></div>
+<ol class="cs-list" id="cs-list"><li><a class="cs-link" href="#overview" aria-current="{{c0}}" onClick="{{close}}">Overview</a></li><li><a class="cs-link" href="#problem" aria-current="{{c1}}" onClick="{{close}}">Problem</a></li><li><a class="cs-link" href="#research" aria-current="{{c2}}" onClick="{{close}}">Research</a></li><li><a class="cs-link" href="#solution" aria-current="{{c3}}" onClick="{{close}}">Solution</a></li><li><a class="cs-link" href="#how" aria-current="{{c4}}" onClick="{{close}}">How it works</a></li><li><a class="cs-link" href="#screens" aria-current="{{c5}}" onClick="{{close}}">Final screens</a></li><li><a class="cs-link" href="#style-guide" aria-current="{{c6}}" onClick="{{close}}">Style guide</a></li><li><a class="cs-link" href="#outcome" aria-current="{{c7}}" onClick="{{close}}">Outcome</a></li></ol>
+<div class="cs-progress" aria-hidden="true"><i style="{{progStyle}}"></i></div>
+</nav>
+
+<main class="cs-main">
+
+<!-- HERO + TITLE -->
+<section id="overview" class="cs-flow">
+<div class="cs-cover" style="width:100%; aspect-ratio:16 / 9; overflow:hidden">
+<svg viewBox="0 0 445 320" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Animated abstract thumbnail for Color Ease: a lavender orb floating over a peach background with a coral triangle, white heart, pale circle and yellow dot" style="display:block; width:100%; height:100%">
+<defs>
+<linearGradient id="ce-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f89f86"></stop><stop offset="1" stop-color="#f9b390"></stop></linearGradient>
+<linearGradient id="ce-orb" x1="0.15" y1="0" x2="0.85" y2="1"><stop offset="0" stop-color="#96b4e6"></stop><stop offset="1" stop-color="#c6aee6"></stop></linearGradient>
+<clipPath id="ce-top"><rect x="0" y="20" width="445" height="300"></rect></clipPath>
+<filter id="ce-sh" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="-1" dy="4" stdDeviation="3" flood-color="#000" flood-opacity=".4"></feDropShadow></filter>
+</defs>
+<rect width="445" height="320" fill="url(#ce-bg)"></rect>
+<g clip-path="url(#ce-top)"><circle class="ce-fb ce-float" cx="199" cy="121" r="154" fill="url(#ce-orb)" filter="url(#ce-sh)"></circle></g>
+<circle class="ce-fb" cx="117" cy="204" r="72" fill="#fff" fill-opacity=".55"></circle>
+<polygon class="ce-fb" points="90,88 129,80 116,122" fill="#f08585"></polygon>
+<path class="ce-fb" transform="translate(271 193)" d="M0 17 C-30 -3 -18 -26 0 -11 C18 -26 30 -3 0 17Z" fill="#fff"></path>
+<circle class="ce-fb" cx="383" cy="102" r="26" fill="#fdd98a"></circle>
+</svg>
+</div>
+<div style="display:flex; flex-direction:column; gap:16px">
+<div class="cs-chips" style="margin-top:0">
+<span class="cs-chip">Accessibility</span>
+<span class="cs-chip">InnoVeX 3rd place</span>
+</div>
+<h1>Color Ease</h1>
+<p class="cs-lead">A perceptual color system that flags inaccessible combinations at design time, before they ever reach production.</p>
+</div>
+<div style="background:var(--cs-panel); border-radius:var(--cs-radius); padding:24px; display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); column-gap:48px">
+<div style="padding:0 0 24px; border-bottom:1px solid var(--cs-line); display:flex; flex-direction:column; gap:16px"><div class="cs-label">My role</div><div style="font-size:20px; line-height:1.4; color:var(--cs-ink)">UI Designer</div></div>
+<div style="padding:0 0 24px; border-bottom:1px solid var(--cs-line); display:flex; flex-direction:column; gap:16px"><div class="cs-label">Timeline</div><div style="font-size:20px; line-height:1.4; color:var(--cs-ink)">2 months (2025)</div></div>
+<div style="padding:24px 0 0; display:flex; flex-direction:column; gap:16px"><div class="cs-label">Team</div><div style="font-size:20px; line-height:1.4; color:var(--cs-ink)">Team of two<br>Bhuvana Shree N<br>Chinmay S K</div></div>
+<div style="padding:24px 0 0; display:flex; flex-direction:column; gap:16px"><div class="cs-label">Focus</div><div style="font-size:20px; line-height:1.4; color:var(--cs-ink)">Accessibility, colour contrast</div></div>
+</div>
+</section>
+
+<!-- PROBLEM -->
+<section id="problem" class="cs-flow">
+<h2>Product teams often ship interfaces with failing text-to-background contrast.</h2>
+<p>Designers and engineers frequently produce interfaces with failing text-to-background contrast ratios because standard Figma color pickers do not account for ambient lighting or color vision deficiencies (CVD).</p>
+<div style="background:#E6E1F6; border-radius:var(--cs-radius-sm); padding:24px; display:flex; flex-direction:column; gap:8px">
+<div style="font-family:'Inter','Helvetica Neue',sans-serif; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--cs-ink)">Hypothesis</div>
+<p style="color: var(--cs-ink)">By embedding real-time APCA contrast scoring directly into design tokens and component libraries, enterprise product teams can eliminate 90% of accessibility compliance debt before engineering handoff.</p>
+</div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research" class="cs-flow">
+<h2>Contrast issues are not just a checklist problem</h2>
+<div style="display:flex; flex-direction:column; gap:16px">
+<div style="display:flex; gap:16px; padding:24px; background:#FFFFFF; border:1px solid var(--cs-line); border-radius:var(--cs-radius)">
+<span style="font-family:'Inter','Helvetica Neue',sans-serif; font-size:12px; color:#5B50A0; padding-top:4px">01</span>
+<p>Mathematical WCAG 2.0 contrast ratios often fail real human readability in dark mode text on dark gray cards.</p>
+</div>
+<div style="display:flex; gap:16px; padding:24px; background:#FFFFFF; border:1px solid var(--cs-line); border-radius:var(--cs-radius)">
+<span style="font-family:'Inter','Helvetica Neue',sans-serif; font-size:12px; color:#5B50A0; padding-top:4px">02</span>
+<p>Designers want automated token suggestions rather than just a red error badge.</p>
+</div>
+<div style="display:flex; gap:16px; padding:24px; background:#FFFFFF; border:1px solid var(--cs-line); border-radius:var(--cs-radius)">
+<span style="font-family:'Inter','Helvetica Neue',sans-serif; font-size:12px; color:#5B50A0; padding-top:4px">03</span>
+<p>Developers need instant CSS variable and Tailwind palette exports.</p>
+</div>
+</div>
+</section>
+
+<!-- SOLUTION -->
+<section id="solution" class="cs-flow">
+<h2>Perceptual Color Harmonizer</h2>
+<div style="display:flex; flex-direction:column; gap:32px">
+
+<div style="display:flex; flex-direction:column; gap:16px">
+<div style="display:flex; flex-direction:column; gap:4px">
+<h3>Perceptual Color Harmonizer</h3>
+<p>Algorithmic palette generator ensuring APCA Lc 75+ for all reading typography.</p>
+</div>
+</div>
+
+<div style="display:flex; flex-direction:column; gap:16px">
+<div style="display:flex; flex-direction:column; gap:4px">
+<h3>Live CVD Vision Filter</h3>
+<p>Instant previews under protanopia, deuteranopia, tritanopia, and achromatopsia.</p>
+</div>
+</div>
+
+<div style="display:flex; flex-direction:column; gap:16px">
+<div style="display:flex; flex-direction:column; gap:4px">
+<h3>Multi-Format Token Export</h3>
+<p>Auto-generated JSON tokens for Figma Tokens Studio, CSS Custom Properties, and Tailwind themes.</p>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how-it-works" class="cs-flow">
+<h2>Seeing the interface through their eyes</h2>
+<div style="display:flex; flex-direction:column; gap:16px">
+<div style="display:flex; gap:16px; padding:24px; background:#FFFFFF; border:1px solid var(--cs-line); border-radius:var(--cs-radius)">
+<span style="font-family:'Inter','Helvetica Neue',sans-serif; font-size:12px; color:#5B50A0; padding-top:4px">01</span>
+<div style="display:flex; flex-direction:column; gap:4px"><h3>Pick a condition</h3><p>Choose protanopia, deuteranopia, tritanopia or achromatopsia from the Vision Simulation menu.</p></div>
+</div>
+<div style="display:flex; gap:16px; padding:24px; background:#FFFFFF; border:1px solid var(--cs-line); border-radius:var(--cs-radius)">
+<span style="font-family:'Inter','Helvetica Neue',sans-serif; font-size:12px; color:#5B50A0; padding-top:4px">02</span>
+<div style="display:flex; flex-direction:column; gap:4px"><h3>The whole interface recolours</h3><p>Type, buttons, alerts and badges are redrawn the way that condition shifts perception, so you review real components rather than isolated swatches.</p></div>
+</div>
+<div style="display:flex; gap:16px; padding:24px; background:#FFFFFF; border:1px solid var(--cs-line); border-radius:var(--cs-radius)">
+<span style="font-family:'Inter','Helvetica Neue',sans-serif; font-size:12px; color:#5B50A0; padding-top:4px">03</span>
+<div style="display:flex; flex-direction:column; gap:4px"><h3>Spot what breaks</h3><p>Under protanopia and deuteranopia the red destructive states turn olive-yellow; under tritanopia the indigo primary turns teal. Colour alone stops carrying meaning.</p></div>
+</div>
+<div style="display:flex; gap:16px; padding:24px; background:#FFFFFF; border:1px solid var(--cs-line); border-radius:var(--cs-radius)">
+<span style="font-family:'Inter','Helvetica Neue',sans-serif; font-size:12px; color:#5B50A0; padding-top:4px">04</span>
+<div style="display:flex; flex-direction:column; gap:4px"><h3>Fix it before handoff</h3><p>Add an icon, a label or a lightness change, and use the AI corrective filters to improve colour distinction for the target condition.</p></div>
+</div>
+</div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" class="cs-flow">
+<h2>Seeing what colour-blind users see</h2>
+<p>Choose a condition from the Vision Simulation menu and the whole interface is redrawn the way that condition shifts colour, so a designer can check a screen before it ships.</p>
+<div style="display:flex; flex-direction:column; gap:16px">
+<div style="display:flex; gap:16px; padding:24px; background:#FFFFFF; border:1px solid var(--cs-line); border-radius:var(--cs-radius)">
+<span style="font-family:'Inter','Helvetica Neue',sans-serif; font-size:12px; color:#5B50A0; padding-top:4px">01</span>
+<div style="display:flex; flex-direction:column; gap:4px"><h3>Pick a condition</h3><p>Protanopia, deuteranopia, tritanopia or achromatopsia.</p></div>
+</div>
+<div style="display:flex; gap:16px; padding:24px; background:#FFFFFF; border:1px solid var(--cs-line); border-radius:var(--cs-radius)">
+<span style="font-family:'Inter','Helvetica Neue',sans-serif; font-size:12px; color:#5B50A0; padding-top:4px">02</span>
+<div style="display:flex; flex-direction:column; gap:4px"><h3>The interface is recoloured</h3><p>Typography, buttons, alerts and badges update together, so you judge the real screen rather than a swatch.</p></div>
+</div>
+<div style="display:flex; gap:16px; padding:24px; background:#FFFFFF; border:1px solid var(--cs-line); border-radius:var(--cs-radius)">
+<span style="font-family:'Inter','Helvetica Neue',sans-serif; font-size:12px; color:#5B50A0; padding-top:4px">03</span>
+<div style="display:flex; flex-direction:column; gap:4px"><h3>Spot what breaks</h3><p>Under protanopia and deuteranopia the red Destructive button and Error alert turn olive-yellow, so red no longer reads as danger. Under tritanopia the indigo primary turns teal.</p></div>
+</div>
+</div>
+<p>Each fix then happens at design time: an icon, a label or a lightness difference instead of relying on hue alone. The AI Corrective Filters panel generates filters that improve colour distinction for the chosen condition.</p>
+</section>
+
+<!-- FINAL SCREENS -->
+<section id="screens" class="cs-flow">
+<h2>The design in context</h2>
+<figure style="margin:0; display:flex; flex-direction:column; gap:16px">
+<img src="./assets/6700270f5b962e1f467afd6384f0614f.png" alt="Color Ease interface under protanopia simulation: typography, buttons, alerts and badges recolored for red-blind vision" style="width:100%; height:auto; display:block; border-radius:var(--cs-radius); border:1px solid var(--cs-line); box-sizing:border-box; box-shadow:var(--cs-shadow)">
+<figcaption class="cs-caption">Protanopia simulation</figcaption>
+</figure>
+<figure style="margin:0; display:flex; flex-direction:column; gap:16px">
+<img src="./assets/3258cf67ee068d90c24103f647a35ca4.png" alt="Color Ease interface under tritanopia simulation with the accessibility mode toggle on" style="width:100%; height:auto; display:block; border-radius:var(--cs-radius); border:1px solid var(--cs-line); box-sizing:border-box; box-shadow:var(--cs-shadow)">
+<figcaption class="cs-caption">Tritanopia simulation</figcaption>
+</figure>
+<figure style="margin:0; display:flex; flex-direction:column; gap:16px">
+<img src="./assets/f13fc2659b88c1905e2d8a05fcf202f2.png" alt="Color Ease interface under deuteranopia simulation with the accessibility mode toggle on" style="width:100%; height:auto; display:block; border-radius:var(--cs-radius); border:1px solid var(--cs-line); box-sizing:border-box; box-shadow:var(--cs-shadow)">
+<figcaption class="cs-caption">Deuteranopia simulation</figcaption>
+</figure>
+</section>
+
+<!-- STYLE GUIDE -->
+<section id="style-guide" class="cs-flow">
+<h2>Colour palette and guidance</h2>
+<div style="display:flex; flex-wrap:wrap; gap:16px">
+<div style="flex:1 1 112px; display:flex; flex-direction:column; gap:8px">
+<div style="height:96px; border-radius:var(--cs-radius-sm); background:#5B50A0"></div>
+<div style="font-weight:500">Primary</div>
+<div style="font-family:'Inter','Helvetica Neue',sans-serif; font-size:12px; color:var(--cs-muted)">#5B50A0</div>
+</div>
+<div style="flex:1 1 112px; display:flex; flex-direction:column; gap:8px">
+<div style="height:96px; border-radius:var(--cs-radius-sm); background:#E6E1F6; border:1px solid var(--cs-line); box-sizing:border-box"></div>
+<div style="font-weight:500">Accent</div>
+<div style="font-family:'Inter','Helvetica Neue',sans-serif; font-size:12px; color:var(--cs-muted)">#E6E1F6</div>
+</div>
+<div style="flex:1 1 112px; display:flex; flex-direction:column; gap:8px">
+<div style="height:96px; border-radius:var(--cs-radius-sm); background:#F4F2FA; border:1px solid var(--cs-line); box-sizing:border-box"></div>
+<div style="font-weight:500">Soft background</div>
+<div style="font-family:'Inter','Helvetica Neue',sans-serif; font-size:12px; color:var(--cs-muted)">#F4F2FA</div>
+</div>
+<div style="flex:1 1 112px; display:flex; flex-direction:column; gap:8px">
+<div style="height:96px; border-radius:var(--cs-radius-sm); background:#201E2A"></div>
+<div style="font-weight:500">Text</div>
+<div style="font-family:'Inter','Helvetica Neue',sans-serif; font-size:12px; color:var(--cs-muted)">#201E2A</div>
+</div>
+<div style="flex:1 1 112px; display:flex; flex-direction:column; gap:8px">
+<div style="height:96px; border-radius:var(--cs-radius-sm); background:#C75C4A"></div>
+<div style="font-weight:500">Signal</div>
+<div style="font-family:'Inter','Helvetica Neue',sans-serif; font-size:12px; color:var(--cs-muted)">#C75C4A</div>
+</div>
+</div>
+</section>
+
+<!-- OUTCOME -->
+<section id="outcome" class="cs-flow">
+<h2>Outcome</h2>
+<div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:40px 48px">
+<div style="display:flex; flex-direction:column; gap:16px">
+<h3>38% improvement</h3>
+<p>In text readability ratings across low-vision test participants.</p>
+</div>
+<div style="display:flex; flex-direction:column; gap:16px">
+<h3>Award winner</h3>
+<p>Won 3rd Place at the InnoVeX National Challenge.</p>
+</div>
+<div style="display:flex; flex-direction:column; gap:16px">
+<h3>100% pass rate</h3>
+<p>Across automated WCAG 2.1 AA compliance scans for enterprise pilot apps.</p>
+</div>
+</div>
+</section>
+
+
+<!-- UP NEXT -->
+<div class="cs-thanks">thanks for reading</div>
+<div class="cs-rule"></div>
+<section id="upnext" class="cs-upnext" aria-labelledby="upnext-title" style="display: flex; flex-direction: column; gap: 24px">
+<div class="cs-upnext-head"><div id="upnext-title" class="cs-label">Up next</div><a class="cs-top" href="#top">Back to top<svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 13V3"></path><path d="M3.5 7.5 8 3l4.5 4.5"></path></svg></a></div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px">
+<a class="upnext-card" href="ExamDuo.dc.html" style="display: flex; flex-direction: column; gap: 16px; box-sizing: border-box; padding: 8px 8px 24px; background: #FFFFFF; border: 1px solid var(--cs-line); border-radius: var(--cs-radius); box-shadow: 0 1px 2px rgba(20, 20, 40, 0.04); text-decoration: none; color: inherit">
+<img src="./assets/5aa087f70fedd0f40d47159599cfa06a.jpg" alt="" style="display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 10px; background: var(--cs-bg)">
+<div style="display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 8px 16px; padding: 0 16px">
+<span style="flex: 1 1 160px; min-width: 0; font-family: 'Libre Baskerville', Georgia, serif; font-style: italic; font-weight: 400; font-size: 19px; line-height: 1.35; color: var(--cs-ink)">Mock Analysis Redesign @ ExamDuo</span>
+<span style="flex: none; font-family: 'Inter', 'Helvetica Neue', sans-serif; font-size: 11px; line-height: 1; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cs-muted); border: 1px solid var(--cs-line); border-radius: 999px; padding: 8px 16px; white-space: nowrap">UI/UX Intern</span>
+</div>
+</a>
+<a class="upnext-card" href="MediTrack.dc.html" style="display: flex; flex-direction: column; gap: 16px; box-sizing: border-box; padding: 8px 8px 24px; background: #FFFFFF; border: 1px solid var(--cs-line); border-radius: var(--cs-radius); box-shadow: 0 1px 2px rgba(20, 20, 40, 0.04); text-decoration: none; color: inherit">
+<img src="./assets/46c67baecc7ccba928b8eed3a0449a62.jpg" alt="" style="display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 10px; background: #E5F0FA">
+<div style="display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 8px 16px; padding: 0 16px">
+<span style="flex: 1 1 160px; min-width: 0; font-family: 'Libre Baskerville', Georgia, serif; font-style: italic; font-weight: 400; font-size: 19px; line-height: 1.35; color: var(--cs-ink)">MediTrack: Symptom-First Search</span>
+<span style="flex: none; font-family: 'Inter', 'Helvetica Neue', sans-serif; font-size: 11px; line-height: 1; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cs-muted); border: 1px solid var(--cs-line); border-radius: 999px; padding: 8px 16px; white-space: nowrap">Concept Project</span>
+</div>
+</a>
+<a class="upnext-card" href="ECI.dc.html" style="display: flex; flex-direction: column; gap: 16px; box-sizing: border-box; padding: 8px 8px 24px; background: #FFFFFF; border: 1px solid var(--cs-line); border-radius: var(--cs-radius); box-shadow: 0 1px 2px rgba(20, 20, 40, 0.04); text-decoration: none; color: inherit">
+<img src="./assets/cf0e37a9959eecbc48698d8f947e1857.png" alt="" style="display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 10px; background: #E5F0FA">
+<div style="display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 8px 16px; padding: 0 16px">
+<span style="flex: 1 1 160px; min-width: 0; font-family: 'Libre Baskerville', Georgia, serif; font-style: italic; font-weight: 400; font-size: 19px; line-height: 1.35; color: var(--cs-ink)">ECI Citizen Services Rebuild</span>
+<span style="flex: none; font-family: 'Inter', 'Helvetica Neue', sans-serif; font-size: 11px; line-height: 1; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cs-muted); border: 1px solid var(--cs-line); border-radius: 999px; padding: 8px 16px; white-space: nowrap">Product Design</span>
+</div>
+</a>
+</div>
+</section>
+<div class="cs-contact">
+<div class="cs-contact-title">Contact</div>
+<div class="cs-contact-links"><a href="#">LinkedIn</a><a href="mailto:bhuvana.n.reddy04@gmail.com">Email</a></div>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":6000}}'>
+class Component extends DCLogic {
+constructor(props) { super(props); this.state = { act: 0, open: false, prog: 0 }; }
+componentDidMount() {
+this._sc = () => { const d = document.documentElement; const m = d.scrollHeight - window.innerHeight; const v = m > 0 ? Math.min(1, Math.max(0, window.scrollY / m)) : 0; if (Math.abs(v - (this.state.prog || 0)) > 0.005) this.setState({ prog: v }); };
+document.addEventListener("scroll", this._sc, true);
+try {
+const ids = ["overview", "problem", "research", "solution", "how", "screens", "style-guide", "outcome"];
+const io = new IntersectionObserver((es) => { es.forEach((e) => { if (e.isIntersecting) this.setState({ act: ids.indexOf(e.target.id) }); }); }, { rootMargin: '-15% 0px -75% 0px' });
+ids.forEach((id) => { const el = document.getElementById(id); if (el) io.observe(el); });
+this._io = io;
+} catch (e) {}
+}
+componentWillUnmount() {
+if (this._sc) document.removeEventListener("scroll", this._sc, true); if (this._io) this._io.disconnect(); }
+renderVals() {
+return {cur: ["Overview", "Problem", "Research", "Solution", "How it works", "Final screens", "Style guide", "Outcome"][this.state.act] || "", openStr: String(!!this.state.open), toggle: () => this.setState({ open: !this.state.open }), close: () => this.setState({ open: false }), progStyle: "transform:scaleX(" + (this.state.prog || 0) + ")",c0: String(this.state.act===(0)), c1: String(this.state.act===(1)), c2: String(this.state.act===(2)), c3: String(this.state.act===(3)), c4: String(this.state.act===(4)), c5: String(this.state.act===(5)), c6: String(this.state.act===(6)), c7: String(this.state.act===(7))};
+}
+}
+</script>
+</body>
+</html>
