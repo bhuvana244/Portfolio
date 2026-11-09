@@ -16,7 +16,9 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400&amp;family=Libre+Baskerville:wght@400&amp;display=swap">
 <style>
 :root{
-  --bg-gradient:linear-gradient(to bottom, #E5F0FA 0%, #EDF5FB 35%, #F5F9FD 62%, #FDFEFE 95%, #FFFFFF 100%);
+  --bg-gradient:
+    radial-gradient(ellipse 120% 18% at 50% 100%, #F0F7FC 0%, rgba(240,247,252,0) 100%),
+    linear-gradient(to bottom, #E4F1FC 0%, #F5FAFE 30%, #FFFFFF 55%, #FFFFFF 76%, #F9FCFE 100%);
   --ink:#494949;
   --muted:#7B858E;
   --line:#C5D4E6;
@@ -51,6 +53,7 @@ body{margin:0;background:#FFFFFF}
 .card:hover{border-color:var(--accent) !important}
 .card:active{transform:scale(.985);border-color:#3A55E6 !important}
 .card{transition:border-color .2s ease,transform .12s ease}
+.foot{background:transparent !important}
 .wordmark:hover{color:var(--accent) !important}
 .nav-link,.wordmark{transition:color .2s ease,transform .12s ease}
 .foot-link{display:inline-block;transition:color .2s ease,transform .12s ease}
@@ -68,7 +71,7 @@ body{margin:0;background:#FFFFFF}
   .nav-wrap{position:static !important;transform:none !important}
   .nav{flex-direction:row !important;flex-wrap:wrap;gap:0 24px !important}
   .nav-link.is-active::before{display:none}
-  .main{margin-left:0 !important;padding:48px var(--space-edge) 96px !important}
+  .main{margin-left:0 !important;padding:48px var(--space-edge) 48px !important}
   .foot{padding:64px var(--space-edge) 48px !important}
   .row-label{flex-basis:100% !important}
 }
@@ -83,14 +86,14 @@ body{margin:0;background:#FFFFFF}
       <div class="nav" style="display: flex; flex-direction: column; gap: var(--nav-pitch-gap); align-items: flex-start">
         <a class="nav-link" href="Main.dc.html#work">Work</a>
         <a class="nav-link is-active" href="About.dc.html" aria-current="page">About</a>
-        <a class="nav-link" href="Main.dc.html#resume">Resume</a>
+        <a class="nav-link" href="assets/Bhuvana_Shree_N_Resume.pdf">Resume</a>
         <a class="nav-link" href="#contact">Contact</a>
       </div>
     </nav>
   </aside>
 
-  <main class="main" style="flex: 1 1 0; min-width: 0; margin-left: 0; box-sizing: border-box; padding: 96px 64px 128px 0; display: flex; flex-direction: column; gap: 32px; position: relative; font-size: 14px; line-height: 24px">
-    <div style="display: flex; flex-direction: column; border-bottom: 1px solid var(--line)">
+  <main class="main" style="flex: 1 1 0; min-width: 0; margin-left: 0; box-sizing: border-box; padding: 96px 64px 64px 0; display: flex; flex-direction: column; gap: 32px; position: relative; font-size: 14px; line-height: 24px">
+    <div style="display: flex; flex-direction: column">
 <section style="display:flex; flex-wrap:wrap; gap:8px 0; padding:24px 0; border-top:1px solid var(--line)">
 <div class="row-label" style="flex:0 0 var(--meta-offset); color:var(--muted)">My background</div>
 <div style="flex:1 1 320px; min-width:0; max-width:640px; display:flex; flex-direction:column; gap:16px">
@@ -147,7 +150,7 @@ body{margin:0;background:#FFFFFF}
 </div>
 </section>
 
-<section style="display:flex; flex-wrap:wrap; gap:8px 0; padding:24px 0; border-top:1px solid var(--line)">
+<section style="display:flex; flex-wrap:wrap; gap:8px 0; padding:24px 0 0; border-top:1px solid var(--line)">
 <div class="row-label" style="flex:0 0 var(--meta-offset); color:var(--muted)">Beyond the screen</div>
 <div style="flex:1 1 320px; min-width:0; display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:32px 24px">
 
@@ -191,7 +194,7 @@ body{margin:0;background:#FFFFFF}
     </div>
     <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; font-size: 14px; line-height: 24px">
       <span style="color: var(--muted)">© 2026 Bhuvana Shree N.</span>
-      <div style="display: flex; flex-wrap: wrap; gap: 8px 40px"><a class="foot-link" href="mailto:bhuvana.n.reddy04@gmail.com">Email</a><a class="foot-link" href="#">LinkedIn</a><a id="resume" class="foot-link" href="#resume">Resume</a></div>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px 40px"><a class="foot-link" href="mailto:bhuvana.n.reddy04@gmail.com">Email</a><a class="foot-link" href="#">LinkedIn</a><a class="foot-link" href="assets/Bhuvana_Shree_N_Resume.pdf">Resume</a></div>
     </div>
   </footer>
 </div>

@@ -16,7 +16,9 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400&amp;family=Libre+Baskerville:wght@400&amp;display=swap">
 <style>
 :root{
-  --bg-gradient:linear-gradient(to bottom, #E5F0FA 0%, #EDF5FB 35%, #F5F9FD 62%, #FDFEFE 95%, #FFFFFF 100%);
+  --bg-gradient:
+    radial-gradient(ellipse 120% 18% at 50% 100%, #F0F7FC 0%, rgba(240,247,252,0) 100%),
+    linear-gradient(to bottom, #E4F1FC 0%, #F5FAFE 30%, #FFFFFF 55%, #FFFFFF 76%, #F9FCFE 100%);
   --ink:#494949;
   --muted:#7B858E;
   --line:#C5D4E6;
@@ -50,6 +52,17 @@ body{margin:0;background:#FFFFFF}
 .card:hover{border-color:var(--accent) !important}
 .card:active{transform:scale(.985);border-color:#3A55E6 !important}
 .card{transition:border-color .2s ease,transform .12s ease}
+.foot{background:transparent !important}
+.card{container-type:inline-size}
+.card-meta-row{flex-wrap:nowrap !important;gap:16px !important}
+.card-title{min-width:0;flex:1 1 auto;text-wrap:balance}
+.card-tags{flex:none;flex-wrap:nowrap !important;gap:8px !important}
+.card-tags>span{flex:none;white-space:nowrap}
+@container (max-width: 600px){
+  .card-meta-row{flex-direction:column;align-items:flex-start !important;gap:8px !important}
+  .card-title{width:100%;flex:none}
+  .card-tags{flex-wrap:wrap !important}
+}
 .wordmark:hover{color:var(--accent) !important}
 .nav-link,.wordmark{transition:color .2s ease,transform .12s ease}
 .foot-link{display:inline-block;transition:color .2s ease,transform .12s ease}
@@ -64,7 +77,7 @@ body{margin:0;background:#FFFFFF}
   .nav-wrap{position:static !important;transform:none !important}
   .nav{flex-direction:row !important;flex-wrap:wrap;gap:0 24px !important}
   .nav-link.is-active::before{display:none}
-  .main{margin-left:0 !important;padding:48px var(--space-edge) 96px !important}
+  .main{margin-left:0 !important;padding:48px var(--space-edge) 48px !important}
   .foot{padding:64px var(--space-edge) 48px !important}
   .headline{font-size:44px !important}
   .meta{grid-template-columns:minmax(0, 1fr) !important}
@@ -82,13 +95,13 @@ body{margin:0;background:#FFFFFF}
       <div class="nav" style="display: flex; flex-direction: column; gap: var(--nav-pitch-gap); align-items: flex-start">
         <a class="nav-link is-active" href="#work" aria-current="page">Work</a>
         <a class="nav-link" href="About.dc.html">About</a>
-        <a class="nav-link" href="#resume">Resume</a>
+        <a class="nav-link" href="assets/Bhuvana_Shree_N_Resume.pdf">Resume</a>
         <a class="nav-link" href="#contact">Contact</a>
       </div>
     </nav>
   </aside>
 
-  <main class="main" style="flex: 1 1 0; min-width: 0; margin-left: 0; box-sizing: border-box; padding: 96px 64px 128px 0; display: flex; flex-direction: column; align-items: flex-start; gap: 32px; position: relative">
+  <main class="main" style="flex: 1 1 0; min-width: 0; margin-left: 0; box-sizing: border-box; padding: 96px 64px 64px 0; display: flex; flex-direction: column; align-items: flex-start; gap: 32px; position: relative">
     <img src="./assets/ec053d0c4402c9da46f3fb93acce4fa5.png" alt="Portrait of Bhuvana Shree N." style="display: block; width: 128px; height: 128px; border-radius: 50%; object-fit: cover; background: var(--line)">
     <h1 class="headline" style="margin: 0; width: 100%; font-family: var(--font-display); font-size: 48px; line-height: var(--headline-lh); font-weight: 400; letter-spacing: -0.02em; color: var(--ink)">I’m Bhuvana Shree, a designer drawn to the space where people, problems, and design meet.</h1>
 
@@ -110,22 +123,22 @@ body{margin:0;background:#FFFFFF}
         <a class="card" href="ExamDuo.dc.html" style="display: flex; flex-direction: column; gap: 16px; box-sizing: border-box; padding: 8px 8px 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; text-decoration: none; color: inherit">
           <img src="./assets/5aa087f70fedd0f40d47159599cfa06a.jpg" alt="Exam Duo mock analysis screens: test result, percentile predictor and time management" style="display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 6px; background: #F7F7FA">
           <div style="display: flex; flex-direction: column; gap: 8px; padding: 0 12px">
-            <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px">
-              <span style="color: var(--ink)">Mock Analysis Redesign @ ExamDuo</span>
-              <div style="display: flex; flex-wrap: wrap; gap: 8px"><span style="font-size: 12px; line-height: 1.5; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); background: #FFFFFF; border: 1px solid var(--line); border-radius: 999px; padding: 4px 16px; white-space: nowrap">UI/UX Intern</span><span style="font-size: 12px; line-height: 1.5; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); background: #FFFFFF; border: 1px solid var(--line); border-radius: 999px; padding: 4px 16px; white-space: nowrap">2026</span></div>
+            <div class="card-meta-row" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px">
+              <span class="card-title" style="color: var(--ink)">Making Mock Tests Actionable @ ExamDuo</span>
+              <div class="card-tags" style="display: flex; flex-wrap: wrap; gap: 8px"><span style="font-size: 12px; line-height: 1.5; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); background: #FFFFFF; border: 1px solid var(--line); border-radius: 6px; padding: 4px 16px; white-space: nowrap">UI/UX Intern</span><span style="font-size: 12px; line-height: 1.5; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); background: #FFFFFF; border: 1px solid var(--line); border-radius: 6px; padding: 4px 16px; white-space: nowrap">2026</span></div>
             </div>
-            <span style="color: var(--muted)">Redesigned mock-test analysis and review in 4 weeks, so students know what to fix next.</span>
+            <span style="color: var(--muted)">Redesigned how exam-prep students review a mock test, from a wall of numbers to a clear list of what to do next.</span>
           </div>
         </a>
 
         <a class="card" href="MediTrack.dc.html" style="display: flex; flex-direction: column; gap: 16px; box-sizing: border-box; padding: 8px 8px 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; text-decoration: none; color: inherit">
           <img src="./assets/46c67baecc7ccba928b8eed3a0449a62.jpg" alt="MediTrack app screens: home with today's medicines, symptom entry, and a matched past record" style="display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 6px; background: #E5F0FA">
           <div style="display: flex; flex-direction: column; gap: 8px; padding: 0 12px">
-            <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px">
-              <span style="color: var(--ink)">MediTrack: Symptom-First Search</span>
-              <div style="display: flex; flex-wrap: wrap; gap: 8px"><span style="font-size: 12px; line-height: 1.5; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); background: #FFFFFF; border: 1px solid var(--line); border-radius: 999px; padding: 4px 16px; white-space: nowrap">Concept Project</span><span style="font-size: 12px; line-height: 1.5; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); background: #FFFFFF; border: 1px solid var(--line); border-radius: 999px; padding: 4px 16px; white-space: nowrap">2026</span></div>
+            <div class="card-meta-row" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px">
+              <span class="card-title" style="color: var(--ink)">Helping people find the medicine that worked last time</span>
+              <div class="card-tags" style="display: flex; flex-wrap: wrap; gap: 8px"><span style="font-size: 12px; line-height: 1.5; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); background: #FFFFFF; border: 1px solid var(--line); border-radius: 6px; padding: 4px 16px; white-space: nowrap">Concept Project</span><span style="font-size: 12px; line-height: 1.5; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); background: #FFFFFF; border: 1px solid var(--line); border-radius: 6px; padding: 4px 16px; white-space: nowrap">2026</span></div>
             </div>
-            <span style="color: var(--muted)">Designed a search that matches a new symptom to the user’s own medicine history, so they find what worked last time.</span>
+            <span style="color: var(--muted)">Start from how you feel, not a drug name, and see your own past records first.</span>
           </div>
         </a>
 
@@ -145,22 +158,22 @@ body{margin:0;background:#FFFFFF}
 <path class="ce" style="--amp: -16px; animation-delay: -4.8s" d="M379 282 C355 266 350 252 350 245 C350 236 357 230 365 230 C371 230 376 233 379 238 C382 233 387 230 393 230 C401 230 408 236 408 245 C408 252 403 266 379 282 Z" fill="#FFFFFF"></path>
 </svg></div>
           <div style="display: flex; flex-direction: column; gap: 8px; padding: 0 12px">
-            <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px">
-              <span style="color: var(--ink)">ColorEase: 3rd Place @ InnoVeX</span>
-              <div style="display: flex; flex-wrap: wrap; gap: 8px"><span style="font-size: 12px; line-height: 1.5; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); background: #FFFFFF; border: 1px solid var(--line); border-radius: 999px; padding: 4px 16px; white-space: nowrap">Accessibility</span><span style="font-size: 12px; line-height: 1.5; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); background: #FFFFFF; border: 1px solid var(--line); border-radius: 999px; padding: 4px 16px; white-space: nowrap">2025</span></div>
+            <div class="card-meta-row" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px">
+              <span class="card-title" style="color: var(--ink)">ColorEase: 3rd Place @ InnoVeX</span>
+              <div class="card-tags" style="display: flex; flex-wrap: wrap; gap: 8px"><span style="font-size: 12px; line-height: 1.5; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); background: #FFFFFF; border: 1px solid var(--line); border-radius: 6px; padding: 4px 16px; white-space: nowrap">Accessibility</span><span style="font-size: 12px; line-height: 1.5; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); background: #FFFFFF; border: 1px solid var(--line); border-radius: 6px; padding: 4px 16px; white-space: nowrap">2025</span></div>
             </div>
-            <span style="color: var(--muted)">Designed a colour tool that flags failing contrast and previews colour blindness, improving low-vision readability by 38%.</span>
+            <span style="color: var(--muted)">A colour tool that flags failing contrast and previews colour blindness.</span>
           </div>
         </a>
 
         <a class="card" href="ECI.dc.html" style="display: flex; flex-direction: column; gap: 16px; box-sizing: border-box; padding: 8px 8px 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; text-decoration: none; color: inherit">
           <img src="./assets/cf0e37a9959eecbc48698d8f947e1857.png" alt="ECI Citizen Services: a secure handoff dialog with a QR code and a Journey ID" style="display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 6px; background: #E5F0FA">
           <div style="display: flex; flex-direction: column; gap: 8px; padding: 0 12px">
-            <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px">
-              <span style="color: var(--ink)">ECI Citizen Services Rebuild</span>
-              <div style="display: flex; flex-wrap: wrap; gap: 8px"><span style="font-size: 12px; line-height: 1.5; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); background: #FFFFFF; border: 1px solid var(--line); border-radius: 999px; padding: 4px 16px; white-space: nowrap">Build What Moves India 2026</span><span style="font-size: 12px; line-height: 1.5; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); background: #FFFFFF; border: 1px solid var(--line); border-radius: 999px; padding: 4px 16px; white-space: nowrap">Top 250 of 13K+</span></div>
+            <div class="card-meta-row" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px">
+              <span class="card-title" style="color: var(--ink)">Fixing the voter-form steps where citizens give up</span>
+              <div class="card-tags" style="display: flex; flex-wrap: wrap; gap: 8px"><span style="font-size: 12px; line-height: 1.5; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); background: #FFFFFF; border: 1px solid var(--line); border-radius: 6px; padding: 4px 16px; white-space: nowrap">Build What Moves India 2026</span><span style="font-size: 12px; line-height: 1.5; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); background: #FFFFFF; border: 1px solid var(--line); border-radius: 6px; padding: 4px 16px; white-space: nowrap">Top 250 of 13K+</span></div>
             </div>
-            <span style="color: var(--muted)">Rebuilt voter forms and grievances around one Journey ID and a visible officer timeline, so citizens never restart a form or chase a case.</span>
+            <span style="color: var(--muted)">Redesigned voter forms and grievances around one Journey ID and a visible officer timeline, so citizens never restart a form or chase a case.</span>
           </div>
         </a>
 
@@ -175,7 +188,7 @@ body{margin:0;background:#FFFFFF}
     </div>
     <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; font-size: 14px; line-height: 24px">
       <span style="color: var(--muted)">© 2026 Bhuvana Shree N.</span>
-      <div style="display: flex; flex-wrap: wrap; gap: 8px 40px"><a class="foot-link" href="mailto:bhuvana.n.reddy04@gmail.com">Email</a><a class="foot-link" href="#">LinkedIn</a><a id="resume" class="foot-link" href="#resume">Resume</a></div>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px 40px"><a class="foot-link" href="mailto:bhuvana.n.reddy04@gmail.com">Email</a><a class="foot-link" href="#">LinkedIn</a><a class="foot-link" href="assets/Bhuvana_Shree_N_Resume.pdf">Resume</a></div>
     </div>
   </footer>
 </div>
