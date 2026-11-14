@@ -13,7 +13,7 @@
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400&amp;family=Libre+Baskerville:wght@400&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Libre+Baskerville:wght@400&amp;display=swap">
 <style>
 :root{
   --bg-gradient:
@@ -52,6 +52,16 @@ body{margin:0;background:#FFFFFF}
 .card:hover{border-color:var(--accent) !important}
 .card:active{transform:scale(.985);border-color:#3A55E6 !important}
 .card{transition:border-color .2s ease,transform .12s ease}
+.case-card{position:relative;overflow:hidden}
+.case-card .view{
+  position:absolute;left:0;top:0;z-index:1;transform:translateY(-50%);
+  padding:4px 12px;border:1px solid #C5D4E6;border-radius:6px;background:#FFFFFF;
+  color:#4F6CFF;font-family:Inter,sans-serif;font-size:12px;font-weight:600;line-height:16px;
+  white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .2s ease;
+}
+.case-card:hover .view,.case-card:focus-visible .view{opacity:1}
+@media (hover: none){.case-card .view{display:none}}
+@media (prefers-reduced-motion: reduce){.case-card .view{transition:none}}
 .foot{background:transparent !important}
 .card{container-type:inline-size}
 .card-meta-row{flex-wrap:nowrap !important;gap:16px !important}
@@ -120,7 +130,8 @@ body{margin:0;background:#FFFFFF}
       <h2 id="work-title" style="margin: 0; font-family: var(--font-body); font-size: var(--text-size); line-height: var(--text-lh); font-weight: 400; letter-spacing: normal; color: var(--muted)">Selected work</h2>
       <div class="work-grid" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 24px">
 
-        <a class="card" href="ExamDuo.dc.html" style="display: flex; flex-direction: column; gap: 16px; box-sizing: border-box; padding: 8px 8px 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; text-decoration: none; color: inherit">
+        <a class="card case-card" href="ExamDuo.dc.html" style="display: flex; flex-direction: column; gap: 16px; box-sizing: border-box; padding: 8px 8px 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; text-decoration: none; color: inherit">
+          <span class="view" aria-hidden="true">View case study</span>
           <img src="./assets/5aa087f70fedd0f40d47159599cfa06a.jpg" alt="Exam Duo mock analysis screens: test result, percentile predictor and time management" style="display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 6px; background: #F7F7FA">
           <div style="display: flex; flex-direction: column; gap: 8px; padding: 0 12px">
             <div class="card-meta-row" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px">
@@ -131,7 +142,8 @@ body{margin:0;background:#FFFFFF}
           </div>
         </a>
 
-        <a class="card" href="MediTrack.dc.html" style="display: flex; flex-direction: column; gap: 16px; box-sizing: border-box; padding: 8px 8px 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; text-decoration: none; color: inherit">
+        <a class="card case-card" href="MediTrack.dc.html" style="display: flex; flex-direction: column; gap: 16px; box-sizing: border-box; padding: 8px 8px 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; text-decoration: none; color: inherit">
+          <span class="view" aria-hidden="true">View case study</span>
           <img src="./assets/46c67baecc7ccba928b8eed3a0449a62.jpg" alt="MediTrack app screens: home with today's medicines, symptom entry, and a matched past record" style="display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 6px; background: #E5F0FA">
           <div style="display: flex; flex-direction: column; gap: 8px; padding: 0 12px">
             <div class="card-meta-row" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px">
@@ -142,7 +154,8 @@ body{margin:0;background:#FFFFFF}
           </div>
         </a>
 
-        <a class="card" href="ColorEase.dc.html" style="display: flex; flex-direction: column; gap: 16px; box-sizing: border-box; padding: 8px 8px 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; text-decoration: none; color: inherit">
+        <a class="card case-card" href="ColorEase.dc.html" style="display: flex; flex-direction: column; gap: 16px; box-sizing: border-box; padding: 8px 8px 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; text-decoration: none; color: inherit">
+          <span class="view" aria-hidden="true">View case study</span>
           <div style="width: 100%; aspect-ratio: 16 / 10; overflow: hidden; border-radius: 6px; background: #F69788"><svg viewBox="0 0 620 390" preserveAspectRatio="xMidYMid slice" role="img" aria-label="ColorEase artwork: soft shapes floating up and down" style="display: block; width: 100%; height: 100%">
 <defs>
 <linearGradient id="ce-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F69788"></stop><stop offset="1" stop-color="#F7B38E"></stop></linearGradient>
@@ -166,7 +179,8 @@ body{margin:0;background:#FFFFFF}
           </div>
         </a>
 
-        <a class="card" href="ECI.dc.html" style="display: flex; flex-direction: column; gap: 16px; box-sizing: border-box; padding: 8px 8px 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; text-decoration: none; color: inherit">
+        <a class="card case-card" href="ECI.dc.html" style="display: flex; flex-direction: column; gap: 16px; box-sizing: border-box; padding: 8px 8px 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; text-decoration: none; color: inherit">
+          <span class="view" aria-hidden="true">View case study</span>
           <img src="./assets/cf0e37a9959eecbc48698d8f947e1857.png" alt="ECI Citizen Services: a secure handoff dialog with a QR code and a Journey ID" style="display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 6px; background: #E5F0FA">
           <div style="display: flex; flex-direction: column; gap: 8px; padding: 0 12px">
             <div class="card-meta-row" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px">
@@ -188,11 +202,25 @@ body{margin:0;background:#FFFFFF}
     </div>
     <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; font-size: 14px; line-height: 24px">
       <span style="color: var(--muted)">© 2026 Bhuvana Shree N.</span>
-      <div style="display: flex; flex-wrap: wrap; gap: 8px 40px"><a class="foot-link" href="mailto:bhuvana.n.reddy04@gmail.com">Email</a><a class="foot-link" href="#">LinkedIn</a><a class="foot-link" href="assets/Bhuvana_Shree_N_Resume.pdf">Resume</a></div>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px 40px"><a class="foot-link" href="mailto:bhuvana.n.reddy04@gmail.com">Email</a><a class="foot-link" href="https://www.linkedin.com/in/bhuvana-shree-n-4bba42259" target="_blank" rel="noopener noreferrer">LinkedIn</a><a class="foot-link" href="assets/Bhuvana_Shree_N_Resume.pdf">Resume</a></div>
     </div>
   </footer>
 </div>
 </x-dc>
+<script>
+document.addEventListener('pointermove', function (event) {
+  var card = event.target.closest && event.target.closest('.case-card');
+  if (!card) return;
+  var label = card.querySelector('.view');
+  var rect = card.getBoundingClientRect();
+  var x = event.clientX - rect.left;
+  var y = event.clientY - rect.top;
+  var left = x + 20;
+  if (left + label.offsetWidth > rect.width) left = x - 20 - label.offsetWidth;
+  label.style.left = left + 'px';
+  label.style.top = y + 'px';
+}, { passive: true });
+</script>
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1800}}'>
 class Component extends DCLogic {
 renderVals() {
