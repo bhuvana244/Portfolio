@@ -2,64 +2,38 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<base href="../">
 <title>ECI Citizen Services Rebuild</title>
-<script src="./vendor/react.js"></script>
-<script src="./vendor/react-dom.js"></script>
-<script src="./support.js"></script>
-<script src="./cursor.js"></script>
-<script src="./thumbnail-components.js"></script>
-<link rel="stylesheet" href="./case-study.css">
+<script src="js/vendor/react.js"></script>
+<script src="js/vendor/react-dom.js"></script>
+<script src="js/support.js"></script>
+<script src="js/cursor.js"></script>
+<script src="js/thumbs.js"></script>
+<script src="js/main.js"></script>
+
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/pages/case-study.css">
+<link rel="stylesheet" href="css/pages/eci.css">
 </head>
 <body>
 <x-dc>
 <helmet>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&amp;display=swap">
-<style>
-:root{--cs-accent:#0C3158;--cs-accent-soft:#E4ECF5;--cs-bg:#F5F5F5;--cs-nav-bg:rgba(245,245,245,.72)}
-@supports (background: color-mix(in srgb, red 50%, transparent)){:root{--cs-nav-bg:color-mix(in srgb, #F5F5F5 72%, transparent)}}
 
-.cs-main .eci-card{background:var(--cs-panel);border-radius:var(--cs-radius);padding:24px}
-.cs-main .panel{background:var(--cs-accent-soft);border-radius:var(--cs-radius);padding:32px 24px;display:flex;align-items:center;justify-content:center}
-.cs-main .shot{display:block;width:100%;height:auto;border-radius:var(--cs-radius);box-shadow:var(--cs-shadow)}
-.cs-main .hl{background:#CFE1F7;color:var(--cs-accent);font-weight:600;padding:2px 8px;border-radius:4px}
-.cs-main .btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 24px;border-radius:999px;background:var(--cs-ink);color:var(--cs-bg);font:500 13px Inter,sans-serif;text-decoration:none}
-.cs-main .btn:hover{background:var(--cs-accent) !important;color:#fff !important}
-.cs-main .mval{font:400 16px/1.5 Inter,sans-serif;color:var(--cs-ink)}
-.cs-main .cs-meta-grid{margin-top:8px}
-@media (max-width:640px){.cs-main .cs-meta-grid{grid-template-columns:minmax(0,1fr) !important}}
-</style>
 </helmet>
 <div id="top" class="cs-page">
 
-<nav class="cs-nav" aria-label="Case study sections" data-open="{{openStr}}">
-<div class="cs-crumb"><a class="cs-back" href="Main.dc.html"><span class="cs-arrow"><svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 8H3"></path><path d="M7.5 3.5 3 8l4.5 4.5"></path></svg></span>Work</a><span class="cs-sep" aria-hidden="true">/</span><span class="cs-project" aria-current="page">ECI Citizen Services</span></div>
-<div class="cs-bar"><a class="cs-bar-back" href="Main.dc.html" aria-label="Back to Work"><svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 8H3"></path><path d="M7.5 3.5 3 8l4.5 4.5"></path></svg></a><button class="cs-trigger" type="button" aria-expanded="{{openStr}}" aria-controls="cs-list" onClick="{{toggle}}"><span class="cs-current">{{cur}}</span><span class="cs-chev" aria-hidden="true"></span></button></div>
-<ol class="cs-list" id="cs-list"><li><a class="cs-link" href="#tldr" aria-current="{{c0}}" onClick="{{close}}">TL;DR</a></li><li><a class="cs-link" href="#problem" aria-current="{{c1}}" onClick="{{close}}">The Problem</a></li><li><a class="cs-link" href="#solution" aria-current="{{c2}}" onClick="{{close}}">The Solution</a></li><li><a class="cs-link" href="#screens" aria-current="{{c3}}" onClick="{{close}}">Final Screens</a></li><li><a class="cs-link" href="#outcome" aria-current="{{c4}}" onClick="{{close}}">Outcome</a></li><li><a class="cs-link" href="#lessons" aria-current="{{c5}}" onClick="{{close}}">Lessons Learnt</a></li></ol>
-<div class="cs-progress" aria-hidden="true"><i style="{{progStyle}}"></i></div>
-</nav>
-<main class="cs-main">
+<portfolio-section-nav data-project="ECI Citizen Services" data-sections="[[&quot;tldr&quot;,&quot;TL;DR&quot;],[&quot;problem&quot;,&quot;The Problem&quot;],[&quot;solution&quot;,&quot;The Solution&quot;],[&quot;screens&quot;,&quot;Final Screens&quot;],[&quot;outcome&quot;,&quot;Outcome&quot;],[&quot;lessons&quot;,&quot;Lessons Learnt&quot;]]"></portfolio-section-nav>
+<main class="cs-main cs-grid8">
 
 <!-- HERO + TITLE -->
 <div style="display:flex;flex-direction:column;gap:32px">
-<div class="cs-cover" style="background:linear-gradient(180deg,#BDE8FD 0%,#E3EBFB 100%);padding:32px 32px 40px;box-sizing:border-box">
-<div style="width:100%;border-radius:var(--cs-radius);overflow:hidden;background:#fff;box-shadow:var(--cs-shadow)">
-<div aria-hidden="true" style="background:#1E1E22;padding:8px 8px 0;display:flex;flex-direction:column;gap:8px">
-<div style="display:flex;align-items:flex-end;gap:16px">
-<div style="display:flex;gap:4px;padding-bottom:8px"><span style="width:8px;height:8px;border-radius:50%;background:#FF5F57;display:block"></span><span style="width:8px;height:8px;border-radius:50%;background:#FEBC2E;display:block"></span><span style="width:8px;height:8px;border-radius:50%;background:#28C840;display:block"></span></div>
-<div style="display:flex;align-items:center;gap:8px;background:#2D2D32;border-radius:8px 8px 0 0;padding:8px 8px;min-width:150px"><span style="width:10px;height:10px;border-radius:2px;background:#4C8FD6;display:block"></span><span style="font:500 9px Inter,sans-serif;color:#E6E6EA">ECI Citizen Services</span><span style="font:400 9px Inter,sans-serif;color:#7B858E;margin-left:auto">âœ•</span></div>
-<span style="font:400 13px Inter,sans-serif;color:#7B858E;padding-bottom:4px">+</span>
-</div>
-<div style="background:#2D2D32;margin:0 -10px;padding:8px 8px;display:flex;align-items:center;gap:8px">
-<span style="font:400 11px Inter,sans-serif;color:#7B858E;letter-spacing:.3em">â†â†’â†»âŒ‚</span>
-<span style="flex:1;min-width:0;height:18px;border-radius:999px;background:#19191C;display:flex;align-items:center;padding:0 8px;font:400 9px Inter,sans-serif;color:#7B858E;overflow:hidden;white-space:nowrap">eci-citizen-services-pi.vercel.app</span>
-<span style="font:400 11px Inter,sans-serif;color:#7B858E">â‹®</span>
-</div>
-</div>
-<div style="position:relative;width:100%;aspect-ratio:1124/440;overflow:hidden">
-<img src="./assets/2e630a1ec783641f9f3ef0c10e951b55.jpg" alt="Journey: dialog with a QR code to continue the saved journey on another device" style="position:absolute;top:0;left:0;display:block;width:100%;height:auto">
-<a class="btn" href="https://eci-citizen-services-pi.vercel.app/" target="_blank" style="position:absolute;right:16px;bottom:16px;background:#fff;color:#0C3158;box-shadow:0 4px 16px rgba(12,49,88,.3)">View prototype <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h4v4"></path><path d="m13 3-6 6"></path><path d="M11 9v4H3V5h4"></path></svg></a>
-</div>
-</div>
+<div style="position:relative">
+<portfolio-thumb class="cs-cover" data-key="eci-qr-breaks-apart" role="img" aria-label="ECI: a white QR code breaks into a field of dots, then a scan frame travels across and rebuilds it piece by piece" style="display:block;width:100%;aspect-ratio:16 / 10;overflow:hidden;border-radius:var(--cs-radius-lg)"></portfolio-thumb>
+<a class="btn desktop-only" href="https://eci-citizen-services-pi.vercel.app/" target="_blank" rel="noopener noreferrer" style="position:absolute;right:16px;bottom:16px;background:#fff;color:#0C3158;box-shadow:0 4px 16px rgba(12,49,88,.3)">View prototype <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h4v4"></path><path d="m13 3-6 6"></path><path d="M11 9v4H3V5h4"></path></svg></a>
 </div>
 <div style="display:flex;flex-direction:column;gap:16px">
 <div style="display:flex;align-items:center;gap:8px"><span style="width:14px;height:14px;border-radius:50%;background:#0C3158;display:inline-block"></span><span style="font:500 14px Inter,sans-serif;color:var(--cs-text)">Citizen Services</span></div>
@@ -78,8 +52,8 @@
 <div class="cs-meta-grid" style="background:var(--cs-panel);border-radius:var(--cs-radius);padding:24px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:32px;margin-top:8px">
 <div style="display:flex;flex-direction:column;gap:8px;padding-bottom:24px;border-bottom:1px solid var(--cs-line)"><div class="cs-label">My role</div><div class="mval">Researcher and Vibe Coder</div></div>
 <div style="display:flex;flex-direction:column;gap:8px;padding-bottom:24px;border-bottom:1px solid var(--cs-line)"><div class="cs-label">Timeline</div><div class="mval">~1 week, concept to working prototype</div></div>
-<div style="display:flex;flex-direction:column;gap:8px;padding-top:24px"><div class="cs-label">Team</div><div class="mval">Bhuvana Shree N Â· Chithra R</div></div>
-<div style="display:flex;flex-direction:column;gap:8px;padding-top:24px"><div class="cs-label">Skills</div><div class="mval">Product Design Â· User Research Â· Prototyping</div></div>
+<div style="display:flex;flex-direction:column;gap:8px;padding-top:24px"><div class="cs-label">Team</div><div class="mval">Bhuvana Shree N / Chithra R</div></div>
+<div style="display:flex;flex-direction:column;gap:8px;padding-top:24px"><div class="cs-label">Skills</div><div class="mval">Product Design / User Research / Prototyping</div></div>
 </div>
 </section>
 
@@ -97,7 +71,7 @@
 <h3>What people actually wrote</h3>
 <div class="cs-caption" style="color:var(--cs-muted)">From real ECINET Play Store reviews.</div>
 </div>
-<img src="./assets/fcabee776202e896aa3d1c93f0e056d8.png" alt="Five real ECINET Play Store reviews describing the registration form wiping entries, a Form 8 request with no update, and OTP logins that keep logging users out" style="display:block;width:100%;height:auto;border-radius:var(--cs-radius);box-shadow:var(--cs-shadow)">
+<img src="assets/images/fcabee776202e896aa3d1c93f0e056d8.png" alt="Five real ECINET Play Store reviews describing the registration form wiping entries, a Form 8 request with no update, and OTP logins that keep logging users out" style="display:block;width:100%;height:auto;border-radius:var(--cs-radius);box-shadow:var(--cs-shadow)">
 </section>
 
 <!-- 02 SOLUTION -->
@@ -111,14 +85,14 @@
 <h3>Journey</h3>
 <p style="color:var(--cs-ink);font-weight:500">One Journey ID replaces the blind resubmission cycle.</p>
 <p>A visible progress bar and persistent reference number mean nothing gets wiped by a failed submit. A QR handoff lets citizens pick up the same saved journey on another device.</p>
-<div class="panel"><img class="shot" src="./assets/2e630a1ec783641f9f3ef0c10e951b55.jpg" alt="Journey: dialog with a QR code to continue the saved journey on another device"></div>
+<div class="panel"><img class="shot" src="assets/images/2e630a1ec783641f9f3ef0c10e951b55.jpg" alt="Journey: dialog with a QR code to continue the saved journey on another device"></div>
 </div>
 
 <div style="display:flex;flex-direction:column;gap:16px">
 <h3>Grievances</h3>
 <p style="color:var(--cs-ink);font-weight:500">Every grievance gets a named officer and an SLA clock that escalates itself.</p>
 <p>Citizens see who has their case and what stage it is at. If it runs past the SLA, it escalates automatically and says so - no re-filing, no guessing.</p>
-<div class="panel"><img class="shot" src="./assets/39024957062a9e4e833fde2ed74ca183.jpg" alt="Grievance escalated: timeline with an attention notice that the SLA was exceeded and the case moved to the district level"></div>
+<div class="panel"><img class="shot" src="assets/images/39024957062a9e4e833fde2ed74ca183.jpg" alt="Grievance escalated: timeline with an attention notice that the SLA was exceeded and the case moved to the district level"></div>
 </div>
 
 <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px">
@@ -136,27 +110,27 @@
 </div>
 
 <div style="display:flex;flex-direction:column;gap:16px">
-<div class="panel"><img class="shot" src="./assets/05b2f80880df65a77838aec383090110.png" alt="Journey: step-by-step Form 8 with sections listed on the left and a Saved just now indicator"></div>
+<div class="panel"><img class="shot" src="assets/images/05b2f80880df65a77838aec383090110.png" alt="Journey: step-by-step Form 8 with sections listed on the left and a Saved just now indicator"></div>
 <div class="cs-caption"><b>Journey</b> - step-by-step form with saved progress</div>
 </div>
 
 <div style="display:flex;flex-direction:column;gap:16px">
-<div class="panel"><img class="shot" src="./assets/2e630a1ec783641f9f3ef0c10e951b55.jpg" alt="Journey: dialog with a QR code to continue the saved journey on another device"></div>
+<div class="panel"><img class="shot" src="assets/images/2e630a1ec783641f9f3ef0c10e951b55.jpg" alt="Journey: dialog with a QR code to continue the saved journey on another device"></div>
 <div class="cs-caption"><b>Journey</b> - QR handoff to another device</div>
 </div>
 
 <div style="display:flex;flex-direction:column;gap:16px">
-<div class="panel"><img class="shot" src="./assets/e3071f837f61aa96ded1ef0b8a33bf19.jpg" alt="Grievance under review: timeline progress and the assigned Booth Level Officer"></div>
+<div class="panel"><img class="shot" src="assets/images/e3071f837f61aa96ded1ef0b8a33bf19.jpg" alt="Grievance under review: timeline progress and the assigned Booth Level Officer"></div>
 <div class="cs-caption"><b>Grievance</b> - live timeline with assigned officer</div>
 </div>
 
 <div style="display:flex;flex-direction:column;gap:16px">
-<div class="panel"><img class="shot" src="./assets/39024957062a9e4e833fde2ed74ca183.jpg" alt="Grievance escalated: timeline with an attention notice that the SLA was exceeded and the case moved to the district level"></div>
+<div class="panel"><img class="shot" src="assets/images/39024957062a9e4e833fde2ed74ca183.jpg" alt="Grievance escalated: timeline with an attention notice that the SLA was exceeded and the case moved to the district level"></div>
 <div class="cs-caption"><b>Grievance</b> - automatic SLA escalation</div>
 </div>
 
 <div style="display:flex;flex-direction:column;gap:16px">
-<div class="panel"><img class="shot" src="./assets/8ddc0c073b78f4d7afe8edd8c0cc73bb.png" alt="ECI Citizen Helper chat offering to lodge a grievance, track an application, get FAQs or talk to a live agent" style="max-width:300px;border-radius: var(--cs-radius)"></div>
+<div class="panel"><img class="shot" src="assets/images/8ddc0c073b78f4d7afe8edd8c0cc73bb.png" alt="ECI Citizen Helper chat offering to lodge a grievance, track an application, get FAQs or talk to a live agent" style="max-width:300px;border-radius: var(--cs-radius)"></div>
 <div class="cs-caption"><b>Assistant</b> that routes citizens to the right flow</div>
 </div>
 </section>
@@ -189,14 +163,14 @@
 <section class="cs-upnext" aria-labelledby="upnext-title">
 <div class="cs-upnext-head"><div id="upnext-title" class="cs-label">Up next</div><a class="cs-top" href="#top">Back to top<svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 13V3"></path><path d="M3.5 7.5 8 3l4.5 4.5"></path></svg></a></div>
 <div class="cs-upnext-grid">
-<a class="upnext-card" href="ExamDuo.dc.html">
+<a class="upnext-card" href="projects/examduo.html">
 <portfolio-thumb class="upnext-card-image" data-key="examduo-spotlight-tour" role="img" aria-label="ExamDuo: the Percentile Predictor, Time Management and Test Result cards take the spotlight one by one, with the what-if and tip call-outs" style="display:block;width:100%;aspect-ratio:16 / 10;overflow:hidden;border-radius:10px"></portfolio-thumb>
 <div class="upnext-card-copy">
 <span class="upnext-card-label">UI/UX Intern</span>
 <span class="upnext-card-title">Making Mock Tests Actionable @ ExamDuo</span>
 </div>
 </a>
-<a class="upnext-card" href="MediTrack.dc.html">
+<a class="upnext-card" href="projects/meditrack.html">
 <portfolio-thumb class="upnext-card-image" data-key="meditrack-search-first" role="img" aria-label="MediTrack: a symptom is typed or spoken into search, then the real Likely match result and care features are shown" style="display:block;width:100%;aspect-ratio:16 / 10;overflow:hidden;border-radius:10px"></portfolio-thumb>
 <div class="upnext-card-copy">
 <span class="upnext-card-label">Concept Project</span>
@@ -206,10 +180,7 @@
 </div>
 </section>
 
-<div class="cs-contact">
-<div class="cs-contact-title">Contact</div>
-<div class="cs-contact-links"><a href="https://www.linkedin.com/in/bhuvana-shree-n-4bba42259" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="mailto:bhuvana.n.reddy04@gmail.com">Email</a></div>
-</div>
+<portfolio-site-footer data-kind="case"></portfolio-site-footer>
 </main>
 </div>
 </x-dc>

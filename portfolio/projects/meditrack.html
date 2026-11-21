@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<base href="../">
+<title>MediTrack Case Study</title>
+<script src="js/vendor/react.js"></script>
+<script src="js/vendor/react-dom.js"></script>
+<script src="js/support.js"></script>
+<script src="js/cursor.js"></script>
+<script src="js/thumbs.js"></script>
+<script src="js/main.js"></script>
+
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/pages/case-study.css">
+<link rel="stylesheet" href="css/pages/meditrack.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&amp;display=swap">
+
+</helmet>
+<div id="top" class="cs-page">
+
+<portfolio-section-nav data-project="MediTrack" data-sections="[[&quot;tldr&quot;,&quot;TL;DR&quot;],[&quot;context&quot;,&quot;Context&quot;],[&quot;problem&quot;,&quot;Problem&quot;],[&quot;process&quot;,&quot;Process&quot;],[&quot;screens&quot;,&quot;Final design&quot;],[&quot;impact&quot;,&quot;Impact&quot;],[&quot;reflections&quot;,&quot;Reflections&quot;]]"></portfolio-section-nav>
+
+<main class="cs-main cs-grid8">
+  <portfolio-thumb class="cover cs-cover" data-key="meditrack-search-first" role="img" aria-label="MediTrack: a symptom is typed or spoken into search, then the real Likely match result and care features are shown" style="width:100%;aspect-ratio:16 / 10;overflow:hidden;border-radius:var(--cs-radius-lg);background:#BFE6D4"></portfolio-thumb>
+
+  <h1>Search your medicine history by symptom</h1>
+  <div class="cs-chips"><span class="cs-chip"><i></i>Prototyped in Figma</span><span class="cs-chip">Mobile app</span><span class="cs-chip">Symptom search</span><span class="cs-chip">Design system</span></div>
+
+  <div id="tldr" style="scroll-margin-top:8px">
+    <span class="cs-label tag-label" style="display:block">TL;DR</span>
+    <p class="muted">MediTrack lets people with a recurring condition search their own medical history by symptom. Type what you are feeling and the app finds the past illness and prescription that looked like it, so "what did I take last time?" is one search away.</p>
+    <p class="muted">I designed and prototyped it end to end in Figma over about six weeks: research, information architecture, UX and UI, the design system and the linked prototype.</p>
+  <dl class="meta cs-meta">
+    <div><dt>My role</dt><dd>Solo designer</dd></div>
+    <div><dt>Timeline</dt><dd>~6 weeks, May to Jul 2026</dd></div>
+    <div><dt>Scope</dt><dd>Research, IA, UX/UI, design system, prototype</dd></div>
+    <div><dt>Tools</dt><dd>Figma</dd></div>
+  </dl>
+  </div>
+
+  <section id="context">
+    <span class="cs-label tag-label" style="display:block">Context</span>
+    <h2>Last time you felt this, what did you take?</h2>
+    <p class="muted">Migraines, PCOS, seasonal allergies, mild diabetes: people with a recurring condition have usually solved today's symptom once already. The prescription, the doctor's note and the dose are somewhere on the phone. But history is stored by file and date, and a flare-up arrives as a symptom, so searching a gallery for "fever and sore throat" finds nothing.</p>
+    <p class="muted">I designed around Riya, 26, a marketing executive in Bengaluru with recurring migraines. She keeps prescriptions as photos in her gallery, asks her doctor on WhatsApp and falls back on Google.</p>
+    <div class="strip" role="img" aria-label="Four MediTrack screens: Home, Symptom entry, Searching history and Match found">
+      <img src="assets/images/1f8b640786a6405733fecc0f708a72b8.jpg" alt=""><img src="assets/images/d00f91935bfafd28604c22264b2a54a4.jpg" alt=""><img src="assets/images/29944ed0fef037beb1539bd9137bdc9c.jpg" alt=""><img src="assets/images/27b60d6de2905c9999d1d975bcf40d62.jpg" alt="">
+    </div>
+    <span class="cs-caption">the core loop, in four screens</span>
+  </section>
+
+  <section id="problem">
+    <span class="cs-label tag-label" style="display:block">Problem</span>
+    <h2>History is stored by file, but needed by symptom</h2>
+    <p class="muted">Four things stand between a new symptom and the medicine that worked last time.</p>
+
+    <figure class="board"><img src="assets/images/86e8f6ee094450314c77cca7c7cbf602.jpg" alt="From scattered files to answers: records live in four unconnected places, are hard to retrieve, search ignores your history, and generic answers can alarm"></figure>
+
+    <p class="pick" style="text-align: left; margin-top: 48px">What the search does, step by step</p>
+    <div class="flow">
+      <div class="fnode"><div class="fnum">1</div><figure class="fshot"><img src="assets/images/d00f91935bfafd28604c22264b2a54a4.jpg" alt="Symptom entry screen"></figure><h3>Say the symptom</h3><p>One field, in your own words.</p></div>
+      <div class="fnode"><div class="fnum">2</div><figure class="fshot"><img src="assets/images/29944ed0fef037beb1539bd9137bdc9c.jpg" alt="Searching history screen"></figure><h3>Search the history</h3><p>Past illnesses and prescriptions are checked.</p></div>
+      <div class="fnode"><div class="fnum">3</div><figure class="fshot narrow"><img src="assets/images/27b60d6de2905c9999d1d975bcf40d62.jpg" alt="Match found screen"></figure><h3>See what worked</h3><p>Last time's medicine, dose and doctor.</p></div>
+    </div>
+  </section>
+
+  <section id="process">
+    <span class="cs-label tag-label" style="display:block">Process</span>
+    <h2>Making a memory that never overclaims</h2>
+
+    <div class="step"><span class="n">01</span><div>
+      <h3>Looking at how people search today</h3>
+      <p>I worked from reviews of the apps people already use, and from the workarounds they fall back on.</p>
+      <dl class="kv">
+        <div><dt>Competitors</dt><dd>
+          <ul class="gaplist">
+            <li><b>Practo</b><span>Books consultations and stores records.</span></li>
+            <li><b>1mg</b><span>Sells and delivers medicines.</span></li>
+            <li><b>Healthify</b><span>Tracks food and fitness.</span></li>
+            <li class="gap"><b>The gap</b><span>None of them starts from a symptom and reads it against your own medicine history.</span></li>
+          </ul></dd></div>
+        <div><dt>Symptom apps</dt><dd>A migraine patient reviewing a tracker wrote that their notes were "scattered or lost", and that logging mid-attack is "essentially impossible".</dd></div>
+        <div><dt>Workarounds</dt><dd>Gallery photos, WhatsApp chats with a doctor, Notes and Google. The bar is convenience.</dd></div>
+      </dl>
+    </div></div>
+
+    <div class="step"><span class="n">02</span><div>
+      <h3>Putting the symptom search at the top</h3>
+      <p>The idea started with one question: when a symptom appears, what does someone need first? Last time's answer. Search is how people look for it today, but a gallery or a web search can't give it, because history is stored by file and date, not by symptom.</p>
+      <p>So the symptom search took the top of Home, where a thumb reaches first. Everything beneath it exists to support that moment.</p>
+      <div class="order">
+        <div class="stack" aria-hidden="true"><i class="a"></i><i class="b"></i><i class="c"></i><i class="d"></i><i class="e"></i></div>
+        <dl>
+          <div class="first"><dt>Symptom search</dt><dd>First and largest. The question someone arrives with.</dd></div>
+          <div><dt>Doses today</dt><dd>What is due, so Home is useful even on days with no symptom.</dd></div>
+          <div><dt>Active condition</dt><dd>Frames the search with what is already being managed.</dd></div>
+          <div><dt>Recent records</dt><dd>The last few, ready to open.</dd></div>
+          <div class="last"><dt>Suggestion</dt><dd>Waits at the bottom. Nothing here starts a conversation.</dd></div>
+        </dl>
+      </div>
+    </div></div>
+
+    <div class="step"><span class="n">03</span><div>
+      <h3>Deciding how a match speaks</h3>
+      <p>A percentage reads as more clinically certain than a pattern match deserves. So every match is a word, paired with the record it comes from, and the design never relies on colour alone.</p>
+      <div class="two">
+        <div class="conf" role="img" aria-label="Three labels: Likely, Possible and Unlikely">
+          <div class="row"><span class="p l">Likely</span>From a record of a past episode</div>
+          <div class="row"><span class="p p">Possible</span>From a similar record, treated with 2 medicines</div>
+          <div class="row"><span class="p u">Unlikely</span>A weak match, so the doctor option moves up</div>
+        </div>
+        <div class="prin">
+          <div><h4>Word over number</h4><p>Likely, Possible or Unlikely. Never a bare percentage.</p></div>
+          <div><h4>Source beside the claim</h4><p>The record it came from sits right next to it.</p></div>
+          <div><h4>Colour never alone</h4><p>Confidence always has a word as well.</p></div>
+          <div><h4>No red for health</h4><p>Red is reserved for destructive actions.</p></div>
+        </div>
+      </div>
+    </div></div>
+
+    <div class="step"><span class="n">04</span><div>
+      <h3>Checking my own work, three times</h3>
+      <p>Working solo meant being my own second opinion. After each batch of screens I checked the work against the design system before starting the next.</p>
+      <div class="rounds">
+        <div class="prin"><h4>Entry and match states</h4><ul><li>A bare 92% score broke the no-scores rule.</li><li>Possible was amber and Unlikely blue, a traffic light again.</li><li>The disclaimer was missing from all four outcome cards.</li><li>Unlikely did not promote the doctor option.</li></ul></div>
+        <div class="prin"><h4>Zero states, checkout, reminders</h4><ul><li>Empty-state copy read as gatekeeping.</li><li>The empty Home dropped symptom search.</li><li>"Book a consultation" brought back a cut feature.</li><li>Checkout dead-ended after the address step.</li></ul></div>
+        <div class="prin"><h4>System states and settings</h4><ul><li>Confetti played when a record saved.</li><li>Error red had drifted toward alarm red.</li><li>Some headings were heavier than the type rule.</li><li>Copy said "our AI assistant".</li></ul></div>
+      </div>
+    </div></div>
+  </section>
+
+  <section id="screens">
+    <span class="cs-label tag-label" style="display:block">Final design</span>
+    <h2>From an empty phone to a useful one</h2>
+    <p class="muted">Each part of the app is shown in two states, because a happy path hides where the design actually has to work. Switch the tabs to compare.</p>
+
+    <div class="sub">
+      <h3>Home</h3>
+      <p>Filled, it answers first: doses, condition, records. Empty, it still offers the three actions a new person needs, and symptom search never goes missing.</p>
+      <div class="compare">
+        <div class="switch-label">Switch view</div>
+        <div class="tabs" role="tablist"><button role="tab" aria-selected="{{s0_0}}" onClick="{{t0_0}}">Filled</button><button role="tab" aria-selected="{{s0_1}}" onClick="{{t0_1}}">Empty</button></div>
+        <sc-if value="{{p0_0}}" hint-placeholder-val="{{true}}"><div class="pane"><figure class="phone"><img src="assets/images/1f8b640786a6405733fecc0f708a72b8.jpg" alt="Home with medicines and recent records"><figcaption>Home</figcaption></figure></div></sc-if>
+        <sc-if value="{{p0_1}}" hint-placeholder-val="{{false}}"><div class="pane"><figure class="phone"><img src="assets/images/76c6eba2d1c839293e3117f3020158e7.jpg" alt="Home before any data"><figcaption>Home, first open</figcaption></figure></div></sc-if>
+      </div>
+    </div>
+
+    <div class="sub">
+      <h3>Records</h3>
+      <p>Reorder, Track and Share sit on every record card, so a stored prescription stays useful long after the day it was saved. An empty tab explains the payoff and offers one low-friction action.</p>
+      <div class="compare">
+        <div class="switch-label">Switch view</div>
+        <div class="tabs" role="tablist"><button role="tab" aria-selected="{{s1_0}}" onClick="{{t1_0}}">Filled</button><button role="tab" aria-selected="{{s1_1}}" onClick="{{t1_1}}">Empty</button></div>
+        <sc-if value="{{p1_0}}" hint-placeholder-val="{{true}}"><div class="pane"><figure class="phone"><img src="assets/images/fa38d18c6d0f43cf1d93b8108496e655.jpg" alt="Records with reorder, track and share"><figcaption>Records</figcaption></figure></div></sc-if>
+        <sc-if value="{{p1_1}}" hint-placeholder-val="{{false}}"><div class="pane"><figure class="phone"><img src="assets/images/93e5c1bfe3ea58ff4fbdba6070b2c237.jpg" alt="Records before any upload"><figcaption>Records, no uploads yet</figcaption></figure><figure class="phone"><img src="assets/images/d4c04c754e8de6c0ccd91048d5257a67.jpg" alt="Tracker before any reminder"><figcaption>Tracker, no reminders</figcaption></figure></div></sc-if>
+      </div>
+    </div>
+
+    <div class="sub">
+      <h3>Logging a symptom</h3>
+      <p>One field is required. Notes, photos and severity are optional, so an entry never gets abandoned halfway through a flare-up. While history is searched, a short progress list shows what the app is doing.</p>
+      <div class="compare">
+        <div class="switch-label">Switch view</div>
+        <div class="tabs" role="tablist"><button role="tab" aria-selected="{{s2_0}}" onClick="{{t2_0}}">Entry</button><button role="tab" aria-selected="{{s2_1}}" onClick="{{t2_1}}">Searching</button></div>
+        <sc-if value="{{p2_0}}" hint-placeholder-val="{{true}}"><div class="pane"><figure class="phone"><img src="assets/images/d00f91935bfafd28604c22264b2a54a4.jpg" alt="Symptom entry with one field"><figcaption>Symptom entry</figcaption></figure></div></sc-if>
+        <sc-if value="{{p2_1}}" hint-placeholder-val="{{false}}"><div class="pane"><figure class="phone"><img src="assets/images/29944ed0fef037beb1539bd9137bdc9c.jpg" alt="Searching past records"><figcaption>Searching history</figcaption></figure></div></sc-if>
+      </div>
+    </div>
+
+    <div class="sub">
+      <h3>When something goes wrong</h3>
+      <p>Recovery screens replace generic errors. A search with no match still saves the entry and offers a next step, a failed payment keeps the cart, and offline lists what still works.</p>
+      <div class="compare">
+        <div class="switch-label">Switch view</div>
+        <div class="tabs" role="tablist"><button role="tab" aria-selected="{{s3_0}}" onClick="{{t3_0}}">No match</button><button role="tab" aria-selected="{{s3_1}}" onClick="{{t3_1}}">Payment</button><button role="tab" aria-selected="{{s3_2}}" onClick="{{t3_2}}">Offline</button></div>
+        <sc-if value="{{p3_0}}" hint-placeholder-val="{{true}}"><div class="pane"><figure class="phone"><img src="assets/images/f3c6492c7fd1160eed65cfbef8f0fdaf.jpg" alt="No match found"><figcaption>No match found</figcaption></figure></div></sc-if>
+        <sc-if value="{{p3_1}}" hint-placeholder-val="{{false}}"><div class="pane"><figure class="phone"><img src="assets/images/e4e902dd0c519c9d512b2abcd3ae765f.jpg" alt="Payment failed"><figcaption>Payment failed</figcaption></figure></div></sc-if>
+        <sc-if value="{{p3_2}}" hint-placeholder-val="{{false}}"><div class="pane"><figure class="phone"><img src="assets/images/2793194e1d4d0629d78efaf2da3a0dc8.jpg" alt="No internet connection"><figcaption>No connection</figcaption></figure></div></sc-if>
+      </div>
+    </div>
+
+    <div class="sub">
+      <h3>The design system underneath</h3>
+      <p>Built so it could be checked against, which is what made the critique rounds possible.</p>
+      <div class="swatches" style="margin-top:16px">
+        <div class="sw"><i style="background:#2F6F5E"></i><span><b>Primary</b><code>#2F6F5E</code></span></div>
+        <div class="sw"><i style="background:#EAF4F1"></i><span><b>Tint</b><code>#EAF4F1</code></span></div>
+        <div class="sw"><i style="background:#6E8F86"></i><span><b>Possible</b><code>#6E8F86</code></span></div>
+        <div class="sw"><i style="background:#A9B0AD"></i><span><b>Unlikely</b><code>#A9B0AD</code></span></div>
+        <div class="sw"><i style="background:#C75C4A"></i><span><b>Destructive</b><code>#C75C4A</code></span></div>
+      </div>
+      <dl class="kv">
+        <div><dt>Type</dt><dd>Humanist sans, seven levels from Display to Caption.</dd></div>
+        <div><dt>Spacing</dt><dd>4px grid. Minimum 44px tap targets.</dd></div>
+        <div><dt>Contrast</dt><dd>4.5:1 minimum for text.</dd></div>
+      </dl>
+    </div>
+
+    <div class="sub">
+      <h3>Edge cases in the flow</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Case</th><th>Trigger</th><th>Response</th></tr></thead>
+        <tbody>
+          <tr><td>Zero records</td><td>First open, nothing logged</td><td>A tailored empty state with the payoff and one easy action.</td></tr>
+          <tr><td>No match</td><td>Nothing stored fits</td><td>The entry still saves. Create-a-record and consult options appear.</td></tr>
+          <tr><td>Unlikely</td><td>A match exists, confidence low</td><td>Insight is de-emphasised and "Talk to a Doctor" moves up.</td></tr>
+          <tr><td>No connection</td><td>Network drops</td><td>An offline state listing what still works.</td></tr>
+          <tr><td>Payment failed</td><td>Card or UPI declined</td><td>A recovery screen. The cart survives and retry is immediate.</td></tr>
+          <tr><td>Permission declined</td><td>"Not now" on onboarding</td><td>The app stays usable and offers the feature again in context.</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </section>
+
+  <section id="impact">
+    <span class="cs-label tag-label" style="display:block">Impact</span>
+    <h2>One loop, from symptom to record</h2>
+    <p class="muted">I designed and prototyped the symptom search, the records it draws from and the screens around them as one linked flow.</p>
+    <p class="pick" style="text-align: left; margin-top: 32px">Each problem, and the answer in the design</p>
+    <div class="answer">
+      <div><b>1. Records in four places</b><span>One Records tab, with Reorder, Track and Share on every card.</span></div>
+      <div><b>2. Hard to retrieve</b><span>Symptom search at the top of Home, and history searched for you.</span></div>
+      <div><b>3. Search ignores your history</b><span>Every match names the past record it comes from, in a word.</span></div>
+      <div><b>4. Answers that alarm</b><span>Calm labels, no red for health, limits stated, and the doctor option promoted when a match is weak.</span></div>
+    </div>
+    <p class="pick" style="text-align: left; margin-top: 40px">What I delivered</p>
+    <dl class="kv" style="margin-top:0">
+      <div><dt>Checked</dt><dd>12 issues caught across three critique rounds against my own design system.</dd></div>
+      <div><dt>Delivered</dt><dd>A linked Figma prototype of the core loop, with the design system behind it.</dd></div>
+    </dl>
+  </section>
+
+  <section id="reflections">
+    <span class="cs-label tag-label" style="display:block">Reflections</span>
+    <h2>What I took from it</h2>
+    <div class="refl">
+      <div><h3>Design for the state someone is in</h3><p>The real user is mid flare-up, one-handed and a little frightened. One field, a word instead of a number and a calm colour all came from picturing that person.</p></div>
+      <div><h3>Restraint is harder than expression</h3><p>A confident answer or a precise score would have improved the demo and hurt the product. Leaving the impressive version out was the real skill.</p></div>
+    </div>
+
+    <p class="cs-thanks">thanks for reading</p>
+<!-- UP NEXT -->
+<div class="cs-rule"></div>
+<section class="cs-upnext" aria-labelledby="upnext-title">
+<div class="cs-upnext-head"><div id="upnext-title" class="cs-label">Up next</div><a class="cs-top" href="#top">Back to top<svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 13V3"></path><path d="M3.5 7.5 8 3l4.5 4.5"></path></svg></a></div>
+<div class="cs-upnext-grid">
+<a class="upnext-card" href="projects/examduo.html">
+<portfolio-thumb class="upnext-card-image" data-key="examduo-spotlight-tour" role="img" aria-label="ExamDuo: the Percentile Predictor, Time Management and Test Result cards take the spotlight one by one, with the what-if and tip call-outs" style="display:block;width:100%;aspect-ratio:16 / 10;overflow:hidden;border-radius:10px"></portfolio-thumb>
+<div class="upnext-card-copy">
+<span class="upnext-card-label">UI/UX Intern</span>
+<span class="upnext-card-title">Making Mock Tests Actionable @ ExamDuo</span>
+</div>
+</a>
+<a class="upnext-card" href="projects/colorease.html">
+<portfolio-thumb class="upnext-card-media" data-key="colorease-floating-shapes" role="img" aria-label="ColorEase: soft shapes floating up and down" style="display:block;width:100%;aspect-ratio:16 / 10;overflow:hidden;border-radius:10px;background:#F69788"></portfolio-thumb>
+<div class="upnext-card-copy">
+<span class="upnext-card-label">Accessibility</span>
+<span class="upnext-card-title">ColorEase: 3rd Place @ InnoVeX</span>
+</div>
+</a>
+</div>
+</section>
+
+    <portfolio-site-footer data-kind="case"></portfolio-site-footer>
+  </section>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":11146}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = {g0:0,g1:0,g2:0,g3:0,act:0, open:false, prog:0}; }
+  componentDidMount() {
+this._sc = () => { const d = document.documentElement; const m = d.scrollHeight - window.innerHeight; const v = m > 0 ? Math.min(1, Math.max(0, window.scrollY / m)) : 0; if (Math.abs(v - (this.state.prog || 0)) > 0.005) this.setState({ prog: v }); };
+document.addEventListener("scroll", this._sc, true);
+    try {
+      const ids = ["tldr", "context", "problem", "process", "screens", "impact", "reflections"];
+      const io = new IntersectionObserver((es) => { es.forEach((e) => { if (e.isIntersecting) this.setState({ act: ids.indexOf(e.target.id) }); }); }, { rootMargin: '-15% 0px -75% 0px' });
+      ids.forEach((id) => { const el = document.getElementById(id); if (el) io.observe(el); });
+      this._io = io;
+    } catch (e) {}
+  }
+  componentWillUnmount() {
+if (this._sc) document.removeEventListener("scroll", this._sc, true); if (this._io) this._io.disconnect(); }
+  renderVals() {
+    const a = this.state.act;
+    return {
+      cur: ["TL;DR", "Context", "Problem", "Process", "Final design", "Impact", "Reflections"][this.state.act] || "", openStr: String(!!this.state.open), toggle: () => this.setState({ open: !this.state.open }), close: () => this.setState({ open: false }), progStyle: "transform:scaleX(" + (this.state.prog || 0) + ")",
+      c0: String(a===0), c1: String(a===1), c2: String(a===2), c3: String(a===3), c4: String(a===4), c5: String(a===5), c6: String(a===6),
+      s0_0: String(this.state.g0===0), p0_0: this.state.g0===0, t0_0: () => this.setState({g0: 0}),
+      s0_1: String(this.state.g0===1), p0_1: this.state.g0===1, t0_1: () => this.setState({g0: 1}),
+      s1_0: String(this.state.g1===0), p1_0: this.state.g1===0, t1_0: () => this.setState({g1: 0}),
+      s1_1: String(this.state.g1===1), p1_1: this.state.g1===1, t1_1: () => this.setState({g1: 1}),
+      s2_0: String(this.state.g2===0), p2_0: this.state.g2===0, t2_0: () => this.setState({g2: 0}),
+      s2_1: String(this.state.g2===1), p2_1: this.state.g2===1, t2_1: () => this.setState({g2: 1}),
+      s3_0: String(this.state.g3===0), p3_0: this.state.g3===0, t3_0: () => this.setState({g3: 0}),
+      s3_1: String(this.state.g3===1), p3_1: this.state.g3===1, t3_1: () => this.setState({g3: 1}),
+      s3_2: String(this.state.g3===2), p3_2: this.state.g3===2, t3_2: () => this.setState({g3: 2}),
+    };
+  }
+}
+</script>
+</body>
+</html>

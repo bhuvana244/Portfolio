@@ -1,0 +1,11 @@
+
+:root{--cs-accent:#5B50A0;--cs-accent-soft:#E6E1F6;--cs-bg:#F5F5F5;--cs-nav-bg:rgba(245,245,245,.72)}
+@supports (background: color-mix(in srgb, red 50%, transparent)){:root{--cs-nav-bg:color-mix(in srgb, #F5F5F5 72%, transparent)}}
+
+
+@media (max-width: 768px) {
+
+:root{--cs-accent:#5B50A0;--cs-accent-soft:#E6E1F6;--cs-bg:#F5F5F5;--cs-nav-bg:rgba(245,245,245,.72)}
+@supports (background: color-mix(in srgb, red 50%, transparent)){:root{--cs-nav-bg:color-mix(in srgb, #F5F5F5 72%, transparent)}}
+
+}

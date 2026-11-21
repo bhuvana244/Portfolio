@@ -1,0 +1,31 @@
+
+:root{--cs-accent:#0C3158;--cs-accent-soft:#E4ECF5;--cs-bg:#F5F5F5;--cs-nav-bg:rgba(245,245,245,.72)}
+@supports (background: color-mix(in srgb, red 50%, transparent)){:root{--cs-nav-bg:color-mix(in srgb, #F5F5F5 72%, transparent)}}
+
+.cs-main .eci-card{background:var(--cs-panel);border-radius:var(--cs-radius);padding:24px}
+.cs-main .panel{background:var(--cs-accent-soft);border-radius:var(--cs-radius);padding:32px 24px;display:flex;align-items:center;justify-content:center}
+.cs-main .shot{display:block;width:100%;height:auto;border-radius:var(--cs-radius);box-shadow:var(--cs-shadow)}
+.cs-main .hl{background:#CFE1F7;color:var(--cs-accent);font-weight:600;padding:2px 8px;border-radius:4px}
+.cs-main .btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 24px;border-radius:999px;background:var(--cs-ink);color:var(--cs-bg);font:500 13px Inter,sans-serif;text-decoration:none}
+.cs-main .btn:hover{background:var(--cs-accent) !important;color:#fff !important}
+.cs-main .mval{font:400 16px/1.5 Inter,sans-serif;color:var(--cs-ink)}
+.cs-main .cs-meta-grid{margin-top:8px}
+@media (max-width:640px){.cs-main .cs-meta-grid{grid-template-columns:minmax(0,1fr) !important}}
+
+
+@media (max-width: 768px) {
+
+:root{--cs-accent:#0C3158;--cs-accent-soft:#E4ECF5;--cs-bg:#F5F5F5;--cs-nav-bg:rgba(245,245,245,.72)}
+@supports (background: color-mix(in srgb, red 50%, transparent)){:root{--cs-nav-bg:color-mix(in srgb, #F5F5F5 72%, transparent)}}
+
+.cs-main .eci-card{background:var(--cs-panel);border-radius:var(--cs-radius);padding:24px}
+.cs-main .panel{background:var(--cs-accent-soft);border-radius:var(--cs-radius);padding:32px 24px;display:flex;align-items:center;justify-content:center}
+.cs-main .shot{display:block;width:100%;height:auto;border-radius:var(--cs-radius);box-shadow:var(--cs-shadow)}
+.cs-main .hl{background:#CFE1F7;color:var(--cs-accent);font-weight:600;padding:0px 8px;border-radius:6px}
+.cs-main .btn{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 24px;border-radius:999px;background:var(--cs-ink);color:var(--cs-bg);font:500 14px Inter,sans-serif;text-decoration:none}
+.cs-main .btn:hover{background:var(--cs-accent) !important;color:#fff !important}
+.cs-main .mval{font:400 16px/24px Inter,sans-serif;color:var(--cs-ink)}
+.cs-main .cs-meta-grid{margin-top:8px}
+@media (max-width:640px){.cs-main .cs-meta-grid{grid-template-columns:minmax(0,1fr) !important}}
+
+}

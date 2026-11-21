@@ -1,0 +1,14 @@
+<a class="card case-card" href="{{href}}" style="display:flex;flex-direction:column;gap:16px;box-sizing:border-box;padding:8px 8px 24px;background:var(--surface);border:1px solid var(--line);border-radius:12px;text-decoration:none;color:inherit">
+  <portfolio-thumb class="thumb" data-key="{{thumbnail}}" role="img" aria-label="{{label}}" style="display:block;width:100%;aspect-ratio:16 / 10;overflow:hidden;border-radius:6px;background:{{background}}"></portfolio-thumb>
+  <div class="card-copy" style="display:flex;flex-direction:column;gap:8px;padding:0 12px">
+    <div class="card-meta-row card-head" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px">
+      <span class="card-title" style="color:var(--ink)">{{title}}</span>
+      <div class="card-tags card-chips" style="display:flex;flex-wrap:wrap;gap:8px">
+        <span style="font-size:12px;line-height:1.5;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);background:#FFFFFF;border:1px solid var(--line);border-radius:6px;padding:4px 16px;white-space:nowrap">{{category}}</span>
+        <span style="font-size:12px;line-height:1.5;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);background:#FFFFFF;border:1px solid var(--line);border-radius:6px;padding:4px 16px;white-space:nowrap">{{year}}</span>
+      </div>
+    </div>
+    <span class="card-description" style="color:var(--muted)" data-desktop-text="{{description}}" data-mobile-text="{{mobileDescription}}">{{description}}</span>
+  </div>
+  <span class="view" aria-hidden="true" style="position:absolute;left:0;top:0;z-index:3;display:block;padding:4px 12px;white-space:nowrap;background:#FFFFFF;border:1px solid var(--line);border-radius:6px;font:600 12px/16px Inter,sans-serif;color:#4F6CFF;opacity:0;transform:translateY(-50%);transition:opacity .2s ease;pointer-events:none">View case study</span>
+</a>

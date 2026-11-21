@@ -1,11 +1,80 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="refresh" content="0; url=./Main.dc.html" />
-    <title>Redirecting...</title>
-  </head>
-  <body>
-    <p>Redirecting to <a href="./Main.dc.html">Main.dc.html</a>...</p>
-  </body>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bhuvana Shree N., Portfolio</title>
+<script src="js/vendor/react.js"></script>
+<script src="js/vendor/react-dom.js"></script>
+<script src="js/support.js"></script>
+<script src="js/cursor.js"></script>
+<script src="js/thumbs.js"></script>
+<script src="js/project-data.js"></script>
+<script src="js/main.js"></script>
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/pages/home.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Libre+Baskerville:wght@400&amp;display=swap">
+
+</helmet>
+<div id="top" style="position: relative; min-height: 760px; box-sizing: border-box; border-top: 3px solid var(--edge); background: var(--bg-gradient); color: var(--ink); font-family: var(--font-body); font-size: var(--text-size); line-height: var(--text-lh); font-weight: 400; letter-spacing: normal">
+  
+
+  <div class="shell" style="position: relative; display: flex; align-items: flex-start">
+  <portfolio-site-nav data-active="work"></portfolio-site-nav>
+
+  <main class="main" style="flex: 1 1 0; min-width: 0; margin-left: 0; box-sizing: border-box; padding: 96px 64px 64px 0; display: flex; flex-direction: column; align-items: flex-start; gap: 32px; position: relative">
+    <img src="assets/images/ec053d0c4402c9da46f3fb93acce4fa5.png" alt="Portrait of Bhuvana Shree N." style="display: block; width: 128px; height: 128px; border-radius: 50%; object-fit: cover; background: var(--line)">
+    <h1 class="headline" style="margin: 0; width: 100%; font-family: var(--font-display); font-size: 48px; line-height: var(--headline-lh); font-weight: 400; letter-spacing: -0.02em; color: var(--ink)">I'm Bhuvana Shree, a designer drawn to the space where people, problems, and design meet.</h1>
+
+    <div class="meta" style="margin-top: 32px; width: 100%; display: grid; grid-template-columns: var(--meta-offset) minmax(0, 480px); gap: 32px 0; font-size: 14px; line-height: 24px">
+      <div style="display: flex; flex-direction: column; gap: var(--label-gap); min-width: 0">
+        <span style="color: var(--muted)">Previously</span>
+        <span style="color: var(--ink)">UI/UX Intern @ ExamDuo,<br>Data Quality Intern @ NoBroker,<br>Designer @ Google Dev Club MVJCE</span>
+      </div>
+      <div id="about" style="display: flex; flex-direction: column; gap: var(--label-gap); min-width: 0; position: relative">
+        <span style="color: var(--muted)">Focus</span>
+        <span style="color: var(--ink)">I explore user needs, question the obvious, and turn research and ideas into thoughtful digital experiences.</span>
+      </div>
+    </div>
+
+    <section id="work" aria-labelledby="work-title" style="width: 100%; display: flex; flex-direction: column; gap: 24px; padding-top: 96px">
+      <h2 id="work-title" style="margin: 0; font-family: var(--font-body); font-size: var(--text-size); line-height: var(--text-lh); font-weight: 400; letter-spacing: normal; color: var(--muted)">Selected work</h2>
+      <div id="project-grid" class="work-grid" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 24px"></div>
+    </section>
+  </main>
+  </div>
+
+  <portfolio-site-footer data-kind="home"></portfolio-site-footer>
+</div>
+</x-dc>
+<script>
+document.addEventListener('pointermove', function (event) {
+  var card = event.target.closest && event.target.closest('.case-card');
+  if (!card) return;
+  var label = card.querySelector('.view');
+  var rect = card.getBoundingClientRect();
+  var x = event.clientX - rect.left;
+  var y = event.clientY - rect.top;
+  var left = x + 20;
+  if (left + label.offsetWidth > rect.width) left = x - 20 - label.offsetWidth;
+  label.style.left = left + 'px';
+  label.style.top = y + 'px';
+}, { passive: true });
+</script>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1800}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
 </html>

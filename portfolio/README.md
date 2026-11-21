@@ -1,44 +1,34 @@
-# Bhuvana Shree N, Portfolio: design reference
+# Bhuvana Shree N. | Portfolio
 
-Six pages exported from Claude Design. They are REFERENCE MOCKUPS, not production code.
-The markup and inline styles carry the exact values (colours, type, spacing, radii,
-shadows, layout). Implement them faithfully in your own stack.
+The portfolio is a single responsive static site. Each page exists once; resize the browser to view desktop, tablet, and mobile layouts.
 
-## Fidelity rules (important)
+## Run locally
 
-The coded output must be a faithful, pixel-accurate implementation of these designs.
+From this directory, start one server:
 
-- Do not redesign, reinterpret, simplify, or add creative improvements.
-- Do not change layouts, spacing, alignment, sizing, or positioning.
-- Do not modify colours, typography, borders, shapes, or visual elements.
-- Do not add, remove, or replace any components.
-- Keep the exact content, hierarchy, proportions, and overall appearance.
-- Keep all elements consistent with the reference. No intentional visual differences.
+```powershell
+python -m http.server 8765
+```
 
-## Pages
+Then open http://localhost:8765/. Stop the server with Ctrl+C. `npx serve .` also works if you already use Node.js.
 
-| File | Page |
-| --- | --- |
-| `Main.dc.html` | Home (entry point) |
-| `About.dc.html` | About |
-| `ExamDuo.dc.html` | Case study: Mock Analysis Redesign @ ExamDuo |
-| `MediTrack.dc.html` | Case study: MediTrack, Symptom-First Search |
-| `ColorEase.dc.html` | Case study: ColorEase, 3rd Place @ InnoVeX |
-| `ECI.dc.html` | Case study: ECI Citizen Services Rebuild |
+## Site structure
 
-Pages link to each other by sibling file name (`Main.dc.html`, `ExamDuo.dc.html`, ...).
-Home's project cards open the case studies; each case study ends with thanks, a divider,
-"Up next" and a Contact row.
+- `index.html`, `about.html`: Home and About.
+- `projects/`: one case-study page per project.
+- `css/tokens.css`: shared palette, type, spacing, and radii.
+- `css/base.css`, `css/components.css`: shared base and component behavior.
+- `css/pages/`: page-level styling, including responsive overrides.
+- `components/`: shared navigation, footer, project-card template, and animated thumbnail partials.
+- `js/project-data.js`: the single list that generates the Home project cards.
+- `assets/images/`: project imagery.
 
-## Shared files
+## Add a project
 
-- `case-study.css` is shared by the four case studies.
-- `assets/` holds every uploaded image, deduplicated (file names are content hashes).
-- `cursor.js` is the custom blue square cursor used on every page. Mouse devices only.
-- `support.js` and `vendor/react*.js` are only the runtime that renders the `.dc.html`
-  files in a browser. They are not part of the design.
+1. Add one case-study page under `projects/` and use the shared case-study stylesheet and page CSS.
+2. Add the project thumbnail SVG/CSS as one partial in `components/thumbs/`; keep its prefixed IDs/classes and reduced-motion rules.
+3. Add the project metadata, link, thumbnail key, label, and responsive descriptions to `js/project-data.js`. The Home card is rendered from this list.
+4. Add the project to the appropriate case-study ?Up next? lists.
+5. Put any case-study images under `assets/images/` and reference them from the page root (project pages set a root `<base>`).
 
-## Viewing
-
-Serve this folder, e.g. `python3 -m http.server`, and open `Main.dc.html`.
-Some browsers block the scripts over `file://`.
+The thumbnail loader inserts each SVG inline so its CSS animation and reduced-motion behavior work without an animation library.

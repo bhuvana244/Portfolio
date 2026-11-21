@@ -2,61 +2,51 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Exam Duo case study</title>
-<script src="./vendor/react.js"></script>
-<script src="./vendor/react-dom.js"></script>
-<script src="./support.js"></script>
-<script src="./cursor.js"></script>
-<script src="./thumbnail-components.js"></script>
-<link rel="stylesheet" href="./case-study.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<base href="../">
+<title data-desktop-title="Exam Duo case study" data-mobile-title="ExamDuo case study">Exam Duo case study</title>
+<script src="js/vendor/react.js"></script>
+<script src="js/vendor/react-dom.js"></script>
+<script src="js/support.js"></script>
+<script src="js/cursor.js"></script>
+<script src="js/thumbs.js"></script>
+<script src="js/main.js"></script>
+
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/pages/case-study.css">
+<link rel="stylesheet" href="css/pages/examduo.css">
 </head>
 <body>
 <x-dc>
 <helmet>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet">
-<style>
-:root{--cs-accent:#6B2FE0;--cs-accent-soft:#EAE3FB;--cs-bg:#F5F5F5;--cs-nav-bg:rgba(245,245,245,.72)}
-@supports (background: color-mix(in srgb, red 50%, transparent)){:root{--cs-nav-bg:color-mix(in srgb, #F5F5F5 72%, transparent)}}
-</style>
+
 </helmet>
 <div id="top" class="cs-page">
 
-<nav class="cs-nav" aria-label="Case study sections" data-open="{{openStr}}">
-<div class="cs-crumb"><a class="cs-back" href="Main.dc.html"><span class="cs-arrow"><svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 8H3"></path><path d="M7.5 3.5 3 8l4.5 4.5"></path></svg></span>Work</a><span class="cs-sep" aria-hidden="true">/</span><span class="cs-project" aria-current="page">ExamDuo</span></div>
-<div class="cs-bar"><a class="cs-bar-back" href="Main.dc.html" aria-label="Back to Work"><svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 8H3"></path><path d="M7.5 3.5 3 8l4.5 4.5"></path></svg></a><button class="cs-trigger" type="button" aria-expanded="{{openStr}}" aria-controls="cs-list" onClick="{{toggle}}"><span class="cs-current">{{cur}}</span><span class="cs-chev" aria-hidden="true"></span></button></div>
-<ol class="cs-list" id="cs-list"><li><a class="cs-link" href="#tldr" aria-current="{{c0}}" onClick="{{close}}">TL;DR</a></li><li><a class="cs-link" href="#context" aria-current="{{c1}}" onClick="{{close}}">Context</a></li><li><a class="cs-link" href="#problem" aria-current="{{c2}}" onClick="{{close}}">Problem</a></li><li><a class="cs-link" href="#process" aria-current="{{c3}}" onClick="{{close}}">Process</a></li><li><a class="cs-link" href="#final" aria-current="{{c4}}" onClick="{{close}}">Final design</a></li><li><a class="cs-link" href="#impact" aria-current="{{c5}}" onClick="{{close}}">Impact</a></li><li><a class="cs-link" href="#reflections" aria-current="{{c6}}" onClick="{{close}}">Reflections</a></li></ol>
-<div class="cs-progress" aria-hidden="true"><i style="{{progStyle}}"></i></div>
-</nav>
+<portfolio-section-nav data-project="ExamDuo" data-sections="[[&quot;tldr&quot;,&quot;TL;DR&quot;],[&quot;context&quot;,&quot;Context&quot;],[&quot;problem&quot;,&quot;Problem&quot;],[&quot;process&quot;,&quot;Process&quot;],[&quot;final&quot;,&quot;Final design&quot;],[&quot;impact&quot;,&quot;Impact&quot;],[&quot;reflections&quot;,&quot;Reflections&quot;]]"></portfolio-section-nav>
 
-<main class="cs-main">
+<main class="cs-main cs-grid8">
 
 <!-- COVER -->
 <div style="position: relative">
-<div class="cs-cover" style="height: 348px; background: var(--cs-accent-soft); border-radius: var(--cs-radius-lg); overflow: hidden; display: flex; justify-content: center; align-items: flex-end; gap: 16px; padding: 48px 24px 0; box-sizing: border-box">
-<div style="width: 190px; flex: none; align-self: flex-end; margin-bottom: 16px; background: #FFFFFF; border-radius: var(--cs-radius); border: 1px solid var(--cs-line); box-shadow: var(--cs-shadow)">
-<img src="./assets/af871a3d0f0383d66edaff6cfefe9cf9.png" alt="New result card and summary" style="display: block; width: 100%; height: auto; border-radius: var(--cs-radius)">
-</div>
-<div style="width: 190px; height: 300px; flex: none; overflow: hidden; border-radius: 20px 20px 0 0; background: #FFFFFF; box-shadow: 0 -4px 28px rgba(27,27,36,0.14)">
-<img src="./assets/76c2add851619ea71ab7e4e8331e6431.png" alt="New percentile predictor with a what-if slider" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: top">
-</div>
-<div style="width: 190px; height: 250px; flex: none; overflow: hidden; border-radius: 20px 20px 0 0; background: #FFFFFF; box-shadow: 0 -4px 28px rgba(27,27,36,0.14)">
-<img src="./assets/c9ec19f7307358b787abfbf6d4a17e5c.png" alt="New time management against ideal time" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: top">
-</div>
-</div>
-<div style="position: absolute; left: -16px; top: 24px; width: 248px; background: #FFFFFF; border-radius: var(--cs-radius); padding: 16px; box-sizing: border-box; box-shadow: var(--cs-shadow)">
+<portfolio-thumb class="cs-cover" data-key="examduo-spotlight-tour" role="img" aria-label="ExamDuo: the Percentile Predictor, Time Management and Test Result cards take the spotlight one by one, with the what-if and tip call-outs" style="display:block;width:100%;aspect-ratio:16 / 10;overflow:hidden;border-radius:var(--cs-radius-lg)"></portfolio-thumb>
+<div class="desktop-only" style="position: absolute; left: -16px; top: 24px; width: 248px; background: #FFFFFF; border-radius: var(--cs-radius); padding: 16px; box-sizing: border-box; box-shadow: var(--cs-shadow)">
 <div style="display: flex; align-items: center; gap: 8px; font-family: 'Libre Baskerville', Georgia, serif; font-size: 12px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--cs-muted); line-height: 24px">
 What if I scored?
 </div>
 <div style="font-family: 'Libre Baskerville', Georgia, serif; font-size: 13px; font-weight: 400; color: var(--cs-muted); line-height: 24px; margin-top: 8px">+16 marks lifts you to 96.62 %ile</div>
 </div>
-<div style="position: absolute; right: -16px; top: 12px; width: 248px; background: #FFFFFF; border-radius: var(--cs-radius); overflow: hidden; box-shadow: var(--cs-shadow)">
-<img src="./assets/7af5b851532f6034923768addf00317b.png" alt="AI insight tip: around 158 marks, each extra mark adds about 0.10 percentile" style="display: block; width: 100%; height: auto">
+<div class="desktop-only" style="position: absolute; right: -16px; top: 12px; width: 248px; background: #FFFFFF; border-radius: var(--cs-radius); overflow: hidden; box-shadow: var(--cs-shadow)">
+<img src="assets/images/7af5b851532f6034923768addf00317b.png" alt="AI insight tip: around 158 marks, each extra mark adds about 0.10 percentile" style="display: block; width: 100%; height: auto">
 </div>
 </div>
 
 <!-- TITLE -->
 <div style="margin-top: 56px; display: flex; align-items: center; gap: 8px">
-<img src="./assets/faf7f021251759ab7537d4f9c9d25839.png" alt="ExamDuo mascot" style="display: block; width: 32px; height: auto">
+<img src="assets/images/faf7f021251759ab7537d4f9c9d25839.png" alt="ExamDuo mascot" style="display: block; width: 32px; height: auto">
 <span style="font-family: 'Libre Baskerville', Georgia, serif; font-size: 16px; font-weight: 400; color: var(--cs-ink)">ExamDuo</span>
 </div>
 <h1>Turning a mock-test score into a study plan</h1>
@@ -75,8 +65,8 @@ What if I scored?
 <div style="margin-top: 32px; background: var(--cs-panel); border-radius: var(--cs-radius); padding: 8px 24px; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 0 32px">
 <div style="flex: 1 1 240px; min-width: 0; padding: 24px 0; border-bottom: 1px solid var(--cs-line)"><div class="cs-label">My role</div><div style="color: var(--cs-ink); margin-top: 8px; line-height: 1.5; ">UI/UX Design Intern</div></div>
 <div style="flex: 1 1 240px; min-width: 0; padding: 24px 0; border-bottom: 1px solid var(--cs-line)"><div class="cs-label">Timeline</div><div style="color: var(--cs-ink); margin-top: 8px; line-height: 1.5; ">4 weeks</div></div>
-<div style="flex: 1 1 240px; min-width: 0; padding: 24px 0; border-bottom: 0"><div class="cs-label">Team</div><div style="color: var(--cs-ink); margin-top: 8px; line-height: 1.5; font-weight: 500; ">3 Founders Â· 1 Frontend Intern Â· 1 UI/UX Design Intern</div></div>
-<div style="flex: 1 1 240px; min-width: 0; padding: 24px 0; border-bottom: 0"><div class="cs-label">Tools</div><div style="color: var(--cs-ink); margin-top: 8px; line-height: 1.5; font-weight: 500; ">Figma Â· Claude Design</div></div>
+<div style="flex: 1 1 240px; min-width: 0; padding: 24px 0; border-bottom: 0"><div class="cs-label">Team</div><div style="color: var(--cs-ink); margin-top: 8px; line-height: 1.5; font-weight: 500; ">3 Founders / 1 Frontend Intern / 1 UI/UX Design Intern</div></div>
+<div style="flex: 1 1 240px; min-width: 0; padding: 24px 0; border-bottom: 0"><div class="cs-label">Tools</div><div style="color: var(--cs-ink); margin-top: 8px; line-height: 1.5; font-weight: 500; ">Figma / Claude Design</div></div>
 </div>
 </section>
 
@@ -86,7 +76,7 @@ What if I scored?
 <h2>A mock test is where students find out what to fix</h2>
 <p>ExamDuo is an AI exam-prep app for JEE Mains and CAT, with practice questions, doubt solving and timed mock tests. After every mock, students land on an analysis page. The founders wanted that page to do more than report a score. Because the site gets a lot of mobile traffic, I started the redesign on mobile.</p>
 <div style="margin-top: 32px; height: 232px; overflow: hidden; border-radius: var(--cs-radius); background: #3A3A3A">
-<img src="./assets/10c1429f80f80a4359c129aaea954db2.png" alt="Top of the four old analysis screens" style="display: block; width: 100%; height: auto">
+<img src="assets/images/10c1429f80f80a4359c129aaea954db2.png" alt="Top of the four old analysis screens" style="display: block; width: 100%; height: auto">
 </div>
 <div class="cs-caption" style="margin-top: 16px">the old analysis screens</div>
 </section>
@@ -100,28 +90,28 @@ What if I scored?
 <div style="margin-top: 32px; background: #E9E9F1; border-radius: var(--cs-radius-lg); padding: 32px 24px; min-height: 440px; box-sizing: border-box; display: flex; align-items: center; justify-content: center">
 <sc-if value="{{show0}}" hint-placeholder-val="{{ true }}">
 <div style="display: flex; flex-direction: column; align-items: center; gap: 16px">
-<div style="width: 220px; height: 380px; overflow: hidden; border-radius: var(--cs-radius); background: #FFFFFF; box-shadow: var(--cs-shadow)"><img src="./assets/673dfa33701840aea5051079a89b313d.png" alt="Old summary screen with three large cards and a promo" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: top"></div>
+<div style="width: 220px; height: 380px; overflow: hidden; border-radius: var(--cs-radius); background: #FFFFFF; box-shadow: var(--cs-shadow)"><img src="assets/images/673dfa33701840aea5051079a89b313d.png" alt="Old summary screen with three large cards and a promo" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: top"></div>
 <div class="cs-caption">old summary: three cards and a promo</div>
 </div>
 </sc-if>
 <sc-if value="{{show1}}" hint-placeholder-val="{{ false }}">
 <div style="display: flex; flex-direction: column; align-items: center; gap: 16px">
 <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 24px">
-<div style="width: 220px; overflow: hidden; border-radius: var(--cs-radius); background: #FFFFFF; box-shadow: var(--cs-shadow)"><img src="./assets/3aa2be12f963ecad0f60fa166662520c.png" alt="Old subject table running off the screen" style="display: block; width: 100%; height: auto"></div>
-<div style="width: 220px; overflow: hidden; border-radius: var(--cs-radius); background: #FFFFFF; box-shadow: var(--cs-shadow)"><img src="./assets/3a348002aed9017ede3bb81d64602a97.png" alt="Old time chart with tiny, crowded dots" style="display: block; width: 100%; height: auto"></div>
+<div style="width: 220px; overflow: hidden; border-radius: var(--cs-radius); background: #FFFFFF; box-shadow: var(--cs-shadow)"><img src="assets/images/3aa2be12f963ecad0f60fa166662520c.png" alt="Old subject table running off the screen" style="display: block; width: 100%; height: auto"></div>
+<div style="width: 220px; overflow: hidden; border-radius: var(--cs-radius); background: #FFFFFF; box-shadow: var(--cs-shadow)"><img src="assets/images/3a348002aed9017ede3bb81d64602a97.png" alt="Old time chart with tiny, crowded dots" style="display: block; width: 100%; height: auto"></div>
 </div>
 <div class="cs-caption">old subject table and time chart</div>
 </div>
 </sc-if>
 <sc-if value="{{show2}}" hint-placeholder-val="{{ false }}">
 <div style="display: flex; flex-direction: column; align-items: center; gap: 16px">
-<div style="width: 220px; height: 380px; overflow: hidden; border-radius: var(--cs-radius); background: #FFFFFF; box-shadow: var(--cs-shadow)"><img src="./assets/bdabeb951574229a08303faf9f103c71.png" alt="Old question list with clipped filters and tags" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: top"></div>
+<div style="width: 220px; height: 380px; overflow: hidden; border-radius: var(--cs-radius); background: #FFFFFF; box-shadow: var(--cs-shadow)"><img src="assets/images/bdabeb951574229a08303faf9f103c71.png" alt="Old question list with clipped filters and tags" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: top"></div>
 <div class="cs-caption">old question list</div>
 </div>
 </sc-if>
 <sc-if value="{{show3}}" hint-placeholder-val="{{ false }}">
 <div style="display: flex; flex-direction: column; align-items: center; gap: 16px">
-<div style="width: 220px; height: 380px; overflow: hidden; border-radius: var(--cs-radius); background: #FFFFFF; box-shadow: var(--cs-shadow)"><img src="./assets/c6db85b1e5dc105df72d904b5f74a64c.png" alt="Old review screen reusing the test layout" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: top"></div>
+<div style="width: 220px; height: 380px; overflow: hidden; border-radius: var(--cs-radius); background: #FFFFFF; box-shadow: var(--cs-shadow)"><img src="assets/images/c6db85b1e5dc105df72d904b5f74a64c.png" alt="Old review screen reusing the test layout" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: top"></div>
 <div class="cs-caption">old review screen</div>
 </div>
 </sc-if>
@@ -181,7 +171,7 @@ What if I scored?
 <div style="display: flex; flex-wrap: wrap; gap: 8px 16px; padding: 16px 0"><div style="flex: 0 0 150px; font-family: 'Inter', 'Helvetica Neue', sans-serif; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cs-muted); padding-top: 4px">Traffic</div><div style="flex: 1 1 200px; min-width: 0; font-size: 15px">The site gets a lot of mobile traffic, so I designed mobile first.</div></div>
 </div>
 <div style="margin-top: 24px; background: #E9E9E6; border-radius: var(--cs-radius); padding: 8px; box-sizing: border-box">
-<img src="./assets/b38f6603d1083b126b128a79cb8807a8.png" alt="Collage of screens from Groww, Duolingo, Brilliant and JEE mock-test apps" style="display: block; width: 100%; height: auto; border-radius: var(--cs-radius)">
+<img src="assets/images/b38f6603d1083b126b128a79cb8807a8.png" alt="Collage of screens from Groww, Duolingo, Brilliant and JEE mock-test apps" style="display: block; width: 100%; height: auto; border-radius: var(--cs-radius)">
 </div>
 <div class="cs-caption" style="margin-top: 16px">competitor and inspiration screens</div>
 <div style="margin-top: 24px; background: #FFFFFF; border: 1px solid var(--cs-line); border-radius: var(--cs-radius); padding: 8px 24px; box-sizing: border-box">
@@ -226,12 +216,12 @@ What if I scored?
 <h3>Trying many cards before locking one</h3>
 <p>For each component I explored a dozen layouts side by side, comparing how to show the score bar, the three counts and accuracy. I then went through them with the founders to decide which worked best.</p>
 <div style="margin-top: 24px; background: #FFFFFF; border: 1px solid var(--cs-line); border-radius: var(--cs-radius); padding: 24px; box-sizing: border-box">
-<img src="./assets/a8dd4e4c4ce742f506fed7775961e72a.png" alt="Twelve layout variations of the Physics subject card" style="display: block; width: 100%; height: auto">
+<img src="assets/images/a8dd4e4c4ce742f506fed7775961e72a.png" alt="Twelve layout variations of the Physics subject card" style="display: block; width: 100%; height: auto">
 </div>
 <div class="cs-caption" style="margin-top: 16px">early explorations</div>
 <p>Together we chose the layout below, a score with a segmented bar, three colour-coded counts, and accuracy and speed underneath. It was a team decision, and it had the clearest hierarchy, the least redundancy, the most meaningful colour and the most reusable structure.</p>
 <div style="margin-top: 24px; display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
-<div style="flex: none; width: 280px; max-width: 100%"><img src="./assets/90cea681a4fdd4975b13de0988a57ecc.png" alt="Chosen Physics card: score, segmented bar, correct, incorrect and unanswered counts, accuracy and speed" style="display: block; width: 100%; height: auto"></div>
+<div style="flex: none; width: 280px; max-width: 100%"><img src="assets/images/90cea681a4fdd4975b13de0988a57ecc.png" alt="Chosen Physics card: score, segmented bar, correct, incorrect and unanswered counts, accuracy and speed" style="display: block; width: 100%; height: auto"></div>
 <div style="flex: 1 1 260px; min-width: 0; background: #FFFFFF; border: 1px solid var(--cs-line); border-radius: var(--cs-radius); padding: 8px 24px; box-sizing: border-box">
 <div style="padding: 16px 0; border-bottom: 1px solid var(--cs-line)"><div style="font-weight: 600; color: var(--cs-ink)">Clearest hierarchy</div><div style="font-size: 15px; line-height: 1.55; margin-top: 2px">The score comes first, then the breakdown, then the supporting numbers.</div></div>
 <div style="padding: 16px 0; border-bottom: 1px solid var(--cs-line)"><div style="font-weight: 600; color: var(--cs-ink)">Least redundancy</div><div style="font-size: 15px; line-height: 1.55; margin-top: 2px">Each number appears once, with no repeated visual treatment.</div></div>
@@ -270,12 +260,12 @@ What if I scored?
 <div style="background: #FAFAFD; padding: 32px 24px; display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 16px; min-height: 304px; box-sizing: border-box">
 <sc-if value="{{a.showAfter}}" hint-placeholder-val="{{ true }}">
 <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 16px">
-<img src="./assets/c4b2055e5d3a5e7d15bbc7ead2e98ecf.png" alt="After: result card and summary" style="display: block; width: 200px; max-width: 100%; height: auto; border-radius: var(--cs-radius); border: 1px solid var(--cs-line); box-shadow: var(--cs-shadow)">
-<img src="./assets/76c2add851619ea71ab7e4e8331e6431.png" alt="After: percentile predictor with what-if slider" style="display: block; width: 200px; max-width: 100%; height: auto; border-radius: var(--cs-radius); border: 1px solid var(--cs-line); box-shadow: var(--cs-shadow)">
+<img src="assets/images/c4b2055e5d3a5e7d15bbc7ead2e98ecf.png" alt="After: result card and summary" style="display: block; width: 200px; max-width: 100%; height: auto; border-radius: var(--cs-radius); border: 1px solid var(--cs-line); box-shadow: var(--cs-shadow)">
+<img src="assets/images/76c2add851619ea71ab7e4e8331e6431.png" alt="After: percentile predictor with what-if slider" style="display: block; width: 200px; max-width: 100%; height: auto; border-radius: var(--cs-radius); border: 1px solid var(--cs-line); box-shadow: var(--cs-shadow)">
 </div>
 </sc-if>
 <sc-if value="{{a.showBefore}}" hint-placeholder-val="{{ false }}">
-<img src="./assets/673dfa33701840aea5051079a89b313d.png" alt="Before: three large stat cards and a promo" style="display: block; width: 200px; max-width: 100%; height: auto; border-radius: var(--cs-radius); border: 1px solid var(--cs-line); box-shadow: var(--cs-shadow)">
+<img src="assets/images/673dfa33701840aea5051079a89b313d.png" alt="Before: three large stat cards and a promo" style="display: block; width: 200px; max-width: 100%; height: auto; border-radius: var(--cs-radius); border: 1px solid var(--cs-line); box-shadow: var(--cs-shadow)">
 </sc-if>
 </div>
 </div>
@@ -293,10 +283,10 @@ What if I scored?
 </div>
 <div style="background: #FAFAFD; padding: 32px 24px; display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 16px; min-height: 304px; box-sizing: border-box">
 <sc-if value="{{b.showAfter}}" hint-placeholder-val="{{ true }}">
-<img src="./assets/00a698dde9550e5ca29ef3115423b648.png" alt="After: segmented subject bar with subject tabs" style="display: block; width: 240px; max-width: 100%; height: auto; border-radius: var(--cs-radius); border: 1px solid var(--cs-line); box-shadow: var(--cs-shadow)">
+<img src="assets/images/00a698dde9550e5ca29ef3115423b648.png" alt="After: segmented subject bar with subject tabs" style="display: block; width: 240px; max-width: 100%; height: auto; border-radius: var(--cs-radius); border: 1px solid var(--cs-line); box-shadow: var(--cs-shadow)">
 </sc-if>
 <sc-if value="{{b.showBefore}}" hint-placeholder-val="{{ false }}">
-<img src="./assets/3aa2be12f963ecad0f60fa166662520c.png" alt="Before: subject table running off the screen" style="display: block; width: 240px; max-width: 100%; height: auto; border-radius: var(--cs-radius); border: 1px solid var(--cs-line); box-shadow: var(--cs-shadow)">
+<img src="assets/images/3aa2be12f963ecad0f60fa166662520c.png" alt="Before: subject table running off the screen" style="display: block; width: 240px; max-width: 100%; height: auto; border-radius: var(--cs-radius); border: 1px solid var(--cs-line); box-shadow: var(--cs-shadow)">
 </sc-if>
 </div>
 </div>
@@ -314,10 +304,10 @@ What if I scored?
 </div>
 <div style="background: #FAFAFD; padding: 32px 24px; display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 16px; min-height: 304px; box-sizing: border-box">
 <sc-if value="{{c.showAfter}}" hint-placeholder-val="{{ true }}">
-<img src="./assets/c9ec19f7307358b787abfbf6d4a17e5c.png" alt="After: time spent against ideal time" style="display: block; width: 240px; max-width: 100%; height: auto; border-radius: var(--cs-radius); border: 1px solid var(--cs-line); box-shadow: var(--cs-shadow)">
+<img src="assets/images/c9ec19f7307358b787abfbf6d4a17e5c.png" alt="After: time spent against ideal time" style="display: block; width: 240px; max-width: 100%; height: auto; border-radius: var(--cs-radius); border: 1px solid var(--cs-line); box-shadow: var(--cs-shadow)">
 </sc-if>
 <sc-if value="{{c.showBefore}}" hint-placeholder-val="{{ false }}">
-<img src="./assets/3a348002aed9017ede3bb81d64602a97.png" alt="Before: time chart with tiny, crowded dots" style="display: block; width: 240px; max-width: 100%; height: auto; border-radius: var(--cs-radius); border: 1px solid var(--cs-line); box-shadow: var(--cs-shadow)">
+<img src="assets/images/3a348002aed9017ede3bb81d64602a97.png" alt="Before: time chart with tiny, crowded dots" style="display: block; width: 240px; max-width: 100%; height: auto; border-radius: var(--cs-radius); border: 1px solid var(--cs-line); box-shadow: var(--cs-shadow)">
 </sc-if>
 </div>
 </div>
@@ -335,10 +325,10 @@ What if I scored?
 </div>
 <div style="background: #FAFAFD; padding: 32px 24px; display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 16px; min-height: 304px; box-sizing: border-box">
 <sc-if value="{{d.showAfter}}" hint-placeholder-val="{{ true }}">
-<img src="./assets/c1e55544e7aba32686ac863e78c4e13a.png" alt="After: fast and slow against right and wrong matrix" style="display: block; width: 240px; max-width: 100%; height: auto; border-radius: var(--cs-radius); border: 1px solid var(--cs-line); box-shadow: var(--cs-shadow)">
+<img src="assets/images/c1e55544e7aba32686ac863e78c4e13a.png" alt="After: fast and slow against right and wrong matrix" style="display: block; width: 240px; max-width: 100%; height: auto; border-radius: var(--cs-radius); border: 1px solid var(--cs-line); box-shadow: var(--cs-shadow)">
 </sc-if>
 <sc-if value="{{d.showBefore}}" hint-placeholder-val="{{ false }}">
-<img src="./assets/9f92094b73e4444c7b4ff86120fc815e.png" alt="Before: repeated perfect, overtime and rushed attempt blocks" style="display: block; width: 240px; max-width: 100%; height: auto; border-radius: var(--cs-radius); border: 1px solid var(--cs-line); box-shadow: var(--cs-shadow)">
+<img src="assets/images/9f92094b73e4444c7b4ff86120fc815e.png" alt="Before: repeated perfect, overtime and rushed attempt blocks" style="display: block; width: 240px; max-width: 100%; height: auto; border-radius: var(--cs-radius); border: 1px solid var(--cs-line); box-shadow: var(--cs-shadow)">
 </sc-if>
 </div>
 </div>
@@ -357,15 +347,15 @@ What if I scored?
 <div style="background: #FAFAFD; padding: 32px 24px; display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 16px; min-height: 304px; box-sizing: border-box">
 <sc-if value="{{e.showAfter}}" hint-placeholder-val="{{ true }}">
 <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 16px">
-<img src="./assets/dd5714677f8a30b39f922640d96c64c3.png" alt="After: grid of all questions coloured by result" style="display: block; width: 176px; max-width: 100%; height: auto; border-radius: var(--cs-radius); border: 1px solid var(--cs-line); box-shadow: var(--cs-shadow)">
-<img src="./assets/2c73560e74610bb7f45d2c9a7f963f03.png" alt="After: list of questions with topic, difficulty and time" style="display: block; width: 176px; max-width: 100%; height: auto; border-radius: var(--cs-radius); border: 1px solid var(--cs-line); box-shadow: var(--cs-shadow)">
-<img src="./assets/43a8df0b705150982a14921961461dc3.png" alt="After: your answer, the correct answer and the solution" style="display: block; width: 176px; max-width: 100%; height: auto; border-radius: var(--cs-radius); border: 1px solid var(--cs-line); box-shadow: var(--cs-shadow)">
+<img src="assets/images/dd5714677f8a30b39f922640d96c64c3.png" alt="After: grid of all questions coloured by result" style="display: block; width: 176px; max-width: 100%; height: auto; border-radius: var(--cs-radius); border: 1px solid var(--cs-line); box-shadow: var(--cs-shadow)">
+<img src="assets/images/2c73560e74610bb7f45d2c9a7f963f03.png" alt="After: list of questions with topic, difficulty and time" style="display: block; width: 176px; max-width: 100%; height: auto; border-radius: var(--cs-radius); border: 1px solid var(--cs-line); box-shadow: var(--cs-shadow)">
+<img src="assets/images/43a8df0b705150982a14921961461dc3.png" alt="After: your answer, the correct answer and the solution" style="display: block; width: 176px; max-width: 100%; height: auto; border-radius: var(--cs-radius); border: 1px solid var(--cs-line); box-shadow: var(--cs-shadow)">
 </div>
 </sc-if>
 <sc-if value="{{e.showBefore}}" hint-placeholder-val="{{ false }}">
 <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 16px">
-<img src="./assets/bdabeb951574229a08303faf9f103c71.png" alt="Before: question list with clipped filters and tags" style="display: block; width: 176px; max-width: 100%; height: auto; border-radius: var(--cs-radius); border: 1px solid var(--cs-line); box-shadow: var(--cs-shadow)">
-<img src="./assets/c6db85b1e5dc105df72d904b5f74a64c.png" alt="Before: review screen reusing the test layout" style="display: block; width: 176px; max-width: 100%; height: auto; border-radius: var(--cs-radius); border: 1px solid var(--cs-line); box-shadow: var(--cs-shadow)">
+<img src="assets/images/bdabeb951574229a08303faf9f103c71.png" alt="Before: question list with clipped filters and tags" style="display: block; width: 176px; max-width: 100%; height: auto; border-radius: var(--cs-radius); border: 1px solid var(--cs-line); box-shadow: var(--cs-shadow)">
+<img src="assets/images/c6db85b1e5dc105df72d904b5f74a64c.png" alt="Before: review screen reusing the test layout" style="display: block; width: 176px; max-width: 100%; height: auto; border-radius: var(--cs-radius); border: 1px solid var(--cs-line); box-shadow: var(--cs-shadow)">
 </div>
 </sc-if>
 </div>
@@ -378,7 +368,7 @@ What if I scored?
 <h3 class="cs-sub">AI insights</h3>
 <p>A short tip under the percentile and time cards turns the numbers into plain language, such as how much each extra mark adds to the percentile. These tips are AI insights, connected to the app's built-in AI bot.</p>
 <div style="margin-top: 24px; background: #FAFAFD; border: 1px solid var(--cs-line); border-radius: var(--cs-radius); padding: 32px 24px; box-sizing: border-box; display: flex; justify-content: center">
-<img src="./assets/7af5b851532f6034923768addf00317b.png" alt="AI insight tip: around 158 marks, each extra mark adds about 0.10 percentile" style="display: block; width: 320px; max-width: 100%; height: auto; border-radius: var(--cs-radius); border: 1px solid var(--cs-line); box-shadow: var(--cs-shadow)">
+<img src="assets/images/7af5b851532f6034923768addf00317b.png" alt="AI insight tip: around 158 marks, each extra mark adds about 0.10 percentile" style="display: block; width: 320px; max-width: 100%; height: auto; border-radius: var(--cs-radius); border: 1px solid var(--cs-line); box-shadow: var(--cs-shadow)">
 </div>
 </section>
 
@@ -415,14 +405,14 @@ What if I scored?
 <section class="cs-upnext" aria-labelledby="upnext-title">
 <div class="cs-upnext-head"><div id="upnext-title" class="cs-label">Up next</div><a class="cs-top" href="#top">Back to top<svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 13V3"></path><path d="M3.5 7.5 8 3l4.5 4.5"></path></svg></a></div>
 <div class="cs-upnext-grid">
-<a class="upnext-card" href="MediTrack.dc.html">
+<a class="upnext-card" href="projects/meditrack.html">
 <portfolio-thumb class="upnext-card-image" data-key="meditrack-search-first" role="img" aria-label="MediTrack: a symptom is typed or spoken into search, then the real Likely match result and care features are shown" style="display:block;width:100%;aspect-ratio:16 / 10;overflow:hidden;border-radius:10px"></portfolio-thumb>
 <div class="upnext-card-copy">
 <span class="upnext-card-label">Concept Project</span>
 <span class="upnext-card-title">Helping people find the medicine that worked last time</span>
 </div>
 </a>
-<a class="upnext-card" href="ColorEase.dc.html">
+<a class="upnext-card" href="projects/colorease.html">
 <portfolio-thumb class="upnext-card-media" data-key="colorease-floating-shapes" role="img" aria-label="ColorEase: soft shapes floating up and down" style="display:block;width:100%;aspect-ratio:16 / 10;overflow:hidden;border-radius:10px;background:#F69788"></portfolio-thumb>
 <div class="upnext-card-copy">
 <span class="upnext-card-label">Accessibility</span>
@@ -432,10 +422,7 @@ What if I scored?
 </div>
 </section>
 
-<div class="cs-contact">
-<div class="cs-contact-title">Contact</div>
-<div class="cs-contact-links"><a href="https://www.linkedin.com/in/bhuvana-shree-n-4bba42259" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="mailto:bhuvana.n.reddy04@gmail.com">Email</a></div>
-</div>
+<portfolio-site-footer data-kind="case"></portfolio-site-footer>
 
 </main>
 </div>
