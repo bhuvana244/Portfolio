@@ -593,7 +593,7 @@ button{font-family:inherit}
 .cs-nav{border-bottom:0 !important}
 .cs-bar{padding:0 max(24px, env(safe-area-inset-right, 0px)) 0 max(24px, env(safe-area-inset-left, 0px))}
 .cs-nav .cs-list{padding:8px max(24px, env(safe-area-inset-right, 0px)) 16px max(24px, env(safe-area-inset-left, 0px))}
-.cs-main{padding:calc(var(--cs-nav-h) + 40px) max(24px, env(safe-area-inset-right, 0px)) 0 max(24px, env(safe-area-inset-left, 0px))}
+.cs-main{padding:calc(var(--cs-nav-h) + 40px) max(16px, env(safe-area-inset-right, 0px)) 0 max(16px, env(safe-area-inset-left, 0px))}
 .cs-upnext-grid .upnext-card > div:last-child{gap:8px !important}
 .cs-contact{padding:32px 0 56px}
 
@@ -633,20 +633,21 @@ button{font-family:inherit}
 
 .cs-main .cs-contact{
   display:flex;
-  flex-direction:column;
-  align-items:flex-start;
-  justify-content:flex-start;
-  gap:8px;
+  flex-direction:row;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px 40px;
   margin:0;
-  padding:32px 0 64px;
+  padding:32px 0 56px;
   font-family:var(--cs-body);
-  font-size:14px;
+  font-size:16px;
   line-height:24px;
 }
 .cs-main .cs-contact-title{
   display:block;
   font-family:var(--cs-display);
-  font-size:14px;
+  font-size:16px;
   line-height:24px;
 }
 .cs-main .cs-contact-links{
@@ -657,7 +658,7 @@ button{font-family:inherit}
 .cs-main .cs-contact-links a{
   color:#7B858E;
   font-family:var(--cs-body);
-  font-size:14px;
+  font-size:16px;
   line-height:24px;
   text-decoration:none;
 }

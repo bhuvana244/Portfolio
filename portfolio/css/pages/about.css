@@ -117,7 +117,7 @@ body{margin:0;background:#FFFFFF}
   .nav-wrap{position:static !important;transform:none !important}
   .nav{flex-direction:row !important;flex-wrap:wrap;gap:0 24px !important}
   .nav-link.is-active::before{display:none}
-  .main{margin-left:0 !important;padding:48px var(--space-edge) 96px !important}
+  .main{margin-left:0 !important;padding:48px var(--space-edge) 0 !important}
   .foot{padding:64px var(--space-edge) 48px !important}
   .row-label{flex-basis:100% !important}
 }
@@ -126,7 +126,7 @@ body{margin:0;background:#FFFFFF}
   :root{--space-edge:24px;--bg-gradient:radial-gradient(ellipse 70% 100% at 14% 100%, rgba(214,233,249,.85) 0%, rgba(228,241,252,0) 70%) bottom / 100% 560px no-repeat, radial-gradient(ellipse 60% 90% at 82% 100%, rgba(220,236,250,.75) 0%, rgba(228,241,252,0) 70%) bottom / 100% 560px no-repeat, linear-gradient(to top, rgba(228,241,252,.9) 0%, rgba(228,241,252,0) 100%) bottom / 100% 560px no-repeat, linear-gradient(to bottom, #E4F1FC 0%, rgba(228,241,252,0) 100%) top / 100% 640px no-repeat, #FFFFFF}
   .side{padding:24px !important;gap:8px 24px !important;border-bottom:0 !important}
   .nav{gap:0 24px !important}
-  .main{padding:32px 24px 48px !important}
+  .main{padding:32px 24px 0 !important}
   .main section{padding:24px 0 !important}
   .foot{padding:48px 24px 40px !important;gap:40px !important}
   .foot h2{font-size:22px !important;line-height:32px !important;font-weight:400 !important;letter-spacing:-.01em !important}

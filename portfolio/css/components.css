@@ -12,6 +12,10 @@ portfolio-section-nav {
   z-index: 3;
 }
 
+.foot-links {
+  margin-left: auto;
+}
+
 .case-card portfolio-thumb {
   width: 100%;
 }
