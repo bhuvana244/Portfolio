@@ -630,3 +630,39 @@ button{font-family:inherit}
 .cs-dscale > .cs-dscale-in{position:absolute;left:0;top:0;transform-origin:0 0;transform:scale(.503);transform:scale(tan(atan2(100cqw, 680px)))}
 
 }
+
+.cs-main .cs-contact{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:flex-start;
+  gap:8px;
+  margin:0;
+  padding:32px 0 64px;
+  font-family:var(--cs-body);
+  font-size:14px;
+  line-height:24px;
+}
+.cs-main .cs-contact-title{
+  display:block;
+  font-family:var(--cs-display);
+  font-size:14px;
+  line-height:24px;
+}
+.cs-main .cs-contact-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:0 40px;
+}
+.cs-main .cs-contact-links a{
+  color:#7B858E;
+  font-family:var(--cs-body);
+  font-size:14px;
+  line-height:24px;
+  text-decoration:none;
+}
+.cs-main .cs-contact-links a:hover{color:#4F6CFF}
+.cs-main .cs-contact-links a:focus-visible{
+  outline:2px solid #494949;
+  outline-offset:4px;
+}

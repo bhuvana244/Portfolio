@@ -23,11 +23,6 @@ portfolio-section-nav {
   border-radius: var(--cs-radius-lg, var(--radius-lg));
 }
 
-.cs-contact-head,
-.cs-contact-row {
-  display: none;
-}
-
 @media (max-width: 768px) {
   .desktop-only {
     display: none !important;
@@ -41,15 +36,6 @@ portfolio-section-nav {
     display: inline-flex !important;
     align-items: center;
     min-height: 44px;
-  }
-
-  .cs-contact-title {
-    display: none;
-  }
-
-  .cs-contact-head,
-  .cs-contact-row {
-    display: flex;
   }
 
   .case-card .view {

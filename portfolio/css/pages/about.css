@@ -65,7 +65,7 @@ body{margin:0;background:#FFFFFF}
 @media (max-width: 768px) {
 
 :root{
-  --bg-gradient:linear-gradient(#DCECF7 1px, transparent 1px) 0 0 / 32px 32px, linear-gradient(90deg, #DCECF7 1px, transparent 1px) 0 0 / 32px 32px, radial-gradient(ellipse 70% 100% at 14% 100%, rgba(214,233,249,.85) 0%, rgba(228,241,252,0) 70%) bottom / 100% 560px no-repeat, radial-gradient(ellipse 60% 90% at 82% 100%, rgba(220,236,250,.75) 0%, rgba(228,241,252,0) 70%) bottom / 100% 560px no-repeat, linear-gradient(to top, rgba(228,241,252,.9) 0%, rgba(228,241,252,0) 100%) bottom / 100% 560px no-repeat, linear-gradient(to bottom, #E4F1FC 0%, rgba(228,241,252,0) 100%) top / 100% 640px no-repeat, #FFFFFF;
+  --bg-gradient:radial-gradient(ellipse 70% 100% at 14% 100%, rgba(214,233,249,.85) 0%, rgba(228,241,252,0) 70%) bottom / 100% 560px no-repeat, radial-gradient(ellipse 60% 90% at 82% 100%, rgba(220,236,250,.75) 0%, rgba(228,241,252,0) 70%) bottom / 100% 560px no-repeat, linear-gradient(to top, rgba(228,241,252,.9) 0%, rgba(228,241,252,0) 100%) bottom / 100% 560px no-repeat, linear-gradient(to bottom, #E4F1FC 0%, rgba(228,241,252,0) 100%) top / 100% 640px no-repeat, #FFFFFF;
   --ink:var(--color-ink);
   --muted:var(--color-muted);
   --line:var(--color-line);

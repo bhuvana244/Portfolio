@@ -79,7 +79,8 @@
           .replaceAll("{{workActive}}", active === "work" ? " is-active" : "")
           .replaceAll("{{aboutActive}}", active === "about" ? " is-active" : "")
           .replaceAll("{{workCurrent}}", active === "work" ? ' aria-current="page"' : "")
-          .replaceAll("{{aboutCurrent}}", active === "about" ? ' aria-current="page"' : "");
+          .replaceAll("{{aboutCurrent}}", active === "about" ? ' aria-current="page"' : "")
+          .replaceAll("{{contactHref}}", active === "about" ? "#contact" : "index.html#contact");
         const content = document.createElement("template");
         content.innerHTML = template;
         this.replaceChildren(content.content);
@@ -202,22 +203,24 @@
   customElements.define("portfolio-section-nav", PortfolioSectionNav);
 
   document.addEventListener("DOMContentLoaded", () => {
-    let attempts = 0;
+    let stopWatching;
     const renderWhenReady = () => {
       const container = document.getElementById("project-grid");
       const nav = document.querySelector("portfolio-site-nav");
-      if (container && nav && nav.childElementCount > 0) {
-        window.clearInterval(waitForGrid);
-        renderProjectCards(container);
-        return;
-      }
-      attempts += 1;
-      if (attempts >= 200) {
-        window.clearInterval(waitForGrid);
+      if (!container || !nav || nav.childElementCount === 0) return;
+      projectGridObserver.disconnect();
+      window.clearTimeout(stopWatching);
+      renderProjectCards(container);
+    };
+    const projectGridObserver = new MutationObserver(renderWhenReady);
+    projectGridObserver.observe(document.documentElement, { childList: true, subtree: true });
+    stopWatching = window.setTimeout(() => {
+      projectGridObserver.disconnect();
+      const container = document.getElementById("project-grid");
+      if (container && container.dataset.rendered !== "true") {
         console.error("Could not render portfolio project cards because the shared navigation did not finish loading.");
       }
-    };
-    const waitForGrid = window.setInterval(renderWhenReady, 50);
+    }, 10000);
     renderWhenReady();
     applyResponsiveContent();
     mobileQuery.addEventListener("change", applyResponsiveContent);
