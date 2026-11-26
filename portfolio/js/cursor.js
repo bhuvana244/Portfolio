@@ -105,7 +105,7 @@
     st.id = 'bs-cursor-style';
     st.textContent = css;
     document.head.appendChild(st);
-    var el = document.createElement('div');
+    el = document.createElement('div');
     el.id = 'bs-cursor';
     el.setAttribute('aria-hidden', 'true');
     el.appendChild(document.createElement('i'));
