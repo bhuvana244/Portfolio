@@ -6,9 +6,10 @@
     <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 32px;font-size:14px;line-height:24px">
       <span style="color:var(--muted)">© 2026 Bhuvana Shree N.</span>
       <div class="foot-links" style="display:flex;flex-wrap:wrap;gap:8px 40px">
-        <a class="foot-link" href="mailto:bhuvana.n.reddy04@gmail.com">Email</a>
+        <button type="button" class="foot-link copy-email" data-copy="bhuvanashreen04@gmail.com" data-cursor-label="Copy email" aria-label="Copy email address">Email</button>
         <a class="foot-link" href="https://www.linkedin.com/in/bhuvana-shree-n-4bba42259" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a id="resume" class="foot-link" href="assets/Bhuvana_Shree_N_Resume.pdf" data-desktop-href="assets/Bhuvana_Shree_N_Resume.pdf" data-mobile-href="#resume">Resume</a>
+        <a id="resume" class="foot-link" href="/assets/Bhuvana_Shree_N_Resume.pdf" data-desktop-href="/assets/Bhuvana_Shree_N_Resume.pdf" data-mobile-href="/assets/Bhuvana_Shree_N_Resume.pdf">Resume</a>
+        <span class="sr-only" role="status" aria-live="polite" id="copy-status"></span>
       </div>
     </div>
   </footer>
@@ -18,7 +19,8 @@
     <div class="cs-contact-title">Contact</div>
     <div class="cs-contact-links">
       <a href="https://www.linkedin.com/in/bhuvana-shree-n-4bba42259" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      <a href="mailto:bhuvana.n.reddy04@gmail.com">Email</a>
+      <button type="button" class="copy-email" data-copy="bhuvanashreen04@gmail.com" data-cursor-label="Copy email" aria-label="Copy email address">Email</button>
+      <span class="sr-only" role="status" aria-live="polite" id="copy-status"></span>
     </div>
   </div>
 </template>

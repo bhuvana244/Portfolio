@@ -16,6 +16,39 @@ portfolio-section-nav {
   margin-left: auto;
 }
 
+.copy-email {
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: var(--muted, #7B858E);
+  cursor: pointer;
+  width: var(--copy-w, 3.4em);
+  min-width: var(--copy-w, 3.4em);
+  text-align: left;
+}
+
+.foot-link.copy-email:hover,
+.cs-contact-links .copy-email:hover {
+  color: #4F6CFF;
+}
+
+.foot-link.copy-email:focus-visible,
+.cs-contact-links .copy-email:focus-visible {
+  outline: 2px solid #3C3C3C;
+  outline-offset: 4px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
 .case-card portfolio-thumb {
   width: 100%;
 }

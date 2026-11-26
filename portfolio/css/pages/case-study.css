@@ -601,7 +601,7 @@ button{font-family:inherit}
 :root{--cs-radius-sm:12px}
 .cs-page a.cs-top{min-height:44px}
 .cs-contact-links{gap:0 24px}
-.cs-contact-links a{display:inline-flex;align-items:center;min-height:44px}
+.cs-contact-links a,.cs-contact-links .copy-email{display:inline-flex;align-items:center;min-height:44px}
 .cs-main .cs-chip{border-radius:6px}
 
 /* Footer: same as the Home footer (headline, then copyright and links) */
@@ -610,7 +610,7 @@ button{font-family:inherit}
 .cs-contact-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 32px;font-family:var(--cs-body);font-size:14px;line-height:24px}
 .cs-contact-copy{color:var(--cs-muted)}
 .cs-contact-links{gap:0 40px}
-.cs-contact-links a{font-size:14px}
+.cs-contact-links a,.cs-contact-links .copy-email{font-size:14px}
 
 /* ExamDuo mobile: 8pt spacing, 4pt type baseline (line-heights and fixed sizes snap to the grid) */
 .cs-grid8{--cs-body-lh:24px;--cs-h1-lh:36px;--cs-h2-lh:32px;--cs-h3-lh:24px;line-height:24px}
